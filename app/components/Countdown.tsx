@@ -87,24 +87,13 @@ export default function Countdown({ onSkip }: CountdownProps) {
         </p>
       </div>
 
-      {/* Skip button (hidden by default, tap to reveal) */}
-      <div
-        className="absolute bottom-8 right-8"
-        onClick={() => setShowSkip(!showSkip)}
+      {/* Skip button - visible but subtle */}
+      <button
+        onClick={() => onSkip()}
+        className="absolute bottom-8 right-8 px-4 py-2 text-xs uppercase tracking-wider text-gray-600 hover:text-white border border-gray-800 hover:border-gray-600 rounded transition-all"
       >
-        <div className="w-4 h-4 rounded-full border border-gray-800 cursor-pointer hover:border-gray-600 transition-colors"></div>
-        {showSkip && (
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onSkip();
-            }}
-            className="absolute bottom-6 right-0 whitespace-nowrap px-4 py-2 text-xs uppercase tracking-wider text-gray-500 hover:text-white transition-colors"
-          >
-            Program megtekintése →
-          </button>
-        )}
-      </div>
+        Program megtekintése →
+      </button>
     </div>
   );
 }
