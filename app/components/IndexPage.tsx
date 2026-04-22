@@ -72,8 +72,8 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
         </div>
 
         {/* Note */}
-        <div className="max-w-2xl mx-auto mt-12 pt-8 border-t border-gray-900">
-          <p className="text-xs text-gray-600 text-center leading-relaxed">
+        <div className="max-w-2xl mx-auto mt-12 pt-8 border-t border-gray-900 px-2">
+          <p className="text-xs text-gray-600 text-center leading-relaxed break-words">
             {concertInfo.note}
           </p>
         </div>
