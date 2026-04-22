@@ -33,5 +33,5 @@ export default function Home() {
     return <IndexPage onSelectPiece={handleSelectPiece} />;
   }
 
-  return <ProgramViewer startIndex={selectedPiece} />;
+  return <ProgramViewer startIndex={selectedPiece} onBackToIndex={handleBackToIndex} />;
 }

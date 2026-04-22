@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useCountdown, formatTimeComponent } from "../hooks/useCountdown";
 
 interface CountdownProps {
@@ -9,7 +8,6 @@ interface CountdownProps {
 
 export default function Countdown({ onSkip }: CountdownProps) {
   const { timeLeft, isExpired } = useCountdown();
-  const [showSkip, setShowSkip] = useState(false);
 
   if (isExpired || !timeLeft) {
     return (
@@ -87,12 +85,12 @@ export default function Countdown({ onSkip }: CountdownProps) {
         </p>
       </div>
 
-      {/* Skip button - visible but subtle */}
+      {/* Skip button - centered and moved up */}
       <button
         onClick={() => onSkip()}
-        className="absolute bottom-8 right-8 px-4 py-2 text-xs uppercase tracking-wider text-gray-600 hover:text-white border border-gray-800 hover:border-gray-600 rounded transition-all"
+        className="mt-20 px-6 py-3 text-xs uppercase tracking-widest text-gray-500 hover:text-white border border-gray-800 hover:border-gray-600 rounded-full transition-all"
       >
-        Program megtekintése →
+        Program megtekintése
       </button>
     </div>
   );
