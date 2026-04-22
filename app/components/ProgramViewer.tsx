@@ -13,7 +13,6 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
   const [currentIndex, setCurrentIndex] = useState(startIndex);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Handle scroll snap detection
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
@@ -31,7 +30,6 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
     return () => scrollContainer.removeEventListener("scroll", handleScroll);
   }, [currentIndex, pieces.length]);
 
-  // Scroll to selected page on mount
   useEffect(() => {
     if (scrollRef.current && startIndex > 0) {
       scrollRef.current.scrollTo({
@@ -53,7 +51,6 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
 
   return (
     <div className="h-screen flex flex-col bg-black">
-      {/* Top navigation bar */}
       <div className="flex-shrink-0 flex items-center justify-between px-6 py-4 border-b border-gray-900">
         <button
           onClick={onBackToIndex}
@@ -66,7 +63,6 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         </div>
       </div>
 
-      {/* Horizontal scrolling pages */}
       <div
         ref={scrollRef}
         className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex"
@@ -76,7 +72,6 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         ))}
       </div>
 
-      {/* Bottom progress dots */}
       <div className="flex-shrink-0 flex justify-center gap-2 py-6 border-t border-gray-900">
         {pieces.map((_, index) => (
           <button
@@ -104,34 +99,21 @@ function Page({ piece }: PageProps) {
   return (
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden">
       <div className="h-full overflow-y-auto custom-scrollbar">
-        {/* Main content area with good whitespace */}
-        <div className="min-h-[calc(100vh-180px)] flex flex-col items-center justify-center px-6 py-12 md:py-16 relative"
-        >
-          {/* Background number - subtle */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
-          >
-            <span className="text-[20rem] md:text-[30rem] font-extralight text-gray-900 opacity-20 leading-none">
+        <div className="min-h-full flex flex-col items-center justify-center px-6 py-16 md:py-24 relative">
+          {/* Background number */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+            <span className="text-[25rem] md:text-[35rem] font-extralight text-gray-900 opacity-15 leading-none">
               {formattedId}
             </span>
           </div>
 
-          {/* Content with generous spacing */}
+          {/* Content - everything centered */}
           <div className="relative z-10 text-center max-w-2xl w-full">
-            {/* Composer */}
-            <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-gray-500 mb-6">
-              {piece.composer}
-            </p>
-
-            {/* Title */}
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-light mb-12 md:mb-16 leading-tight">
-              {piece.title}
-            </h2>
-
-            {/* Image - moved up, prominent */}
-            <div className="w-56 h-56 md:w-72 md:h-72 mx-auto mb-12 md:mb-16 border border-gray-800 bg-gray-950 flex items-center justify-center rounded-sm"
-            >
+            
+            {/* Image - CENTER of attention */}
+            <div className="w-64 h-64 md:w-80 md:h-80 mx-auto mb-10 md:mb-12 border border-gray-800 bg-gray-950 flex items-center justify-center">
               <svg
-                className="w-16 h-16 text-gray-800"
+                className="w-20 h-20 text-gray-800"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -145,28 +127,35 @@ function Page({ piece }: PageProps) {
               </svg>
             </div>
 
-            {/* Performers - centered, clean */}
-            <div className="space-y-2 md:space-y-3 mb-16 md:mb-20">
+            {/* Composer */}
+            <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-gray-500 mb-4">
+              {piece.composer}
+            </p>
+
+            {/* Title */}
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-light mb-12 md:mb-16 leading-tight">
+              {piece.title}
+            </h2>
+
+            {/* Performers */}
+            <div className="space-y-2 md:space-y-3 mb-12 md:mb-16">
               {piece.performers.map((performer, i) => (
                 <p key={i} className="text-sm md:text-base text-gray-400">
                   {performer}
                 </p>
               ))}
             </div>
+
+            {/* Description */}
+            <div className="max-w-lg mx-auto">
+              <p className="text-gray-500 leading-relaxed text-center text-sm md:text-base">
+                {piece.description}
+              </p>
+            </div>
           </div>
         </div>
-
-        {/* Description section - always visible, scrollable */}
-        <div className="border-t border-gray-900 bg-gray-950/50">
-          <div className="max-w-xl mx-auto px-6 py-12 md:py-16">
-            <p className="text-gray-400 leading-relaxed text-center text-sm md:text-base">
-              {piece.description}
-            </p>
-          </div>
-        </div>
-
-        {/* Bottom spacer for comfortable scrolling */}
-        <div className="h-20"></div>
+        
+        <div className="h-16"></div>
       </div>
     </div>
   );
