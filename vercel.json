@@ -1,7 +1,13 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/([^/]+)/?", "destination": "/$1.html" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "dist/**",
+      "use": "@vercel/static"
+    }
   ],
-  "cleanUrls": true
+  "routes": [
+    { "src": "/", "dest": "/dist/index.html" },
+    { "src": "/(.*)", "dest": "/dist/$1" }
+  ]
 }
