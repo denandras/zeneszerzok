@@ -99,63 +99,69 @@ function Page({ piece }: PageProps) {
   return (
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden">
       <div className="h-full overflow-y-auto custom-scrollbar">
-        <div className="min-h-full flex flex-col items-center justify-center px-6 py-16 md:py-24 relative">
-          {/* Background number */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-            <span className="text-[25rem] md:text-[35rem] font-extralight text-gray-900 opacity-15 leading-none">
-              {formattedId}
-            </span>
-          </div>
-
-          {/* Content - everything centered */}
-          <div className="relative z-10 text-center max-w-2xl w-full">
+        {/* Centered container with minimal margins */}
+        <div className="min-h-full flex items-center justify-center px-4 md:px-8 py-8 md:py-12">
+          <div className="relative w-full max-w-md md:max-w-lg">
             
-            {/* Image - CENTER of attention */}
-            <div className="w-64 h-64 md:w-80 md:h-80 mx-auto self-center mb-10 md:mb-12 border border-gray-800 bg-gray-950 flex items-center justify-center">
-              <svg
-                className="w-20 h-20 text-gray-800 mx-auto"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+            {/* Background number */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none -z-10">
+              <span className="text-[18rem] md:text-[24rem] font-extralight text-gray-900 opacity-10 leading-none">
+                {formattedId}
+              </span>
+            </div>
+
+            {/* Content - centered layout */}
+            <div className="text-center space-y-8 md:space-y-10">
+              
+              {/* Image - prominent */}
+              <div className="w-56 h-56 md:w-72 md:h-72 mx-auto border border-gray-800 bg-gray-950 flex items-center justify-center"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={0.5}
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-            </div>
+                <svg
+                  className="w-16 h-16 md:w-20 md:h-20 text-gray-800"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={0.5}
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
 
-            {/* Composer */}
-            <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-gray-500 mb-4">
-              {piece.composer}
-            </p>
-
-            {/* Title */}
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-light mb-12 md:mb-16 leading-tight">
-              {piece.title}
-            </h2>
-
-            {/* Performers */}
-            <div className="space-y-2 md:space-y-3 mb-12 md:mb-16">
-              {piece.performers.map((performer, i) => (
-                <p key={i} className="text-sm md:text-base text-gray-400">
-                  {performer}
-                </p>
-              ))}
-            </div>
-
-            {/* Description */}
-            <div className="max-w-lg mx-auto">
-              <p className="text-gray-500 leading-relaxed text-center text-sm md:text-base">
-                {piece.description}
+              {/* Composer */}
+              <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-gray-500">
+                {piece.composer}
               </p>
+
+              {/* Title */}
+              <h2 className="text-2xl md:text-4xl font-light leading-tight">
+                {piece.title}
+              </h2>
+
+              {/* Performers */}
+              <div className="space-y-2 md:space-y-3 pt-4">
+                {piece.performers.map((performer, i) => (
+                  <p key={i} className="text-sm md:text-base text-gray-400">
+                    {performer}
+                  </p>
+                ))}
+              </div>
+
+              {/* Description */}
+              <div className="max-w-sm mx-auto pt-4">
+                <p className="text-gray-500 leading-relaxed text-center text-sm md:text-base">
+                  {piece.description}
+                </p>
+              </div>
             </div>
           </div>
         </div>
         
-        <div className="h-16"></div>
+        {/* Bottom padding */}
+        <div className="h-8"></div>
       </div>
     </div>
   );
