@@ -56,7 +56,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
           onClick={onBackToIndex}
           className="text-xs uppercase tracking-[0.2em] text-gray-500 hover:text-white transition-colors"
         >
-          ← Tartalom
+          ← Műsor
         </button>
         <div className="text-xs text-gray-600 tracking-wider">
           {currentIndex + 1} / {pieces.length}
@@ -114,7 +114,7 @@ function Page({ piece }: PageProps) {
             <div className="text-center space-y-8 md:space-y-10">
               
               {/* Image - prominent */}
-              <div className="w-56 h-56 md:w-72 md:h-72 mx-auto border border-gray-800 bg-gray-950 flex items-center justify-center"
+              <div className="w-56 h-56 md:w-72 md:h-72 mx-auto border border-gray-800 bg-gray-950 flex items-center justify-center self-center"
               >
                 <svg
                   className="w-16 h-16 md:w-20 md:h-20 text-gray-800"

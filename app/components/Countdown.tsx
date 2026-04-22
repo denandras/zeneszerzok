@@ -27,7 +27,7 @@ export default function Countdown({ onSkip }: CountdownProps) {
       {/* Main content - flexes to fill space */}
       <div className="flex-1 flex flex-col items-center justify-center w-full">
         {/* Title */}
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-8 md:mb-12">
           <p className="text-xs uppercase tracking-[0.4em] text-gray-500 mb-2">
             Alkalmazott zeneszerzés
           </p>
@@ -37,11 +37,25 @@ export default function Countdown({ onSkip }: CountdownProps) {
         </div>
 
         {/* Countdown */}
-        <div className="flex items-baseline gap-2 md:gap-4 font-light select-none"
+        <div className="flex items-baseline gap-2 md:gap-4 font-light select-none flex-wrap justify-center"
         >
+          {/* Days */}
+          <div className="text-center">
+            <span className="text-[clamp(2rem,10vw,8rem)] md:text-[clamp(3rem,12vw,10rem)] leading-none tracking-tighter">
+              {formatTimeComponent(timeLeft.days)}
+            </span>
+            <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mt-2">
+              nap
+            </p>
+          </div>
+
+          <span className="text-[clamp(1.5rem,6vw,4rem)] md:text-[clamp(2rem,8vw,6rem)] text-gray-600 -translate-y-2 md:-translate-y-4">
+            :
+          </span>
+
           {/* Hours */}
           <div className="text-center">
-            <span className="text-[clamp(3rem,12vw,10rem)] md:text-[clamp(4rem,15vw,12rem)] leading-none tracking-tighter">
+            <span className="text-[clamp(2rem,10vw,8rem)] md:text-[clamp(3rem,12vw,10rem)] leading-none tracking-tighter">
               {formatTimeComponent(timeLeft.hours)}
             </span>
             <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mt-2">
@@ -49,13 +63,13 @@ export default function Countdown({ onSkip }: CountdownProps) {
             </p>
           </div>
 
-          <span className="text-[clamp(2rem,8vw,6rem)] md:text-[clamp(3rem,10vw,8rem)] text-gray-600 -translate-y-2 md:-translate-y-4">
+          <span className="text-[clamp(1.5rem,6vw,4rem)] md:text-[clamp(2rem,8vw,6rem)] text-gray-600 -translate-y-2 md:-translate-y-4">
             :
           </span>
 
           {/* Minutes */}
           <div className="text-center">
-            <span className="text-[clamp(3rem,12vw,10rem)] md:text-[clamp(4rem,15vw,12rem)] leading-none tracking-tighter">
+            <span className="text-[clamp(2rem,10vw,8rem)] md:text-[clamp(3rem,12vw,10rem)] leading-none tracking-tighter">
               {formatTimeComponent(timeLeft.minutes)}
             </span>
             <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mt-2">
@@ -63,13 +77,13 @@ export default function Countdown({ onSkip }: CountdownProps) {
             </p>
           </div>
 
-          <span className="text-[clamp(2rem,8vw,6rem)] md:text-[clamp(3rem,10vw,8rem)] text-gray-600 -translate-y-2 md:-translate-y-4">
+          <span className="text-[clamp(1.5rem,6vw,4rem)] md:text-[clamp(2rem,8vw,6rem)] text-gray-600 -translate-y-2 md:-translate-y-4">
             :
           </span>
 
           {/* Seconds */}
           <div className="text-center">
-            <span className="text-[clamp(3rem,12vw,10rem)] md:text-[clamp(4rem,15vw,12rem)] leading-none tracking-tighter">
+            <span className="text-[clamp(2rem,10vw,8rem)] md:text-[clamp(3rem,12vw,10rem)] leading-none tracking-tighter">
               {formatTimeComponent(timeLeft.seconds)}
             </span>
             <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mt-2">
@@ -79,7 +93,7 @@ export default function Countdown({ onSkip }: CountdownProps) {
         </div>
 
         {/* Date */}
-        <div className="mt-16 md:mt-24 text-center">
+        <div className="mt-8 md:mt-12 text-center">
           <p className="text-sm text-gray-500 tracking-wide">
             2026. május 3. 19:00
           </p>

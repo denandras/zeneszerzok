@@ -10,7 +10,7 @@ export const concertInfo = {
   title: "Alkalmazott zeneszerzés BA diplomakoncert",
   date: "2026. május 3.",
   time: "19:00",
-  venue: "Liszt Ferenc Zeneművészeti Egyetem",
+  venue: "Liszt Ferenc\nZeneművészeti Egyetem",
   venueEn: "Liszt Academy Budapest",
   note: "",
 };

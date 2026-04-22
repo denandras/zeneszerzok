@@ -14,7 +14,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
       {/* Header */}
       <header className="sticky top-0 z-20 bg-black/95 backdrop-blur border-b border-gray-900 px-6 py-6">
         <div className="max-w-2xl mx-auto">
-          <p className="text-xs uppercase tracking-[0.4em] text-gray-500 mb-1">
+          <p className="text-xs uppercase tracking-[0.4em] text-gray-500 mb-1 whitespace-pre-line">
             {concertInfo.venue}
           </p>
           <h1 className="text-2xl md:text-3xl font-light mb-2">
@@ -49,8 +49,8 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
                     {piece.title}
                   </span>
                 ) : (
-                  <div className="flex items-baseline gap-4">
-                    <span className="text-2xl md:text-3xl font-extralight text-gray-700 w-12 flex-shrink-0 tabular-nums">
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-2xl md:text-3xl font-extralight text-gray-700 w-10 flex-shrink-0 tabular-nums text-right">
                       {piece.id.toString().padStart(2, "0")}
                     </span>
                     <div className="flex-1 min-w-0">
@@ -79,14 +79,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="px-6 py-8 border-t border-gray-900">
-        <div className="max-w-2xl mx-auto text-center">
-          <p className="text-xs text-gray-700">
-            {concertInfo.venueEn}
-          </p>
-        </div>
-      </footer>
+      {/* Footer removed */}
     </div>
   );
 }
