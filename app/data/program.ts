@@ -21,7 +21,8 @@ export const program: Piece[] = [
     composer: "Botos Gergely",
     title: "Kvintett",
     performers: [
-      "Papp Máté, Mészáros Jázon Márk (klarinét)",
+      "Papp Máté (klarinét)",
+      "Mészáros Jázon Márk (klarinét)",
       "Csongár Márton (basszetkürt)",
       "Lakatos Béla (basszusklarinét)",
       "Botos Gergely (kontrabasszus-klarinét)"
@@ -45,7 +46,8 @@ export const program: Piece[] = [
     composer: "Nagy Emma",
     title: "Metallic Flowers",
     performers: [
-      "Krulik Eszter, Szűcs Boglárka (hegedű)",
+      "Krulik Eszter (hegedű)",
+      "Szűcs Boglárka (hegedű)",
       "Lachegyi Róza (brácsa)",
       "Bali Gabriella (cselló)",
       "Szatzker Zsanett (harmonika)"
@@ -58,9 +60,12 @@ export const program: Piece[] = [
     title: "something, someday, somewhere...",
     performers: [
       "Réz körút",
-      "Nagy Sándor, Szilágyi Dusán, Huszti Boldizsár (trombita)",
+      "Nagy Sándor (trombita)",
+      "Szilágyi Dusán (trombita)",
+      "Huszti Boldizsár (trombita)",
       "Faragó István (kürt)",
-      "Gulyás Buda, Dénes András (harsona)",
+      "Gulyás Buda (harsona)",
+      "Dénes András (harsona)",
       "Vida Mátyás (tuba)"
     ],
     description: "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
@@ -112,7 +117,9 @@ export const program: Piece[] = [
     performers: [
       "Tóth Domonkos (klarinét)",
       "Botos Gergely (basszusklarinét)",
-      "Pintér Anna, Holozsai Eszter, Sebestyén Lázár Kata (fuvola)",
+      "Pintér Anna (fuvola)",
+      "Holozsai Eszter (fuvola)",
+      "Sebestyén Lázár Kata (fuvola)",
       "Szilágyi Péter (marimba)"
     ],
     description: "Aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."
@@ -123,8 +130,10 @@ export const program: Piece[] = [
     title: "Reframe",
     performers: [
       "Törőcsik Kristóf: Nitzakhon",
-      "Krulik Eszter, Szűcs Boglárka (hegedű)",
-      "Lachegyi Róza, Koppán Kata (brácsa)",
+      "Krulik Eszter (hegedű)",
+      "Szűcs Boglárka (hegedű)",
+      "Lachegyi Róza (brácsa)",
+      "Koppán Kata (brácsa)",
       "Bali Gabriella (cselló)"
     ],
     description: "Consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam."
@@ -144,7 +153,9 @@ export const program: Piece[] = [
     composer: "Sebestyén Lázár Regina",
     title: "Detachment",
     performers: [
-      "Csörgeő Luca, Szikora Adél, Vámos Emma (ének)",
+      "Csörgeő Luca (ének)",
+      "Szikora Adél (ének)",
+      "Vámos Emma (ének)",
       "Farkas Botond (zongora)",
       "Szalovszky Viktória (preparáció)"
     ],
