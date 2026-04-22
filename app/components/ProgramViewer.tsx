@@ -111,9 +111,9 @@ function Page({ piece }: PageProps) {
           <div className="relative z-10 text-center max-w-2xl w-full">
             
             {/* Image - CENTER of attention */}
-            <div className="w-64 h-64 md:w-80 md:h-80 mx-auto mb-10 md:mb-12 border border-gray-800 bg-gray-950 flex items-center justify-center">
+            <div className="w-64 h-64 md:w-80 md:h-80 mx-auto self-center mb-10 md:mb-12 border border-gray-800 bg-gray-950 flex items-center justify-center">
               <svg
-                className="w-20 h-20 text-gray-800"
+                className="w-20 h-20 text-gray-800 mx-auto"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
