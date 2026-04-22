@@ -57,7 +57,7 @@ export const program: Piece[] = [
     composer: "Sebestyén Lázár Regina",
     title: "something, someday, somewhere...",
     performers: [
-      "Réz Körút",
+      "Réz körút",
       "Nagy Sándor, Szilágyi Dusán, Huszti Boldizsár (trombita)",
       "Faragó István (kürt)",
       "Gulyás Buda, Dénes András (harsona)",
