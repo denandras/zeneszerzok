@@ -12,7 +12,7 @@ export const concertInfo = {
   time: "19:00",
   venue: "Liszt Ferenc Zeneművészeti Egyetem",
   venueEn: "Liszt Academy Budapest",
-  note: "A koncert előtt, 16.00 órától a diplomázók vizsgafilmjei az I. előadó teremben tekinthetők meg.",
+  note: "",
 };
 
 export const program: Piece[] = [
