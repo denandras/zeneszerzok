@@ -27,7 +27,7 @@ export default function Countdown({ onSkip }: CountdownProps) {
       {/* Main content - flexes to fill space */}
       <div className="flex-1 flex flex-col items-center justify-center w-full">
         {/* Title */}
-        <div className="text-center mb-8 md:mb-16">
+        <div className="text-center mb-16 md:mb-20">
           <p className="text-xs uppercase tracking-[0.4em] text-gray-500 mb-2">
             Alkalmazott zeneszerzés
           </p>
@@ -79,7 +79,7 @@ export default function Countdown({ onSkip }: CountdownProps) {
         </div>
 
         {/* Date */}
-        <div className="mt-8 md:mt-16 text-center">
+        <div className="mt-16 md:mt-24 text-center">
           <p className="text-sm text-gray-500 tracking-wide">
             2026. május 3. 19:00
           </p>
