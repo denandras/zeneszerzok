@@ -23,11 +23,11 @@ export default function Countdown({ onSkip }: CountdownProps) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between p-8 md:p-12">
-      {/* Top content - centered vertically */}
+    <div className="min-h-screen flex flex-col items-center p-6 md:p-8 pb-24 md:pb-8">
+      {/* Main content - flexes to fill space */}
       <div className="flex-1 flex flex-col items-center justify-center w-full">
         {/* Title */}
-        <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <p className="text-xs uppercase tracking-[0.4em] text-gray-500 mb-2">
             Alkalmazott zeneszerzés
           </p>
@@ -41,7 +41,7 @@ export default function Countdown({ onSkip }: CountdownProps) {
         >
           {/* Hours */}
           <div className="text-center">
-            <span className="text-[clamp(4rem,15vw,12rem)] leading-none tracking-tighter">
+            <span className="text-[clamp(3rem,12vw,10rem)] md:text-[clamp(4rem,15vw,12rem)] leading-none tracking-tighter">
               {formatTimeComponent(timeLeft.hours)}
             </span>
             <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mt-2">
@@ -49,13 +49,13 @@ export default function Countdown({ onSkip }: CountdownProps) {
             </p>
           </div>
 
-          <span className="text-[clamp(3rem,10vw,8rem)] text-gray-600 -translate-y-4">
+          <span className="text-[clamp(2rem,8vw,6rem)] md:text-[clamp(3rem,10vw,8rem)] text-gray-600 -translate-y-2 md:-translate-y-4">
             :
           </span>
 
           {/* Minutes */}
           <div className="text-center">
-            <span className="text-[clamp(4rem,15vw,12rem)] leading-none tracking-tighter">
+            <span className="text-[clamp(3rem,12vw,10rem)] md:text-[clamp(4rem,15vw,12rem)] leading-none tracking-tighter">
               {formatTimeComponent(timeLeft.minutes)}
             </span>
             <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mt-2">
@@ -63,13 +63,13 @@ export default function Countdown({ onSkip }: CountdownProps) {
             </p>
           </div>
 
-          <span className="text-[clamp(3rem,10vw,8rem)] text-gray-600 -translate-y-4">
+          <span className="text-[clamp(2rem,8vw,6rem)] md:text-[clamp(3rem,10vw,8rem)] text-gray-600 -translate-y-2 md:-translate-y-4">
             :
           </span>
 
           {/* Seconds */}
           <div className="text-center">
-            <span className="text-[clamp(4rem,15vw,12rem)] leading-none tracking-tighter">
+            <span className="text-[clamp(3rem,12vw,10rem)] md:text-[clamp(4rem,15vw,12rem)] leading-none tracking-tighter">
               {formatTimeComponent(timeLeft.seconds)}
             </span>
             <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mt-2">
@@ -79,7 +79,7 @@ export default function Countdown({ onSkip }: CountdownProps) {
         </div>
 
         {/* Date */}
-        <div className="mt-12 md:mt-16 text-center">
+        <div className="mt-8 md:mt-16 text-center">
           <p className="text-sm text-gray-500 tracking-wide">
             2026. május 3. 19:00
           </p>
@@ -89,13 +89,17 @@ export default function Countdown({ onSkip }: CountdownProps) {
         </div>
       </div>
 
-      {/* Skip button - at bottom */}
-      <button
-        onClick={() => onSkip()}
-        className="px-6 py-3 text-xs uppercase tracking-widest text-gray-500 hover:text-white border border-gray-800 hover:border-gray-600 rounded-full transition-all"
+      {/* Skip button - fixed at bottom with safe area padding */}
+      <div className="fixed bottom-6 left-0 right-0 flex justify-center px-4"
+        style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       >
-        Program megtekintése
-      </button>
+        <button
+          onClick={() => onSkip()}
+          className="px-6 py-3 text-xs uppercase tracking-widest text-gray-500 hover:text-white border border-gray-800 hover:border-gray-600 rounded-full transition-all bg-black/80 backdrop-blur"
+        >
+          Program megtekintése
+        </button>
+      </div>
     </div>
   );
 }
