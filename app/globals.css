@@ -8,7 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-sans: "Sora", system-ui, -apple-system, sans-serif;
 }
 
 * {
@@ -19,14 +19,15 @@
 
 html,
 body {
-  height: 100%;
+  height: 100dvh;
   width: 100%;
   overflow: hidden;
   background: #000000;
   color: #ffffff;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: "Sora", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: fixed;
 }
 
 /* Hide scrollbar but keep functionality */

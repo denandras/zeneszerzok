@@ -10,16 +10,18 @@ interface TimeLeft {
   totalSeconds: number;
 }
 
-// Target: May 3, 2026 19:00 Hungary time (CEST)
-const TARGET_DATE = new Date("2026-05-03T19:00:00+02:00");
+// Target: May 3, 2026 18:00 Hungary time (CEST)
+const TARGET_DATE = new Date("2026-05-03T18:00:00+02:00");
 
 export function useCountdown(): {
   timeLeft: TimeLeft | null;
   isExpired: boolean;
+  isLoading: boolean;
   targetDate: Date;
 } {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   const [isExpired, setIsExpired] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -29,6 +31,7 @@ export function useCountdown(): {
       if (diff <= 0) {
         setIsExpired(true);
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, totalSeconds: 0 });
+        setIsLoading(false);
         return;
       }
 
@@ -40,6 +43,7 @@ export function useCountdown(): {
 
       setTimeLeft({ days, hours, minutes, seconds, totalSeconds });
       setIsExpired(false);
+      setIsLoading(false);
     };
 
     calculateTimeLeft();
@@ -48,7 +52,7 @@ export function useCountdown(): {
     return () => clearInterval(timer);
   }, []);
 
-  return { timeLeft, isExpired, targetDate: TARGET_DATE };
+  return { timeLeft, isExpired, isLoading, targetDate: TARGET_DATE };
 }
 
 export function formatTimeComponent(value: number): string {

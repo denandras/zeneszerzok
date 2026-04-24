@@ -1,85 +1,82 @@
 "use client";
 
-import { getPieces, concertInfo } from "../data/program";
+import { program, concertInfo } from "../data/program";
 
 interface IndexPageProps {
   onSelectPiece: (index: number) => void;
 }
 
 export default function IndexPage({ onSelectPiece }: IndexPageProps) {
-  const pieces = getPieces();
-
   return (
-    <div className="min-h-screen flex flex-col bg-black">
-      {/* Header */}
-      <header className="sticky top-0 z-20 bg-black/95 backdrop-blur border-b border-gray-900 px-6 py-6">
+    <div 
+      className="h-screen flex flex-col relative"
+      style={{
+        backgroundImage: 'url(/background-image.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Dark overlay for readability - darker for better text contrast */}
+      <div className="absolute inset-0 bg-black/70 pointer-events-none" />
+      {/* Header - transparent with text shadow for readability */}
+      <header className="flex-shrink-0 z-20 px-16 py-4 relative">
         <div className="max-w-2xl mx-auto">
-          <p className="text-xs uppercase tracking-[0.4em] text-gray-500 mb-1 whitespace-pre-line">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-gray-200 mb-0.5 whitespace-pre-line leading-tight drop-shadow-md">
             {concertInfo.venue}
           </p>
-          <h1 className="text-2xl md:text-3xl font-light mb-2">
+          <h1 className="text-sm md:text-base font-light mb-1 whitespace-pre-line leading-tight text-white drop-shadow-md">
             {concertInfo.title}
           </h1>
-          <div className="flex items-center gap-4 text-sm text-gray-500">
-            <span>{concertInfo.date}</span>
-            <span className="w-1 h-1 bg-gray-700 rounded-full"></span>
-            <span>{concertInfo.time}</span>
+          <div className="flex items-center gap-1 text-xs text-gray-200 drop-shadow-md">
+            <span>{concertInfo.date} {concertInfo.time}</span>
           </div>
         </div>
       </header>
 
-      {/* Program list */}
-      <main className="flex-1 px-6 py-8">
-        <div className="max-w-2xl mx-auto space-y-1">
-          {pieces.map((piece, index) => {
+      {/* Program list - scrollable */}
+      <main className="flex-1 px-16 overflow-y-auto">
+        <div className="max-w-2xl mx-auto flex flex-col gap-6">
+          {/* Top spacing - 1 piece height */}
+          <div className="py-4" />
+          
+          {program.map((piece, index) => {
             const isIntermission = piece.id === -1;
+
+            if (isIntermission) {
+              return (
+                <div key={piece.id} className="py-6 flex items-center justify-center gap-4 drop-shadow-md">
+                  <span className="flex-1 h-px bg-gray-500"></span>
+                  <span className="text-xs uppercase tracking-[0.3em] text-gray-300 flex-shrink-0 drop-shadow-md">
+                    {piece.title}
+                  </span>
+                  <span className="flex-1 h-px bg-gray-500"></span>
+                </div>
+              );
+            }
 
             return (
               <button
                 key={piece.id}
                 onClick={() => onSelectPiece(index)}
-                className={`w-full text-left group transition-colors ${
-                  isIntermission
-                    ? "py-6 flex items-center justify-center"
-                    : "py-4 px-4 -mx-4 hover:bg-gray-950 rounded"
-                }`}
+                className="w-full text-center group transition-colors py-4 px-4 hover:bg-white/10 rounded"
               >
-                {isIntermission ? (
-                  <span className="text-xs uppercase tracking-[0.3em] text-gray-600">
+                <div className="flex flex-col items-center gap-1 drop-shadow-md">
+                  <p className="text-xs uppercase tracking-[0.15em] text-gray-200 drop-shadow-md">
+                    {piece.composer}
+                  </p>
+                  <p className="text-base md:text-lg text-white drop-shadow-md group-hover:text-white transition-colors whitespace-nowrap">
                     {piece.title}
-                  </span>
-                ) : (
-                  <div className="flex items-baseline gap-3">
-                    <span className="text-2xl md:text-3xl font-extralight text-gray-700 w-10 flex-shrink-0 tabular-nums text-right">
-                      {piece.id.toString().padStart(2, "0")}
-                    </span>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs uppercase tracking-[0.15em] text-gray-500 mb-1">
-                        {piece.composer}
-                      </p>
-                      <p className="text-base md:text-lg truncate">
-                        {piece.title}
-                      </p>
-                    </div>
-                    <span className="text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity">
-                      →
-                    </span>
-                  </div>
-                )}
+                  </p>
+                </div>
               </button>
             );
           })}
-        </div>
-
-        {/* Note */}
-        <div className="max-w-2xl mx-auto mt-12 pt-8 border-t border-gray-900 px-2">
-          <p className="text-xs text-gray-600 text-center leading-relaxed break-words">
-            {concertInfo.note}
-          </p>
+          
+          {/* Bottom spacing - significant footer for last item visibility */}
+          <div className="h-32 md:h-40" />
         </div>
       </main>
-
-      {/* Footer removed */}
     </div>
   );
 }
