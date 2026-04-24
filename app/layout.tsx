@@ -37,9 +37,16 @@ export default function RootLayout({
   return (
     <html lang="hu">
       <head>
-        {/* Google Fonts */}
+        {/* Performance: Preconnect to critical origins */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://vercel.live" />
+        <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
+        
+        {/* Preload critical fonts */}
+        <link rel="preload" href="https://fonts.gstatic.com/s/sora/v12/xMQOuFFDK72Zl6Q9r3FxFJQ.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+        
+        {/* Google Fonts */}
         <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet" />
         

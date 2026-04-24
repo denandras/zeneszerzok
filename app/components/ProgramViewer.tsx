@@ -64,20 +64,26 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
     >
       {/* Dark overlay - pointer-events-none so clicks pass through */}
       <div className="absolute inset-0 bg-black/50 pointer-events-none" />
-      {/* Header */}
-      <div className="flex-shrink-0 px-8 py-4 flex items-center justify-center">
+      
+      {/* Header - Műsor and number on one line with spacing */}
+      <div className="flex-shrink-0 px-8 py-6 flex items-center justify-between relative z-10">
         <button
           onClick={onBackToIndex}
           className="text-xs uppercase tracking-[0.2em] text-white hover:opacity-70 transition-opacity"
         >
-          ← Műsor
+          ← Vissza
         </button>
+        <div className="flex items-center gap-3">
+          <span className="text-xs uppercase tracking-[0.15em] text-white/60">Műsor</span>
+          <span className="text-xs text-white/40">|</span>
+          <span className="text-sm font-light text-white">{String(currentIndex + 1).padStart(2, "0")}</span>
+        </div>
       </div>
 
       {/* Horizontal scroll container */}
       <div
         ref={scrollRef}
-        className="h-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex"
+        className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex"
         style={{ WebkitOverflowScrolling: 'touch' }}
       >
         {pieces.map((piece, index) => (
@@ -93,8 +99,8 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         ))}
       </div>
 
-      {/* Bottom bar - dots only */}
-      <div className="flex-shrink-0 px-6 py-4">
+      {/* Bottom bar - dots with space above and below */}
+      <div className="flex-shrink-0 px-6 pt-4 pb-8 relative z-10">
         <div className="flex justify-center items-center gap-2">
           {pieces.map((_, index) => (
             <button
@@ -123,8 +129,6 @@ interface PageProps {
 }
 
 function Page({ piece, isActive, showPrev, showNext, onPrev, onNext }: PageProps) {
-  const formattedId = piece.id.toString().padStart(2, "0");
-
   // Intermission page
   if (piece.id === -1) {
     return (
@@ -168,12 +172,7 @@ function Page({ piece, isActive, showPrev, showNext, onPrev, onNext }: PageProps
   return (
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex">
       {/* Center content - with padding to keep away from arrows */}
-      <div className="flex-1 flex flex-col items-center justify-start px-8 md:px-24 gap-6 py-12 overflow-y-auto">
-        {/* Page number at top */}
-        <span className="text-4xl md:text-5xl font-extralight text-white opacity-10 self-start pl-4">
-          {formattedId}
-        </span>
-
+      <div className="flex-1 flex flex-col items-center justify-start px-8 md:px-24 gap-6 py-8 overflow-y-auto">
         {/* Image */}
         <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 border border-gray-800 bg-gray-950">
           <svg
@@ -242,6 +241,9 @@ function Page({ piece, isActive, showPrev, showNext, onPrev, onNext }: PageProps
             </p>
           ))}
         </div>
+        
+        {/* Space after content */}
+        <div className="h-12 flex-shrink-0" />
       </div>
 
       {/* Navigation arrows */}
