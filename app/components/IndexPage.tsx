@@ -1,6 +1,7 @@
 "use client";
 
 import { program, concertInfo } from "../data/program";
+import BackgroundImage from "./BackgroundImage";
 
 interface IndexPageProps {
   onSelectPiece: (index: number) => void;
@@ -8,17 +9,10 @@ interface IndexPageProps {
 
 export default function IndexPage({ onSelectPiece }: IndexPageProps) {
   return (
-    <div 
-      className="h-screen flex flex-col relative"
-      style={{
-        backgroundImage: 'url(/background-image.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
-    >
-      {/* Dark overlay for readability - darker for better text contrast */}
-      <div className="absolute inset-0 bg-black/70 pointer-events-none" />
+    <div className="h-screen flex flex-col relative">
+      {/* Shared background - prevents flicker, consistent brightness */}
+      <BackgroundImage />
+
       {/* Header - transparent with text shadow for readability */}
       <header className="flex-shrink-0 z-20 px-16 py-4 relative">
         <div className="max-w-2xl mx-auto">

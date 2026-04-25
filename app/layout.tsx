@@ -46,6 +46,9 @@ export default function RootLayout({
         {/* Preload critical fonts */}
         <link rel="preload" href="https://fonts.gstatic.com/s/sora/v12/xMQOuFFDK72Zl6Q9r3FxFJQ.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
         
+        {/* Preload background image to prevent flash */}
+        <link rel="preload" href="/background-image.png" as="image" type="image/png" />
+        
         {/* Google Fonts */}
         <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet" />

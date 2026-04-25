@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { program, type Piece } from "../data/program";
+import BackgroundImage from "./BackgroundImage";
 
 interface ProgramViewerProps {
   startIndex?: number;
@@ -12,23 +13,31 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
   const pieces = program;
   const [currentIndex, setCurrentIndex] = useState(startIndex);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const isScrollingProgrammatically = useRef(false);
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
     const handleScroll = () => {
+      // Ignore scroll events during programmatic scrolling
+      if (isScrollingProgrammatically.current) return;
+      
       const scrollLeft = scrollContainer.scrollLeft;
       const pageWidth = scrollContainer.clientWidth;
       const newIndex = Math.round(scrollLeft / pageWidth);
-      if (newIndex !== currentIndex && newIndex >= 0 && newIndex < pieces.length) {
-        setCurrentIndex(newIndex);
-      }
+      // Use functional update to avoid stale closure
+      setCurrentIndex((prev) => {
+        if (newIndex !== prev && newIndex >= 0 && newIndex < pieces.length) {
+          return newIndex;
+        }
+        return prev;
+      });
     };
 
     scrollContainer.addEventListener("scroll", handleScroll);
     return () => scrollContainer.removeEventListener("scroll", handleScroll);
-  }, [currentIndex, pieces.length]);
+  }, [pieces.length]); // Remove currentIndex dependency
 
   useEffect(() => {
     if (scrollRef.current && startIndex > 0) {
@@ -41,11 +50,20 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
 
   const scrollToPage = (index: number) => {
     if (scrollRef.current && index >= 0 && index < pieces.length) {
+      // Set flag to ignore scroll events during animation
+      isScrollingProgrammatically.current = true;
+      
       scrollRef.current.scrollTo({
         left: index * scrollRef.current.clientWidth,
         behavior: "smooth",
       });
+      
       setCurrentIndex(index);
+      
+      // Clear flag after smooth scroll animation completes (~500ms)
+      setTimeout(() => {
+        isScrollingProgrammatically.current = false;
+      }, 500);
     }
   };
 
@@ -53,30 +71,35 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
   const goToNext = () => scrollToPage(currentIndex + 1);
 
   return (
-    <div 
-      className="h-[100dvh] flex flex-col overflow-hidden relative"
-      style={{
-        backgroundImage: 'url(/background-image.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
-    >
-      {/* Dark overlay - pointer-events-none so clicks pass through */}
-      <div className="absolute inset-0 bg-black/50 pointer-events-none" />
+    <div className="h-[100dvh] flex flex-col overflow-hidden relative">
+      {/* Shared background - prevents flicker, consistent brightness */}
+      <BackgroundImage />
       
-      {/* Header - Műsor and number on one line with spacing */}
-      <div className="flex-shrink-0 px-8 py-6 flex items-center justify-between relative z-10">
-        <button
-          onClick={onBackToIndex}
-          className="text-xs uppercase tracking-[0.2em] text-white hover:opacity-70 transition-opacity"
-        >
-          ← Vissza
-        </button>
-        <div className="flex items-center gap-3">
-          <span className="text-xs uppercase tracking-[0.15em] text-white/60">Műsor</span>
-          <span className="text-xs text-white/40">|</span>
-          <span className="text-sm font-light text-white">{String(currentIndex + 1).padStart(2, "0")}</span>
+      {/* Header - single row, vertically centered: number left, arrow+Műsor center */}
+      <div className="flex-shrink-0 px-8 py-12 md:py-16 relative z-20">
+        <div className="flex items-center justify-between relative">
+          {/* Big number on left - fixed width container for stability */}
+          <div className="w-16 flex-shrink-0">
+            <button
+              onClick={onBackToIndex}
+              className="text-2xl md:text-3xl font-extralight text-white/30 hover:text-white/60 transition-colors leading-none"
+              aria-label="Vissza a műsorhoz"
+            >
+              {String(currentIndex + 1).padStart(2, "0")}
+            </button>
+          </div>
+          
+          {/* Center: arrow + Műsor - flex-1 to take remaining space, centered */}
+          <button
+            onClick={onBackToIndex}
+            className="flex-1 flex items-center justify-center gap-3 text-sm uppercase tracking-[0.25em] text-white hover:opacity-70 transition-opacity"
+          >
+            <span className="text-base">←</span>
+            <span>Műsor</span>
+          </button>
+          
+          {/* Spacer to balance the layout */}
+          <div className="w-16 flex-shrink-0"></div>
         </div>
       </div>
 
@@ -99,8 +122,8 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         ))}
       </div>
 
-      {/* Bottom bar - dots with space above and below */}
-      <div className="flex-shrink-0 px-6 pt-4 pb-8 relative z-10">
+      {/* Bottom bar - dots with 3x space above and below */}
+      <div className="flex-shrink-0 px-6 pt-12 pb-24 relative z-20">
         <div className="flex justify-center items-center gap-2">
           {pieces.map((_, index) => (
             <button
@@ -164,6 +187,22 @@ function Page({ piece, isActive, showPrev, showNext, onPrev, onNext }: PageProps
             </svg>
           </button>
         )}
+
+        {/* Invisible edge touch zones for navigation */}
+        {showPrev && (
+          <button
+            onClick={onPrev}
+            className="absolute left-0 top-0 w-16 h-full bg-transparent cursor-w-resize z-20"
+            aria-label="Előző"
+          />
+        )}
+        {showNext && (
+          <button
+            onClick={onNext}
+            className="absolute right-0 top-0 w-16 h-full bg-transparent cursor-e-resize z-20"
+            aria-label="Következő"
+          />
+        )}
       </div>
     );
   }
@@ -172,7 +211,7 @@ function Page({ piece, isActive, showPrev, showNext, onPrev, onNext }: PageProps
   return (
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex">
       {/* Center content - with padding to keep away from arrows */}
-      <div className="flex-1 flex flex-col items-center justify-start px-8 md:px-24 gap-6 py-8 overflow-y-auto">
+      <div className="flex-1 flex flex-col items-center justify-start px-8 md:px-24 gap-6 pb-8 overflow-y-auto" style={{ paddingTop: '60px' }}>
         {/* Image */}
         <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 border border-gray-800 bg-gray-950">
           <svg
@@ -268,6 +307,22 @@ function Page({ piece, isActive, showPrev, showNext, onPrev, onNext }: PageProps
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
           </svg>
         </button>
+      )}
+
+      {/* Invisible edge touch zones for navigation */}
+      {showPrev && (
+        <button
+          onClick={onPrev}
+          className="absolute left-0 top-0 w-16 h-full bg-transparent cursor-w-resize z-20"
+          aria-label="Előző"
+        />
+      )}
+      {showNext && (
+        <button
+          onClick={onNext}
+          className="absolute right-0 top-0 w-16 h-full bg-transparent cursor-e-resize z-20"
+          aria-label="Következő"
+        />
       )}
     </div>
   );
