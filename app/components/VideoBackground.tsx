@@ -5,13 +5,24 @@ import { useEffect, useRef, useState } from "react";
 export default function VideoBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [canPlay, setCanPlay] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video) {
+      console.log("[VideoBG] No video ref");
+      return;
+    }
+
+    console.log("[VideoBG] Initializing video", {
+      muted: video.muted,
+      playsInline: video.playsInline,
+      paused: video.paused,
+      readyState: video.readyState,
+      src: video.src,
+    });
 
     const setupVideo = () => {
-      // iOS requires these properties to be set via JS before play()
       video.muted = true;
       video.playsInline = true;
       video.controls = false;
@@ -19,23 +30,40 @@ export default function VideoBackground() {
       video.disableRemotePlayback = true;
       video.loop = true;
       video.autoplay = true;
+      console.log("[VideoBG] Setup complete");
     };
 
     const tryPlay = async (attempt = 1) => {
       if (!video) return;
       
+      console.log(`[VideoBG] Attempt ${attempt}`, {
+        paused: video.paused,
+        readyState: video.readyState,
+        networkState: video.networkState,
+      });
+      
       try {
         setupVideo();
-        await video.play();
-        setCanPlay(true);
-        console.log("Video autoplay success");
-      } catch (err) {
-        console.log(`Video autoplay failed (attempt ${attempt}):`, err);
+        const playPromise = video.play();
         
-        // Exponential backoff: 50ms, 150ms, 350ms, 750ms, 1550ms
+        if (playPromise !== undefined) {
+          await playPromise;
+          console.log("[VideoBG] Play SUCCESS");
+          setCanPlay(true);
+          setError(null);
+        } else {
+          console.log("[VideoBG] Play returned undefined");
+        }
+      } catch (err: any) {
+        console.error(`[VideoBG] Play FAILED (attempt ${attempt}):`, err.name, err.message);
+        setError(`${err.name}: ${err.message}`);
+        
         if (attempt < 6) {
           const delay = 50 * (2 ** attempt - 1);
+          console.log(`[VideoBG] Retrying in ${delay}ms`);
           setTimeout(() => tryPlay(attempt + 1), delay);
+        } else {
+          console.error("[VideoBG] All attempts failed");
         }
       }
     };
@@ -43,30 +71,67 @@ export default function VideoBackground() {
     // Try immediately
     tryPlay();
 
-    // Also try when video is ready
     const handleCanPlay = () => {
+      console.log("[VideoBG] canplay event fired", {
+        readyState: video.readyState,
+        paused: video.paused,
+      });
       if (!canPlay) tryPlay();
     };
 
-    // Try when tab becomes visible
+    const handleLoadedData = () => {
+      console.log("[VideoBG] loadeddata event fired", {
+        readyState: video.readyState,
+        paused: video.paused,
+      });
+      if (!canPlay) tryPlay();
+    };
+
+    const handleError = (e: Event) => {
+      console.error("[VideoBG] Video error event:", e);
+      const videoEl = e.target as HTMLVideoElement;
+      console.error("[VideoBG] Error code:", videoEl.error?.code, "message:", videoEl.error?.message);
+    };
+
     const handleVisibility = () => {
-      if (!document.hidden && !canPlay) {
+      console.log("[VideoBG] Visibility changed", {
+        hidden: document.hidden,
+        canPlay,
+        paused: video?.paused,
+      });
+      if (!document.hidden && !canPlay && video?.paused) {
         tryPlay();
       }
     };
 
     video.addEventListener("canplay", handleCanPlay);
-    video.addEventListener("loadeddata", handleCanPlay);
+    video.addEventListener("loadeddata", handleLoadedData);
+    video.addEventListener("error", handleError);
     document.addEventListener("visibilitychange", handleVisibility);
 
     // One more attempt after load completes
     if (video.readyState >= 3) {
+      console.log("[VideoBG] Video already ready (readyState >= 3)");
       tryPlay();
     }
 
+    // Log final state after 2 seconds
+    setTimeout(() => {
+      if (video) {
+        console.log("[VideoBG] Final state after 2s:", {
+          paused: video.paused,
+          currentTime: video.currentTime,
+          readyState: video.readyState,
+          error: video.error,
+          canPlay,
+        });
+      }
+    }, 2000);
+
     return () => {
       video.removeEventListener("canplay", handleCanPlay);
-      video.removeEventListener("loadeddata", handleCanPlay);
+      video.removeEventListener("loadeddata", handleLoadedData);
+      video.removeEventListener("error", handleError);
       document.removeEventListener("visibilitychange", handleVisibility);
     };
   }, []);
@@ -103,7 +168,6 @@ export default function VideoBackground() {
         controlsList="nodownload noremoteplayback"
         disablePictureInPicture
         disableRemotePlayback
-        // @ts-ignore - iOS-specific attributes
         webkit-playsinline="true"
         webkit-playsInline="true"
         x5-playsinline="true"
@@ -111,7 +175,6 @@ export default function VideoBackground() {
         className="absolute inset-0 w-full h-full object-cover"
         style={{ 
           pointerEvents: "none",
-          // @ts-ignore
           WebkitAppearance: "none"
         }}
       >
