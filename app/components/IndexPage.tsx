@@ -14,8 +14,8 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
       <BackgroundImage />
 
       {/* Header - transparent with text shadow for readability */}
-      <header className="flex-shrink-0 z-20 px-16 py-4 relative">
-        <div className="max-w-2xl mx-auto m-8">
+      <header className="flex-shrink-0 z-20 px-8 md:px-16 py-4 relative">
+        <div className="max-w-2xl mx-auto my-8">
           <p className="text-[10px] uppercase tracking-[0.3em] text-gray-200 mb-0.5 whitespace-pre-line leading-tight drop-shadow-md">
             {concertInfo.venue}
           </p>
@@ -29,7 +29,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
       </header>
 
       {/* Program list - scrollable */}
-      <main className="flex-1 px-16 overflow-y-auto">
+      <main className="flex-1 px-8 md:px-16 overflow-y-auto">
         <div className="max-w-2xl mx-auto flex flex-col gap-6">
           {/* Top spacing - 1 piece height */}
           <div className="py-4" />
