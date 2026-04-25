@@ -15,7 +15,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
 
       {/* Header - transparent with text shadow for readability */}
       <header className="flex-shrink-0 z-20 px-16 py-4 relative">
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto m-8">
           <p className="text-[10px] uppercase tracking-[0.3em] text-gray-200 mb-0.5 whitespace-pre-line leading-tight drop-shadow-md">
             {concertInfo.venue}
           </p>
