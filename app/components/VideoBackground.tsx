@@ -1,26 +1,74 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function VideoBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [canPlay, setCanPlay] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    
-    // iOS requires these properties to be set via JS
-    video.muted = true;
-    video.playsInline = true;
-    // Disable controls explicitly
-    video.controls = false;
-    video.disablePictureInPicture = true;
-    video.disableRemotePlayback = true;
-    
-    video.play().catch(() => {
-      // Retry once after short delay for stubborn iOS
-      setTimeout(() => video.play().catch(() => {}), 100);
-    });
+
+    const setupVideo = () => {
+      // iOS requires these properties to be set via JS before play()
+      video.muted = true;
+      video.playsInline = true;
+      video.controls = false;
+      video.disablePictureInPicture = true;
+      video.disableRemotePlayback = true;
+      video.loop = true;
+      video.autoplay = true;
+    };
+
+    const tryPlay = async (attempt = 1) => {
+      if (!video) return;
+      
+      try {
+        setupVideo();
+        await video.play();
+        setCanPlay(true);
+        console.log("Video autoplay success");
+      } catch (err) {
+        console.log(`Video autoplay failed (attempt ${attempt}):`, err);
+        
+        // Exponential backoff: 50ms, 150ms, 350ms, 750ms, 1550ms
+        if (attempt < 6) {
+          const delay = 50 * (2 ** attempt - 1);
+          setTimeout(() => tryPlay(attempt + 1), delay);
+        }
+      }
+    };
+
+    // Try immediately
+    tryPlay();
+
+    // Also try when video is ready
+    const handleCanPlay = () => {
+      if (!canPlay) tryPlay();
+    };
+
+    // Try when tab becomes visible
+    const handleVisibility = () => {
+      if (!document.hidden && !canPlay) {
+        tryPlay();
+      }
+    };
+
+    video.addEventListener("canplay", handleCanPlay);
+    video.addEventListener("loadeddata", handleCanPlay);
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    // One more attempt after load completes
+    if (video.readyState >= 3) {
+      tryPlay();
+    }
+
+    return () => {
+      video.removeEventListener("canplay", handleCanPlay);
+      video.removeEventListener("loadeddata", handleCanPlay);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
   }, []);
 
   return (

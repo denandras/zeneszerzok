@@ -3,4 +3,4 @@
 :HL["/background-image.png","image",{"type":"image/png"}]
 :HL["https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap","style"]
 :HL["https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"VVwr3h7pI6m3EUINU0EvY"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"ZfHltJasavrjHa-UM8vjE"}
