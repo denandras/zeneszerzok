@@ -71,48 +71,46 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
   const goToNext = () => scrollToPage(currentIndex + 1);
 
   return (
-    <div className="h-[100dvh] flex flex-col overflow-hidden relative">
+    <div className="h-[100dvh] grid grid-rows-[auto_1fr_auto] overflow-hidden relative">
       {/* Shared background - prevents flicker, consistent brightness */}
       <BackgroundImage />
-      
+
       {/* Header - single row, vertically centered: number left, arrow+Műsor center */}
-      <div className="flex-shrink-0 px-8 py-12 md:py-16 relative z-20">
-        <div className="flex items-center justify-between relative">
-          {/* Big number on left - fixed width container for stability */}
-          <div className="w-16 flex-shrink-0">
-            <button
-              onClick={onBackToIndex}
-              className="text-2xl md:text-3xl font-extralight text-white/30 hover:text-white/60 transition-colors leading-none"
-              aria-label="Vissza a műsorhoz"
-            >
-              {String(currentIndex + 1).padStart(2, "0")}
-            </button>
-          </div>
-          
-          {/* Center: arrow + Műsor - flex-1 to take remaining space, centered */}
+      <header className="px-6 md:px-12 py-6 md:py-10 relative z-20">
+        <div className="flex items-center justify-between relative max-w-6xl mx-auto">
+          {/* Big number on left */}
           <button
             onClick={onBackToIndex}
-            className="flex-1 flex items-center justify-center gap-3 text-sm uppercase tracking-[0.25em] text-white hover:opacity-70 transition-opacity"
+            className="text-xl md:text-2xl font-extralight text-white/30 hover:text-white/60 transition-colors leading-none py-2 px-3"
+            aria-label="Vissza a műsorhoz"
           >
-            <span className="text-base">←</span>
+            {String(currentIndex + 1).padStart(2, "0")}
+          </button>
+
+          {/* Center: arrow + Műsor */}
+          <button
+            onClick={onBackToIndex}
+            className="flex items-center justify-center gap-2 text-xs md:text-sm uppercase tracking-[0.2em] text-white hover:opacity-70 transition-opacity py-2 px-4"
+          >
+            <span>←</span>
             <span>Műsor</span>
           </button>
-          
-          {/* Spacer to balance the layout */}
-          <div className="w-16 flex-shrink-0"></div>
-        </div>
-      </div>
 
-      {/* Horizontal scroll container */}
+          {/* Spacer to balance the layout */}
+          <div className="w-12 md:w-16 flex-shrink-0"></div>
+        </div>
+      </header>
+
+      {/* Horizontal scroll container - fills remaining space */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex"
+        className="overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex"
         style={{ WebkitOverflowScrolling: 'touch' }}
       >
         {pieces.map((piece, index) => (
-          <Page 
-            key={piece.id} 
-            piece={piece} 
+          <Page
+            key={piece.id}
+            piece={piece}
             isActive={index === currentIndex}
             showPrev={index > 0}
             showNext={index < pieces.length - 1}
@@ -123,7 +121,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       </div>
 
       {/* Bottom bar - dots with 3x space above and below */}
-      <div className="flex-shrink-0 px-6 pt-12 pb-24 relative z-20">
+      <footer className="px-6 pt-12 pb-24 relative z-20">
         <div className="flex justify-center items-center gap-2">
           {pieces.map((_, index) => (
             <button
@@ -137,7 +135,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
             />
           ))}
         </div>
-      </div>
+      </footer>
     </div>
   );
 }
@@ -210,8 +208,13 @@ function Page({ piece, isActive, showPrev, showNext, onPrev, onNext }: PageProps
   // Regular piece page
   return (
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex">
-      {/* Center content - with padding to keep away from arrows */}
-      <div className="flex-1 flex flex-col items-center justify-start px-8 md:px-24 gap-6 pb-8 overflow-y-auto" style={{ paddingTop: '60px' }}>
+      {/* Center content - starts from top with consistent spacing before image */}
+      <div className="flex-1 flex flex-col items-center justify-start px-6 md:px-24 gap-5 pt-8 md:pt-16 pb-8 overflow-y-auto">
+        {/* Venue above image */}
+        <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 text-center">
+          Zeneakadémia, Solti terem
+        </p>
+
         {/* Image */}
         <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 border border-gray-800 bg-gray-950">
           <svg
