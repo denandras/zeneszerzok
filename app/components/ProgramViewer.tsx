@@ -273,13 +273,18 @@ function Page({ piece, isActive, showPrev, showNext, onPrev, onNext }: PageProps
         )}
 
         {/* Performers */}
-        <div className="space-y-3 text-center">
-          {piece.performers.map((performer, i) => (
-            <p key={i} className="text-sm text-white">
-              {performer}
+        {piece.performers.length > 0 && (
+          <div className="space-y-3 text-center">
+            <p className="text-xs uppercase tracking-[0.15em] text-white/60">
+              Előadják:
             </p>
-          ))}
-        </div>
+            {piece.performers.map((performer, i) => (
+              <p key={i} className="text-sm text-white">
+                {performer}
+              </p>
+            ))}
+          </div>
+        )}
         
         {/* Space after content */}
         <div className="h-12 flex-shrink-0" />
