@@ -14,7 +14,7 @@ export const concertInfo = {
   title: `Zeneszerzés és Alkalmazott Zeneszerzés
 BA diplomakoncert`,
   date: "2026. május 3.",
-  time: "19:00",
+  time: "18:00",
   venue: "Zeneakadémia, Solti terem",
   venueEn: "Liszt Academy Budapest",
   note: "A koncert előtt, 16.00 órától a diplomázók vizsgafilmjei az I. előadó teremben tekinthetők meg.",
