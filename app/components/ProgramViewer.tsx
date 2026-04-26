@@ -71,18 +71,18 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       {/* Shared background */}
       <BackgroundImage />
 
-      {/* Header - translucent with backdrop blur, Műsor button on top */}
-      <header className="fixed top-0 left-0 right-0 z-30 flex items-center justify-center px-6 py-4 bg-black/30 backdrop-blur-md border-b border-white/10">
-        {/* Műsor button - centered */}
+      {/* Header - translucent with backdrop blur, larger */}
+      <header className="fixed top-0 left-0 right-0 z-30 flex items-center px-6 py-8 min-h-[4rem] bg-black/30 backdrop-blur-md border-b border-white/10">
+        {/* Műsor button - left corner */}
         <button
           onClick={onBackToIndex}
-          className="flex items-center gap-2 text-white/80 hover:text-white transition-all duration-300 hover:scale-105 cursor-pointer"
+          className="flex items-center gap-2 text-white/80 hover:text-white transition-all duration-300 hover:scale-105 cursor-pointer pl-2"
           aria-label="Vissza a műsorhoz"
         >
-          <span className="text-xs uppercase tracking-[0.25em]">Műsor</span>
-          <svg className="w-4 h-4 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
           </svg>
+          <span className="text-xs uppercase tracking-[0.25em]">Műsor</span>
         </button>
       </header>
 
@@ -103,10 +103,10 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         />
       )}
 
-      {/* Horizontal scroll container — fills full height, with top padding for header */}
+      {/* Horizontal scroll container — fills full height, with top padding for larger header */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex pt-20"
+        className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex pt-32"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
         {pieces.map((piece, index) => (
@@ -120,14 +120,14 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       </div>
 
       {/* Bottom bar: page number bottom left + dots centered */}
-      <div className="flex-shrink-0 relative z-20 px-4 pb-4 pt-2 flex items-end justify-between">
-        {/* Page number — bottom left with minimal padding */}
+      <div className="flex-shrink-0 relative z-20 px-8 pb-8 pt-4 flex items-end justify-between">
+        {/* Page number — bottom left with doubled padding */}
         <span className="text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none">
           {String(currentIndex + 1).padStart(2, "0")}
         </span>
 
         {/* Dots — centered */}
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-4 flex items-center gap-2">
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-8 flex items-center gap-2">
           {pieces.map((_, index) => (
             <button
               key={index}
@@ -178,8 +178,8 @@ function PageContent({ piece }: PageContentProps) {
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex">
       {/* Content — centered on page */}
       <div className="flex-1 flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-24 pb-20 overflow-y-auto">
-        {/* Spacer before image */}
-        <div className="h-4" />
+        {/* Spacer before image - 10x larger */}
+        <div className="h-24 md:h-32" />
 
         {/* Image - rounded corners, grayscale */}
         <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale">
