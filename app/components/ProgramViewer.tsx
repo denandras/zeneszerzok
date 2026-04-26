@@ -179,12 +179,12 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
   if (piece.id === -1) {
     return (
       <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex items-center justify-center px-12 md:px-16">
-        <div className="flex items-center gap-6 w-full max-w-[calc(100%-128px)] md:max-w-[calc(100%-192px)]">
-          <span className="flex-1 h-px bg-gray-700"></span>
+        <div className="flex items-center gap-6 w-full max-w-[calc(100%-112px)] md:max-w-[calc(100%-176px)]">
+          <span className="flex-1 h-px bg-white/30"></span>
           <span className="text-sm md:text-base uppercase tracking-[0.4em] text-white flex-shrink-0">
             {piece.title}
           </span>
-          <span className="flex-1 h-px bg-gray-700"></span>
+          <span className="flex-1 h-px bg-white/30"></span>
         </div>
       </div>
     );
