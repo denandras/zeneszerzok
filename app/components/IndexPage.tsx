@@ -16,15 +16,15 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
       {/* Header - with invisible margin around text for proper formatting */}
       <header className="flex-shrink-0 z-20 relative">
         <div className="max-w-2xl mx-auto my-8 md:my-12 px-8 md:px-16 py-6">
-          {/* Invisible margin container */}
-          <div className="space-y-2">
+          {/* Invisible margin container - centered */}
+          <div className="space-y-2 text-center">
             <p className="text-[10px] uppercase tracking-[0.3em] text-gray-200 whitespace-pre-line leading-relaxed drop-shadow-md">
               {concertInfo.venue}
             </p>
             <h1 className="text-sm md:text-base font-light whitespace-pre-line leading-relaxed text-white drop-shadow-md">
               {concertInfo.title}
             </h1>
-            <div className="flex items-center gap-1 text-xs text-gray-200 drop-shadow-md pt-1">
+            <div className="flex items-center justify-center gap-1 text-xs text-gray-200 drop-shadow-md pt-1">
               <span>{concertInfo.date} {concertInfo.time}</span>
             </div>
           </div>
