@@ -122,10 +122,10 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         />
       )}
 
-      {/* Horizontal scroll container — fills full height, with top padding for larger header */}
+      {/* Horizontal scroll container — fills full height, with top padding for header (min-h-[4rem] + py-8*2 = ~8rem) */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex pt-32"
+        className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex pt-40"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
         {pieces.map((piece, index) => (
@@ -139,9 +139,9 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         ))}
       </div>
 
-      {/* Footer - translucent with dots on it */}
+      {/* Footer - translucent with dots in middle, larger */}
       <footer className="flex-shrink-0 z-20 bg-black/30 backdrop-blur-md border-t border-white/10">
-        <div className="px-8 pb-8 pt-4 flex items-end justify-between grayscale">
+        <div className="px-8 py-8 min-h-[5rem] flex items-center justify-between grayscale">
           {/* Page number — bottom left */}
           <span className="text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none">
             {String(currentIndex + 1).padStart(2, "0")}
@@ -182,6 +182,9 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
   if (piece.id === -1) {
     return (
       <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex flex-col px-16">
+        {/* Header height spacer */}
+        <div className="h-32 md:h-40 flex-shrink-0" />
+        
         {/* Consistent top spacer */}
         <div className="h-24 md:h-32 flex-shrink-0" />
         
@@ -204,12 +207,13 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
   // Regular piece page
   return (
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex">
-      {/* Content — centered on page, always starts from top */}
-      <div className="flex-1 flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-24 pb-20 overflow-y-auto">
-        {/* Consistent top spacer - same for all pages */}
+      {/* Content — centered on page, with header-height spacer at top */}
+      <div className="flex-1 flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-0 pb-20 overflow-y-auto">
+        {/* Header height spacer - so content is visible below fixed header */}
+        <div className="h-32 md:h-40 flex-shrink-0" />
+        
+        {/* Consistent top spacer */}
         <div className="h-24 md:h-32 flex-shrink-0" />
-
-        {/* Image - rounded corners, grayscale, focal point moved up */}
         <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale">
           {hasPhoto ? (
             <Image
@@ -293,6 +297,9 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
         )}
 
         <div className="h-12 flex-shrink-0" />
+        
+        {/* Footer height x3 spacer (footer is ~5rem, x3 = 15rem) */}
+        <div className="h-60 flex-shrink-0" />
       </div>
     </div>
   );

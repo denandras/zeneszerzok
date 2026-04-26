@@ -14,8 +14,8 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
       <BackgroundImage />
 
       {/* Header - translucent with backdrop blur like piece pages */}
-      <header className="fixed top-0 left-0 right-0 z-30 px-6 py-8 min-h-[4rem] bg-black/30 backdrop-blur-md border-b border-white/10">
-        <div className="w-full max-w-2xl mx-auto text-center">
+      <header className="fixed top-0 left-0 right-0 z-30 px-6 py-8 min-h-[4rem] bg-black/30 backdrop-blur-md border-b border-white/10 flex items-center justify-center">
+        <div className="w-full max-w-2xl text-center">
           <div className="space-y-4">
             <p className="text-[10px] uppercase tracking-[0.3em] text-gray-200 whitespace-pre-line leading-relaxed drop-shadow-md">
               {concertInfo.venue}
@@ -32,8 +32,8 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
         </div>
       </header>
 
-      {/* Program list - scrollable, centered with top padding for header */}
-      <main className="flex-1 overflow-y-auto relative z-10 w-full flex flex-col items-center pt-32">
+      {/* Program list - scrollable, centered with top padding for header (min-h-[4rem] + py-8*2 = ~8rem) */}
+      <main className="flex-1 overflow-y-auto relative z-10 w-full flex flex-col items-center pt-40">
         <div className="w-full max-w-2xl flex flex-col items-center gap-6 px-8 md:px-16 pb-32">
           {/* Top spacing - 1 piece height */}
           <div className="py-4" />
