@@ -196,8 +196,8 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
   // Regular piece page
   return (
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex">
-      {/* Content — centered on page, with header-height spacer at top */}
-      <div className="flex-1 flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-0 pb-20 overflow-y-auto">
+      {/* Content — centered on page, with header-height spacer at top and footer clearance at bottom */}
+      <div className="flex-1 flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-0 pb-40 overflow-y-auto">
         {/* Header height x3 spacer */}
         <div className="h-28 flex-shrink-0" />
         
