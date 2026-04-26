@@ -125,7 +125,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       {/* Horizontal scroll container — fills full height, with top padding for header (min-h-[4rem] + py-8*2 = ~8rem) */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex pt-40"
+        className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex pt-40 pb-20"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
         {pieces.map((piece, index) => (
@@ -139,11 +139,11 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         ))}
       </div>
 
-      {/* Footer - translucent with dots in middle */}
-      <footer className="flex-shrink-0 z-20 bg-black/30 backdrop-blur-md border-t border-white/10">
+      {/* Footer - fixed bottom, translucent with backdrop blur */}
+      <footer className="fixed bottom-0 left-0 right-0 z-20 bg-black/30 backdrop-blur-md border-t border-white/10">
         <div className="px-8 py-4 min-h-[3rem] flex items-center justify-between grayscale">
           {/* Page number — bottom left */}
-          <span className="pl-2 text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none">
+          <span className="pl-4 text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none">
               {String(currentIndex + 1).padStart(2, "0")}
           </span>
 
@@ -195,6 +195,9 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
             <span className="w-16 md:w-28 h-px bg-gray-700"></span>
           </div>
         </div>
+        
+        {/* Breathing room at bottom - pushes content up */}
+        <div className="h-96 flex-shrink-0" />
       </div>
     );
   }
