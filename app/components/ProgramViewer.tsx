@@ -240,7 +240,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
           </h2>
         </div>
 
-        <div className="h-4 flex-shrink-0" />
+        {piece.description && <div className="h-4 flex-shrink-0" />}
 
         {/* Description - centered */}
         {piece.description && (
@@ -249,7 +249,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
           </p>
         )}
 
-        <div className="h-4 flex-shrink-0" />
+        {piece.poem && <div className="h-4 flex-shrink-0" />}
 
         {/* Poem - centered */}
         {piece.poem && (
@@ -265,7 +265,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
             })}
           </pre>
         )}
-        <div className="h-4 flex-shrink-0" />
+        {piece.poem && piece.poemAuthor && <div className="h-4 flex-shrink-0" />}
 
         {/* Poem metadata - centered */}
         {piece.poem && piece.poemAuthor && (
@@ -275,9 +275,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
             {piece.poemTranslator && <p className="text-xs text-white/50 mt-1">{piece.poemTranslator}</p>}
           </div>
         )}
-        <div className="h-4 flex-shrink-0" />
-
-        <div className="h-4 flex-shrink-0" />
+        {(piece.poem || piece.poemAuthor || piece.description) && piece.performers.length > 0 && <div className="h-4 flex-shrink-0" />}
 
         {/* Performers - centered */}
         {piece.performers.length > 0 && (
