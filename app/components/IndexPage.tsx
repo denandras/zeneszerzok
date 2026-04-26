@@ -74,6 +74,19 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
             );
           })}
           
+          {/* Website credit */}
+          <div className="text-[10px] text-gray-600 text-center mt-8">
+            website by{" "}
+            <a
+              href="https://andrasdenes.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gray-500 transition-colors"
+            >
+              András Dénes
+            </a>
+          </div>
+          
           {/* Bottom spacing - significant footer for last item visibility */}
           <div className="h-16 md:h-20" />
         </div>
