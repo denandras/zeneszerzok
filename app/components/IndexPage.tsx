@@ -13,15 +13,15 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
       {/* Shared background - prevents flicker, consistent brightness */}
       <BackgroundImage />
 
-      {/* Header - with invisible margin around text for proper formatting */}
-      <header className="flex-shrink-0 z-20 relative">
-        <div className="max-w-2xl mx-auto my-8 md:my-12 px-8 md:px-16 py-6">
-          {/* Invisible margin container - centered */}
+      {/* Header - centered content */}
+      <header className="flex-shrink-0 z-20 relative w-full flex justify-center">
+        <div className="w-full max-w-2xl my-8 md:my-12 px-8 md:px-16 py-6">
+          {/* Centered content container */}
           <div className="space-y-2 text-center">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-gray-200 whitespace-pre-line leading-relaxed drop-shadow-md">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-gray-200 whitespace-pre-line leading-relaxed drop-shadow-md text-center">
               {concertInfo.venue}
             </p>
-            <h1 className="text-sm md:text-base font-light whitespace-pre-line leading-relaxed text-white drop-shadow-md">
+            <h1 className="text-sm md:text-base font-light whitespace-pre-line leading-relaxed text-white drop-shadow-md text-center">
               {concertInfo.title}
             </h1>
             <div className="flex items-center justify-center gap-1 text-xs text-gray-200 drop-shadow-md pt-1">
@@ -32,8 +32,8 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
       </header>
 
       {/* Program list - scrollable, centered container */}
-      <main className="flex-1 overflow-y-auto px-8 md:px-16">
-        <div className="max-w-2xl mx-auto flex flex-col items-center gap-6">
+      <main className="flex-1 overflow-y-auto w-full flex justify-center px-8 md:px-16">
+        <div className="w-full max-w-2xl flex flex-col items-center gap-6">
           {/* Top spacing - 1 piece height */}
           <div className="py-4" />
           
