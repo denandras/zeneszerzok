@@ -35,11 +35,8 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
       {/* Program list - scrollable, centered */}
       <main className="flex-1 overflow-y-auto relative z-10 w-full flex flex-col items-center pt-32">
         <div className="w-full max-w-2xl flex flex-col items-center gap-6 px-8 md:px-16 pb-32">
-          {/* Header height spacer so content is visible below fixed header */}
-          <div className="h-32 md:h-40 flex-shrink-0" />
-          
-          {/* Top spacing - 1 piece height */}
-          <div className="py-4" />
+          {/* Header height spacer - reduced */}
+          <div className="h-16 md:h-24 flex-shrink-0" />
           
           {program.map((piece, index) => {
             const isIntermission = piece.id === -1;
