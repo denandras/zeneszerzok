@@ -181,7 +181,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
   // Intermission page
   if (piece.id === -1) {
     return (
-      <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex flex-col px-16">
+      <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex flex-col px-16 grayscale">
         {/* Header height spacer */}
         <div className="h-32 md:h-40 flex-shrink-0" />
         
