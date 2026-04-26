@@ -48,3 +48,19 @@ vercel --yes --prod
 - `main` branch auto-deploys on Vercel
 - Always commit before deploying
 - Use descriptive commit messages
+
+## Safety Rules (MANDATORY)
+
+**NEVER run `git reset --hard` with a dirty working tree.**
+Uncommitted changes are permanently destroyed. Always check `git status` first:
+- If there are unstaged/untracked changes you want to keep → `git stash` or commit them first
+- Only reset --hard when the working tree is clean, or you are certain the changes are disposable
+
+**If something is wrong after a deploy → `vercel rollback` first, then fix git.**
+Rolling back on Vercel is instant (seconds) and doesn't touch the repository.
+```bash
+vercel rollback --token <token>                    # roll back to previous deploy instantly
+vercel rollback <deploy-url> --token <token>       # roll back to a specific past deploy
+```
+Fix the code and git history only after the site is stable again.
+Never use git resets as a shortcut to undo a bad deploy — use Vercel's rollback instead.
