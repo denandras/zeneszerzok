@@ -73,12 +73,13 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
 
       {/* Header - translucent with backdrop blur, larger */}
       <header className="fixed top-0 left-0 right-0 z-30 flex items-center px-6 py-8 min-h-[4rem] bg-black/30 backdrop-blur-md border-b border-white/10">
-        {/* Műsor button - left corner */}
+        {/* Műsor button - left corner with space padding */}
         <button
           onClick={onBackToIndex}
-          className="flex items-center gap-2 text-white/80 hover:text-white transition-all duration-300 hover:scale-105 cursor-pointer pl-2"
+          className="flex items-center gap-2 text-white/80 hover:text-white transition-all duration-300 hover:scale-105 cursor-pointer pl-4"
           aria-label="Vissza a műsorhoz"
         >
+          <span className="text-xs">  </span>
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
           </svg>
@@ -133,35 +134,38 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
             piece={piece}
             isActive={index === currentIndex}
             pageNumber={index + 1}
+            isAdjacent={Math.abs(index - currentIndex) <= 1}
           />
         ))}
       </div>
 
-      {/* Bottom bar: page number bottom left + dots centered - all grayscale */}
-      <div className="flex-shrink-0 relative z-20 px-8 pb-8 pt-4 flex items-end justify-between grayscale">
-        {/* Page number — bottom left with doubled padding */}
-        <span className="text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none">
-          {String(currentIndex + 1).padStart(2, "0")}
-        </span>
+      {/* Footer - translucent with dots on it */}
+      <footer className="flex-shrink-0 z-20 bg-black/30 backdrop-blur-md border-t border-white/10">
+        <div className="px-8 pb-8 pt-4 flex items-end justify-between grayscale">
+          {/* Page number — bottom left */}
+          <span className="text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none">
+            {String(currentIndex + 1).padStart(2, "0")}
+          </span>
 
-        {/* Dots — centered, grayscale */}
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-8 flex items-center gap-2">
-          {pieces.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => scrollToPage(index)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                currentIndex === index
-                  ? "bg-white w-6"
-                  : "w-1.5 bg-white/30 hover:bg-white/50"
-              }`}
-            />
-          ))}
+          {/* Dots — centered, sitting on footer */}
+          <div className="flex items-center gap-2">
+            {pieces.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollToPage(index)}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  currentIndex === index
+                    ? "bg-white w-6"
+                    : "w-1.5 bg-white/30 hover:bg-white/50"
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Spacer to balance number on left */}
+          <div className="w-10" />
         </div>
-
-        {/* Spacer to balance number on left */}
-        <div className="w-10" />
-      </div>
+      </footer>
     </div>
   );
 }
@@ -170,36 +174,42 @@ interface PageContentProps {
   piece: Piece;
   isActive: boolean;
   pageNumber: number;
+  isAdjacent: boolean;
 }
 
-function PageContent({ piece }: PageContentProps) {
+function PageContent({ piece, isAdjacent }: PageContentProps) {
   // Intermission page
   if (piece.id === -1) {
     return (
-      <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex items-center justify-center px-16">
-        <div className="flex items-center gap-6">
-          <span className="w-16 md:w-28 h-px bg-gray-700"></span>
-          <span className="text-sm md:text-base uppercase tracking-[0.4em] text-white">
-            {piece.title}
-          </span>
-          <span className="w-16 md:w-28 h-px bg-gray-700"></span>
+      <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex flex-col px-16">
+        {/* Consistent top spacer */}
+        <div className="h-24 md:h-32 flex-shrink-0" />
+        
+        <div className="flex-1 flex items-center justify-center">
+          <div className="flex items-center gap-6">
+            <span className="w-16 md:w-28 h-px bg-gray-700"></span>
+            <span className="text-sm md:text-base uppercase tracking-[0.4em] text-white">
+              {piece.title}
+            </span>
+            <span className="w-16 md:w-28 h-px bg-gray-700"></span>
+          </div>
         </div>
       </div>
     );
   }
 
-  // Regina's pieces have photos
+  // Regina's pieces have photos - preload adjacent images
   const hasPhoto = piece.composer === "Sebestyén-Lázár Regina";
 
   // Regular piece page
   return (
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex">
-      {/* Content — centered on page */}
+      {/* Content — centered on page, always starts from top */}
       <div className="flex-1 flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-24 pb-20 overflow-y-auto">
-        {/* Spacer before image - 10x larger */}
-        <div className="h-24 md:h-32" />
+        {/* Consistent top spacer - same for all pages */}
+        <div className="h-24 md:h-32 flex-shrink-0" />
 
-        {/* Image - rounded corners, grayscale */}
+        {/* Image - rounded corners, grayscale, focal point moved up */}
         <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale">
           {hasPhoto ? (
             <Image
@@ -207,7 +217,10 @@ function PageContent({ piece }: PageContentProps) {
               alt={piece.composer}
               fill
               className="object-cover"
+              style={{ objectPosition: "center 15%" }}
               sizes="160px"
+              loading={isAdjacent ? "eager" : "lazy"}
+              priority={isAdjacent}
             />
           ) : (
             <svg
