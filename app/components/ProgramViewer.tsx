@@ -291,11 +291,8 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
 
         <div className="h-8 flex-shrink-0" />
 
-        {/* Bottom spacers for footer clearance */}
-        <div className="h-16 flex-shrink-0" />
-        <div className="h-24 flex-shrink-0" />
-        <div className="h-32 flex-shrink-0" />
-        <div className="h-48 flex-shrink-0" />
+        {/* Footer clearance spacer */}
+        <div className="h-40 flex-shrink-0" />
       </div>
     </div>
   );
