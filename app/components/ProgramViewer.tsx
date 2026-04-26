@@ -178,7 +178,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
   // Intermission page - centered vertically (aligned with arrows)
   if (piece.id === -1) {
     return (
-      <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex items-center justify-center px-12 md:px-16">
+      <div className="w-screen h-full flex-shrink-0 snap-center snap-always relative flex items-center justify-center px-12 md:px-16">
         <div className="flex items-center gap-6 w-full max-w-[calc(100%-112px)] md:max-w-[calc(100%-176px)]">
           <span className="flex-1 h-px bg-white/30"></span>
           <span className="text-sm md:text-base uppercase tracking-[0.4em] text-white flex-shrink-0">
@@ -195,7 +195,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
 
   // Regular piece page
   return (
-    <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex">
+    <div className="w-screen h-full flex-shrink-0 snap-center snap-always relative flex">
       {/* Content — centered on page, with header-height spacer at top and footer clearance at bottom */}
       <div className="flex-1 flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-0 pb-40 overflow-y-auto">
         {/* Header height x3 spacer */}
