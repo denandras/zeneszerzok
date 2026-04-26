@@ -181,23 +181,25 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
   // Intermission page
   if (piece.id === -1) {
     return (
-      <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex flex-col px-16 grayscale">
-        {/* Header height x3 spacer */}
-        <div className="h-36 flex-shrink-0" />
-        
-        
-        <div className="flex-1 flex items-center justify-center">
-          <div className="flex items-center gap-6">
-            <span className="w-16 md:w-28 h-px bg-gray-700"></span>
-            <span className="text-sm md:text-base uppercase tracking-[0.4em] text-white">
-              {piece.title}
-            </span>
-            <span className="w-16 md:w-28 h-px bg-gray-700"></span>
+      <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex flex-col px-16 md:px-28 grayscale">
+        {/* Content container — same structure as piece pages */}
+        <div className="flex-1 flex flex-col items-center justify-start gap-5 pt-0 pb-20 overflow-y-auto">
+          {/* Header height x3 spacer */}
+          <div className="h-36 flex-shrink-0" />
+          
+          <div className="flex-1 flex items-center justify-center w-full">
+            <div className="flex items-center gap-6">
+              <span className="w-16 md:w-28 h-px bg-gray-700"></span>
+              <span className="text-sm md:text-base uppercase tracking-[0.4em] text-white">
+                {piece.title}
+              </span>
+              <span className="w-16 md:w-28 h-px bg-gray-700"></span>
+            </div>
           </div>
+          
+          {/* Breathing room at bottom */}
+          <div className="h-96 flex-shrink-0" />
         </div>
-        
-        {/* Breathing room at bottom - pushes content up */}
-        <div className="h-96 flex-shrink-0" />
       </div>
     );
   }
