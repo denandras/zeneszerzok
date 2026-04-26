@@ -56,13 +56,13 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
               <button
                 key={piece.id}
                 onClick={() => onSelectPiece(index)}
-                className="w-full max-w-md text-center group py-4 px-6 rounded-lg transition-all duration-300 ease-out hover:bg-white/10 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5 active:scale-[0.98]"
+                className="w-full max-w-md text-center py-4 px-6 cursor-pointer"
               >
-                <div className="flex flex-col items-center gap-1">
-                  <p className="text-xs uppercase tracking-[0.15em] text-gray-200 drop-shadow-md group-hover:text-white transition-colors duration-300">
+                <div className="flex flex-col items-center gap-1 grayscale">
+                  <p className="text-xs uppercase tracking-[0.15em] text-gray-200 drop-shadow-md">
                     {piece.composer}
                   </p>
-                  <p className="text-base md:text-lg text-white drop-shadow-md group-hover:text-white transition-colors duration-300 whitespace-nowrap">
+                  <p className="text-base md:text-lg text-white drop-shadow-md whitespace-nowrap">
                     {piece.title}
                   </p>
                 </div>

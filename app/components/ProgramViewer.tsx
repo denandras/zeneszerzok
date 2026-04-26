@@ -72,16 +72,11 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       <BackgroundImage />
 
       {/* Header - translucent with backdrop blur, Műsor button on top */}
-      <header className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-6 py-4 bg-black/30 backdrop-blur-md border-b border-white/10">
-        {/* Page number - static part of header */}
-        <span className="text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none w-12">
-          {String(currentIndex + 1).padStart(2, "0")}
-        </span>
-
+      <header className="fixed top-0 left-0 right-0 z-30 flex items-center justify-center px-6 py-4 bg-black/30 backdrop-blur-md border-b border-white/10">
         {/* Műsor button - centered */}
         <button
           onClick={onBackToIndex}
-          className="flex items-center gap-2 text-white/80 hover:text-white transition-all duration-300 hover:scale-105"
+          className="flex items-center gap-2 text-white/80 hover:text-white transition-all duration-300 hover:scale-105 cursor-pointer"
           aria-label="Vissza a műsorhoz"
         >
           <span className="text-xs uppercase tracking-[0.25em]">Műsor</span>
@@ -89,35 +84,23 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-
-        {/* Spacer for balance */}
-        <div className="w-12" />
       </header>
 
-      {/* Fixed prev arrow — left side, centered vertically */}
+      {/* Full-height clickable zones on edges */}
       {showPrev && (
         <button
           onClick={goToPrev}
-          className="fixed left-4 top-1/2 -translate-y-1/2 z-20 p-3 text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300"
+          className="fixed left-0 top-0 bottom-0 w-16 md:w-24 z-20 cursor-pointer hover:bg-white/5 transition-colors"
           aria-label="Előző"
-        >
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
+        />
       )}
 
-      {/* Fixed next arrow — right side, centered vertically */}
       {showNext && (
         <button
           onClick={goToNext}
-          className="fixed right-4 top-1/2 -translate-y-1/2 z-20 p-3 text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300"
+          className="fixed right-0 top-0 bottom-0 w-16 md:w-24 z-20 cursor-pointer hover:bg-white/5 transition-colors"
           aria-label="Következő"
-        >
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+        />
       )}
 
       {/* Horizontal scroll container — fills full height, with top padding for header */}
@@ -136,10 +119,15 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         ))}
       </div>
 
-      {/* Bottom bar: dots centered */}
-      <div className="flex-shrink-0 relative z-20 px-6 pb-8 pt-4 flex items-center justify-center">
+      {/* Bottom bar: page number bottom left + dots centered */}
+      <div className="flex-shrink-0 relative z-20 px-4 pb-4 pt-2 flex items-end justify-between">
+        {/* Page number — bottom left with minimal padding */}
+        <span className="text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none">
+          {String(currentIndex + 1).padStart(2, "0")}
+        </span>
+
         {/* Dots — centered */}
-        <div className="flex items-center gap-2">
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-4 flex items-center gap-2">
           {pieces.map((_, index) => (
             <button
               key={index}
@@ -152,6 +140,9 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
             />
           ))}
         </div>
+
+        {/* Spacer to balance number on left */}
+        <div className="w-10" />
       </div>
     </div>
   );
@@ -163,15 +154,11 @@ interface PageContentProps {
   pageNumber: number;
 }
 
-function PageContent({ piece, pageNumber }: PageContentProps) {
+function PageContent({ piece }: PageContentProps) {
   // Intermission page
   if (piece.id === -1) {
     return (
       <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex items-center justify-center px-16">
-        {/* Static page number for intermission */}
-        <div className="absolute top-4 left-6 text-2xl md:text-3xl font-extralight text-white/20 leading-none select-none">
-          {String(pageNumber).padStart(2, "0")}
-        </div>
         <div className="flex items-center gap-6">
           <span className="w-16 md:w-28 h-px bg-gray-700"></span>
           <span className="text-sm md:text-base uppercase tracking-[0.4em] text-white">
@@ -183,20 +170,19 @@ function PageContent({ piece, pageNumber }: PageContentProps) {
     );
   }
 
-  const hasPhoto = piece.id === 13; // Sebestyén-Lázár Regina — Detachment
+  // Regina's pieces have photos
+  const hasPhoto = piece.composer === "Sebestyén-Lázár Regina";
 
   // Regular piece page
   return (
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex">
-      {/* Static page number - part of page, not affected by scroll */}
-      <div className="absolute top-4 left-6 z-10 text-2xl md:text-3xl font-extralight text-white/20 leading-none select-none">
-        {String(pageNumber).padStart(2, "0")}
-      </div>
-
       {/* Content — centered on page */}
       <div className="flex-1 flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-24 pb-20 overflow-y-auto">
-        {/* Image */}
-        <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden">
+        {/* Spacer before image */}
+        <div className="h-4" />
+
+        {/* Image - rounded corners, grayscale */}
+        <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale">
           {hasPhoto ? (
             <Image
               src="/regina.jpg"
