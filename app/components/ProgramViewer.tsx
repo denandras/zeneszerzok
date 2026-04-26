@@ -122,7 +122,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         />
       )}
 
-      {/* Horizontal scroll container — fills full height, with top padding for header (min-h-[4rem] + py-8*2 = ~8rem) */}
+      {/* Horizontal scroll container - fills full height, with top padding for header (min-h-[4rem] + py-8*2 = ~8rem) */}
       <div
         ref={scrollRef}
         className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex pt-40 pb-20"
@@ -142,12 +142,12 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       {/* Footer - fixed bottom, translucent with backdrop blur */}
       <footer className="fixed bottom-0 left-0 right-0 z-20 bg-black/30 backdrop-blur-md border-t border-white/10">
         <div className="px-8 py-4 min-h-[3rem] flex items-center justify-center grayscale relative">
-          {/* Page number — bottom left, absolute positioned */}
+          {/* Page number - bottom left, absolute positioned */}
           <span className="absolute left-[10px] text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none">
             {String(currentIndex + 1).padStart(2, "0")}
           </span>
 
-          {/* Dots — centered in footer */}
+          {/* Dots - centered in footer */}
           <div className="flex items-center gap-2">
             {pieces.map((_, index) => (
               <button
@@ -196,11 +196,11 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
   // Regular piece page
   return (
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always relative flex">
-      {/* Content — centered on page, with header-height spacer at top and footer clearance at bottom */}
+      {/* Content - centered on page, with header-height spacer at top and footer clearance at bottom */}
       <div className="flex-1 flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-0 pb-40 overflow-y-auto">
         {/* Header height x3 spacer */}
         <div className="h-28 flex-shrink-0" />
-        
+
         <div className="relative w-32 h-32 md:w-40 md:h-36 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale">
           {hasPhoto ? (
             <Image
@@ -240,12 +240,16 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
           </h2>
         </div>
 
+        <div className="h-8 flex-shrink-0" />
+
         {/* Description - centered */}
         {piece.description && (
           <p className="text-sm text-white/80 text-center max-w-xs leading-relaxed">
             {piece.description}
           </p>
         )}
+
+        <div className="h-8 flex-shrink-0" />
 
         {/* Poem - centered */}
         {piece.poem && (
@@ -261,6 +265,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
             })}
           </pre>
         )}
+        <div className="h-8 flex-shrink-0" />
 
         {/* Poem metadata - centered */}
         {piece.poem && piece.poemAuthor && (
@@ -270,6 +275,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
             {piece.poemTranslator && <p className="text-xs text-white/50 mt-1">{piece.poemTranslator}</p>}
           </div>
         )}
+        <div className="h-8 flex-shrink-0" />
 
         {/* Performers - centered */}
         {piece.performers.length > 0 && (
@@ -283,10 +289,13 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
           </div>
         )}
 
-        <div className="h-12 flex-shrink-0" />
-        
-        {/* Large bottom spacer */}
-        <div className="h-96 flex-shrink-0" />
+        <div className="h-8 flex-shrink-0" />
+
+        {/* Bottom spacers for footer clearance */}
+        <div className="h-16 flex-shrink-0" />
+        <div className="h-24 flex-shrink-0" />
+        <div className="h-32 flex-shrink-0" />
+        <div className="h-48 flex-shrink-0" />
       </div>
     </div>
   );
