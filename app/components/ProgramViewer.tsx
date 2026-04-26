@@ -86,11 +86,29 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         </button>
       </header>
 
+      {/* Static graphical arrows - left */}
+      {showPrev && (
+        <div className="fixed left-4 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
+          <svg className="w-8 h-8 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 19l-7-7 7-7" />
+          </svg>
+        </div>
+      )}
+
+      {/* Static graphical arrows - right */}
+      {showNext && (
+        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
+          <svg className="w-8 h-8 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
+      )}
+
       {/* Full-height clickable zones on edges */}
       {showPrev && (
         <button
           onClick={goToPrev}
-          className="fixed left-0 top-0 bottom-0 w-16 md:w-24 z-20 cursor-pointer hover:bg-white/5 transition-colors"
+          className="fixed left-0 top-0 bottom-0 w-16 md:w-24 z-10 cursor-pointer"
           aria-label="Előző"
         />
       )}
@@ -98,7 +116,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       {showNext && (
         <button
           onClick={goToNext}
-          className="fixed right-0 top-0 bottom-0 w-16 md:w-24 z-20 cursor-pointer hover:bg-white/5 transition-colors"
+          className="fixed right-0 top-0 bottom-0 w-16 md:w-24 z-10 cursor-pointer"
           aria-label="Következő"
         />
       )}
@@ -119,14 +137,14 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         ))}
       </div>
 
-      {/* Bottom bar: page number bottom left + dots centered */}
-      <div className="flex-shrink-0 relative z-20 px-8 pb-8 pt-4 flex items-end justify-between">
+      {/* Bottom bar: page number bottom left + dots centered - all grayscale */}
+      <div className="flex-shrink-0 relative z-20 px-8 pb-8 pt-4 flex items-end justify-between grayscale">
         {/* Page number — bottom left with doubled padding */}
         <span className="text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none">
           {String(currentIndex + 1).padStart(2, "0")}
         </span>
 
-        {/* Dots — centered */}
+        {/* Dots — centered, grayscale */}
         <div className="absolute left-1/2 -translate-x-1/2 bottom-8 flex items-center gap-2">
           {pieces.map((_, index) => (
             <button
@@ -135,7 +153,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 currentIndex === index
                   ? "bg-white w-6"
-                  : "w-1.5 bg-gray-600 hover:bg-gray-400"
+                  : "w-1.5 bg-white/30 hover:bg-white/50"
               }`}
             />
           ))}

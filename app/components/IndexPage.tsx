@@ -9,13 +9,13 @@ interface IndexPageProps {
 
 export default function IndexPage({ onSelectPiece }: IndexPageProps) {
   return (
-    <div className="h-screen flex flex-col relative">
+    <div className="h-screen flex flex-col relative overflow-hidden">
       {/* Shared background - prevents flicker, consistent brightness */}
       <BackgroundImage />
 
       {/* Header - centered content */}
-      <header className="flex-shrink-0 z-20 relative w-full flex justify-center">
-        <div className="w-full max-w-2xl my-8 md:my-12 px-8 md:px-16 py-6">
+      <header className="flex-shrink-0 z-20 relative w-full flex justify-center pointer-events-none">
+        <div className="w-full max-w-2xl my-8 md:my-12 px-8 md:px-16 py-6 pointer-events-auto">
           {/* Centered content container */}
           <div className="space-y-2 text-center">
             <p className="text-[10px] uppercase tracking-[0.3em] text-gray-200 whitespace-pre-line leading-relaxed drop-shadow-md text-center">
@@ -31,9 +31,9 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
         </div>
       </header>
 
-      {/* Program list - scrollable, centered container */}
-      <main className="flex-1 overflow-y-auto w-full flex justify-center px-8 md:px-16">
-        <div className="w-full max-w-2xl flex flex-col items-center gap-6">
+      {/* Program list - scrollable, full width */}
+      <main className="flex-1 overflow-y-auto relative z-10 w-full">
+        <div className="w-full max-w-2xl mx-auto flex flex-col items-center gap-6 px-8 md:px-16 pb-32">
           {/* Top spacing - 1 piece height */}
           <div className="py-4" />
           
