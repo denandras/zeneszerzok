@@ -286,7 +286,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
         <div className="h-12 flex-shrink-0" />
         
         {/* Large bottom spacer */}
-        <div className="h-64 flex-shrink-0" />
+        <div className="h-96 flex-shrink-0" />
       </div>
     </div>
   );
