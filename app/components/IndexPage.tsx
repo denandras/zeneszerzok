@@ -32,9 +32,12 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
         </div>
       </header>
 
-      {/* Program list - scrollable, centered with top padding for header (min-h-[4rem] + py-8*2 = ~8rem) */}
-      <main className="flex-1 overflow-y-auto relative z-10 w-full flex flex-col items-center pt-40">
+      {/* Program list - scrollable, centered */}
+      <main className="flex-1 overflow-y-auto relative z-10 w-full flex flex-col items-center pt-32">
         <div className="w-full max-w-2xl flex flex-col items-center gap-6 px-8 md:px-16 pb-32">
+          {/* Header height spacer so content is visible below fixed header */}
+          <div className="h-32 md:h-40 flex-shrink-0" />
+          
           {/* Top spacing - 1 piece height */}
           <div className="py-4" />
           
