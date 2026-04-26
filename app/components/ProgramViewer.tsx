@@ -275,7 +275,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
             {piece.poemTranslator && <p className="text-xs text-white/50 mt-1">{piece.poemTranslator}</p>}
           </div>
         )}
-        <div className="h-6 flex-shrink-0" />
+        <div className="h-4 flex-shrink-0" />
 
         {/* Performers - centered */}
         {piece.performers.length > 0 && (
