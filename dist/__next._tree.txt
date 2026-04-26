@@ -3,4 +3,4 @@
 :HL["/background-image.png","image",{"type":"image/png"}]
 :HL["https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap","style"]
 :HL["https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"waikWD3Kk8foBhmNhndh6"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"WP9U5mgvUB1A5U3C-Jl2U"}

@@ -144,7 +144,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         <div className="px-8 py-4 min-h-[3rem] flex items-center justify-between grayscale">
           {/* Page number — bottom left */}
           <span className="text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none">
-            0026nbsp;{String(currentIndex + 1).padStart(2, "0")}
+              {String(currentIndex + 1).padStart(2, "0")}
           </span>
 
           {/* Dots — centered, sitting on footer */}
