@@ -153,7 +153,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
               <button
                 key={index}
                 onClick={() => scrollToPage(index)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer z-10 ${
                   currentIndex === index
                     ? "bg-white w-6"
                     : "w-1.5 bg-white/30 hover:bg-white/50"
