@@ -139,9 +139,9 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         ))}
       </div>
 
-      {/* Footer - translucent with dots in middle, larger */}
+      {/* Footer - translucent with dots in middle */}
       <footer className="flex-shrink-0 z-20 bg-black/30 backdrop-blur-md border-t border-white/10">
-        <div className="px-8 py-8 min-h-[5rem] flex items-center justify-between grayscale">
+        <div className="px-8 py-4 min-h-[3rem] flex items-center justify-between grayscale">
           {/* Page number — bottom left */}
           <span className="text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none">
             {String(currentIndex + 1).padStart(2, "0")}
@@ -298,8 +298,8 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
 
         <div className="h-12 flex-shrink-0" />
         
-        {/* Footer height x3 spacer (footer is ~5rem, x3 = 15rem) */}
-        <div className="h-60 flex-shrink-0" />
+        {/* Large bottom spacer */}
+        <div className="h-96 flex-shrink-0" />
       </div>
     </div>
   );
