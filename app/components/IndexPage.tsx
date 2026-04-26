@@ -31,9 +31,9 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
         </div>
       </header>
 
-      {/* Program list - scrollable, full width */}
-      <main className="flex-1 overflow-y-auto relative z-10 w-full">
-        <div className="w-full max-w-2xl mx-auto flex flex-col items-center gap-6 px-8 md:px-16 pb-32">
+      {/* Program list - scrollable, centered */}
+      <main className="flex-1 overflow-y-auto relative z-10 w-full flex flex-col items-center">
+        <div className="w-full max-w-2xl flex flex-col items-center gap-6 px-8 md:px-16 pb-32">
           {/* Top spacing - 1 piece height */}
           <div className="py-4" />
           
