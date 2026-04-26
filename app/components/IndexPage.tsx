@@ -75,7 +75,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
           })}
           
           {/* Bottom spacing - significant footer for last item visibility */}
-          <div className="h-32 md:h-40" />
+          <div className="h-16 md:h-20" />
         </div>
       </main>
     </div>
