@@ -15,7 +15,7 @@ export const concertInfo = {
 BA diplomakoncert`,
   date: "2026. május 3.",
   time: "18:00",
-  venue: "Zeneakadémia, Solti terem",
+  venue: `\nZeneakadémia, Solti terem\n`,
   venueEn: "Liszt Academy Budapest",
   note: "A koncert előtt, 16.00 órától a diplomázók vizsgafilmjei az I. előadó teremben tekinthetők meg.",
 };

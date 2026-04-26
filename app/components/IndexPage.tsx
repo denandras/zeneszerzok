@@ -13,26 +13,27 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
       {/* Shared background - prevents flicker, consistent brightness */}
       <BackgroundImage />
 
-      {/* Header - centered content */}
-      <header className="flex-shrink-0 z-20 relative w-full flex justify-center pointer-events-none">
-        <div className="w-full max-w-2xl my-8 md:my-12 px-8 md:px-16 py-6 pointer-events-auto">
-          {/* Centered content container */}
-          <div className="space-y-2 text-center">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-gray-200 whitespace-pre-line leading-relaxed drop-shadow-md text-center">
+      {/* Header - translucent with backdrop blur like piece pages */}
+      <header className="fixed top-0 left-0 right-0 z-30 px-6 py-8 min-h-[4rem] bg-black/30 backdrop-blur-md border-b border-white/10">
+        <div className="w-full max-w-2xl mx-auto text-center">
+          <div className="space-y-4">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-gray-200 whitespace-pre-line leading-relaxed drop-shadow-md">
               {concertInfo.venue}
             </p>
-            <h1 className="text-sm md:text-base font-light whitespace-pre-line leading-relaxed text-white drop-shadow-md text-center">
+            <h1 className="text-sm md:text-base font-light whitespace-pre-line leading-relaxed text-white drop-shadow-md">
               {concertInfo.title}
             </h1>
-            <div className="flex items-center justify-center gap-1 text-xs text-gray-200 drop-shadow-md pt-1">
-              <span>{concertInfo.date} {concertInfo.time}</span>
-            </div>
+            <p className="text-xs text-gray-200 drop-shadow-md">
+              {concertInfo.date} {concertInfo.time}
+            </p>
+            {/* Empty line after date */}
+            <div className="h-4" />
           </div>
         </div>
       </header>
 
-      {/* Program list - scrollable, centered */}
-      <main className="flex-1 overflow-y-auto relative z-10 w-full flex flex-col items-center">
+      {/* Program list - scrollable, centered with top padding for header */}
+      <main className="flex-1 overflow-y-auto relative z-10 w-full flex flex-col items-center pt-32">
         <div className="w-full max-w-2xl flex flex-col items-center gap-6 px-8 md:px-16 pb-32">
           {/* Top spacing - 1 piece height */}
           <div className="py-4" />
