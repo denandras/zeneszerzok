@@ -193,8 +193,8 @@ function PageContent({ piece, pageNumber }: PageContentProps) {
         {String(pageNumber).padStart(2, "0")}
       </div>
 
-      {/* Content — padded away from fixed arrows, text aligned left */}
-      <div className="flex-1 flex flex-col items-start justify-start px-16 md:px-28 gap-5 pt-24 pb-20 overflow-y-auto">
+      {/* Content — centered on page */}
+      <div className="flex-1 flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-24 pb-20 overflow-y-auto">
         {/* Image */}
         <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden">
           {hasPhoto ? (
@@ -222,26 +222,26 @@ function PageContent({ piece, pageNumber }: PageContentProps) {
           )}
         </div>
 
-        {/* Composer + Title - left aligned */}
-        <div className="flex flex-col items-start gap-1">
-          <p className="text-[10px] uppercase tracking-[0.15em] text-white text-left max-w-md leading-relaxed">
+        {/* Composer + Title - centered */}
+        <div className="flex flex-col items-center gap-1">
+          <p className="text-[10px] uppercase tracking-[0.15em] text-white text-center max-w-md leading-relaxed">
             {piece.composer}
           </p>
-          <h2 className="text-lg md:text-xl font-light leading-tight text-left max-w-md">
+          <h2 className="text-lg md:text-xl font-light leading-tight text-center max-w-md">
             {piece.title}
           </h2>
         </div>
 
-        {/* Description - left aligned */}
+        {/* Description - centered */}
         {piece.description && (
-          <p className="text-sm text-white/80 text-left max-w-xs leading-relaxed">
+          <p className="text-sm text-white/80 text-center max-w-xs leading-relaxed">
             {piece.description}
           </p>
         )}
 
-        {/* Poem - left aligned */}
+        {/* Poem - centered */}
         {piece.poem && (
-          <pre className="text-xs italic text-white/70 text-left max-w-xs leading-relaxed whitespace-pre-wrap font-sora">
+          <pre className="text-xs italic text-white/70 text-center max-w-xs leading-relaxed whitespace-pre-wrap font-sora">
             {piece.poem.split("\n").map((line, i, arr) => {
               const isHeader = ["Elegy", "Moments", "Detachment"].includes(line.trim());
               return (
@@ -254,18 +254,18 @@ function PageContent({ piece, pageNumber }: PageContentProps) {
           </pre>
         )}
 
-        {/* Poem metadata - left aligned */}
+        {/* Poem metadata - centered */}
         {piece.poem && piece.poemAuthor && (
-          <div className="text-left mt-2">
+          <div className="text-center mt-2">
             {piece.poemYear && <p className="text-xs text-white/60">{piece.poemYear}</p>}
             <p className="text-xs text-white/60">-{piece.poemAuthor}-</p>
             {piece.poemTranslator && <p className="text-xs text-white/50 mt-1">{piece.poemTranslator}</p>}
           </div>
         )}
 
-        {/* Performers - left aligned */}
+        {/* Performers - centered */}
         {piece.performers.length > 0 && (
-          <div className="space-y-3 text-left">
+          <div className="space-y-3 text-center">
             <p className="text-xs uppercase tracking-[0.15em] text-white/60">Előadják:</p>
             {piece.performers.map((performer, i) => (
               <p key={i} className="text-sm text-white">
