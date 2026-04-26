@@ -182,11 +182,9 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
   if (piece.id === -1) {
     return (
       <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex flex-col px-16 grayscale">
-        {/* Header height spacer */}
-        <div className="h-32 md:h-40 flex-shrink-0" />
+        {/* Header height x3 spacer */}
+        <div className="h-72 flex-shrink-0" />
         
-        {/* Consistent top spacer */}
-        <div className="h-24 md:h-32 flex-shrink-0" />
         
         <div className="flex-1 flex items-center justify-center">
           <div className="flex items-center gap-6">
@@ -209,11 +207,9 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex">
       {/* Content — centered on page, with header-height spacer at top */}
       <div className="flex-1 flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-0 pb-20 overflow-y-auto">
-        {/* Header height spacer - so content is visible below fixed header */}
-        <div className="h-32 md:h-40 flex-shrink-0" />
+        {/* Header height x3 spacer */}
+        <div className="h-72 flex-shrink-0" />
         
-        {/* Consistent top spacer */}
-        <div className="h-24 md:h-32 flex-shrink-0" />
         <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale">
           {hasPhoto ? (
             <Image
