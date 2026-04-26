@@ -53,7 +53,6 @@ export const program: Piece[] = [
     description: "Anna Ahmatova XX. századi orosz költő versének megzenésítése Konczek József fordításában. A szopránra, hárfára és csellóra íródott darab egyfajta kontemplatív érzelmi kettősséget próbál megeleveníteni.",
     poem: `A lágy fényhez fohászkodom…
 („Moljusz okonnomu lucsu…”)
-
 A lágy fényhez fohászkodom,
 Szitál az ablakon.
 S egész nap nincs mit mondanom,
@@ -181,7 +180,6 @@ mist`,
       "Holozsai Eszter (fuvola)",
       "Sebestyén-Lázár Kata (fuvola)",
       "Szilágyi Péter (marimba)",
-      "",
       "Vezényel: Kemény Péter",
     ],
     description: "Ez a darab az esőerdők gazdag és sokszínű hangzásvilágának emlékére született. A különféle hangszeres effektusok ennek a különleges természeti környezetnek az atmoszféráját idézik meg: a csepegő eső hangját, a szél susogását, valamint a különböző madárfajok énekét. Mivel az esőerdők napjainkban egyre nagyobb veszélynek vannak kitéve, a mű egyfajta tisztelgés is e még létező, különleges erdei hangzásvilág előtt.",
