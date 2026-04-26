@@ -231,7 +231,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
         </div>
 
         {/* Composer + Title - centered */}
-        <div className="flex flex-col items-center gap-1">
+        <div className="flex flex-col items-center gap-4">
           <p className="text-[10px] uppercase tracking-[0.15em] text-white text-center max-w-md leading-relaxed">
             {piece.composer}
           </p>
@@ -269,7 +269,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
 
         {/* Poem metadata - centered */}
         {piece.poem && piece.poemAuthor && (
-          <div className="text-center mt-2">
+          <div className="text-center">
             {piece.poemYear && <p className="text-xs text-white/60">{piece.poemYear}</p>}
             <p className="text-xs text-white/60">-{piece.poemAuthor}-</p>
             {piece.poemTranslator && <p className="text-xs text-white/50 mt-1">{piece.poemTranslator}</p>}
@@ -277,9 +277,11 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
         )}
         <div className="h-4 flex-shrink-0" />
 
+        <div className="h-4 flex-shrink-0" />
+
         {/* Performers - centered */}
         {piece.performers.length > 0 && (
-          <div className="space-y-3 text-center">
+          <div className="flex flex-col items-center gap-4">
             <p className="text-xs uppercase tracking-[0.15em] text-white/60">Előadják:</p>
             {piece.performers.map((performer, i) => (
               <p key={i} className="text-sm text-white">
