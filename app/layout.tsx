@@ -49,6 +49,9 @@ export default function RootLayout({
         {/* Preload background image to prevent flash */}
         <link rel="preload" href="/background-image.png" as="image" type="image/png" />
         
+        {/* Preload Regina's photo for instant display on piece pages */}
+        <link rel="preload" href="/regina.jpg" as="image" type="image/jpeg" />
+        
         {/* Google Fonts */}
         <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet" />
