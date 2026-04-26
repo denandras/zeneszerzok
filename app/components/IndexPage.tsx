@@ -47,11 +47,11 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
             if (isIntermission) {
               return (
                 <div key={piece.id} className="py-6 flex items-center justify-center gap-4 w-full max-w-md">
-                  <span className="flex-1 h-px bg-gray-500"></span>
+                  <span className="flex-1 h-px bg-white/30"></span>
                   <span className="text-xs uppercase tracking-[0.3em] text-gray-300 flex-shrink-0 drop-shadow-md">
                     {piece.title}
                   </span>
-                  <span className="flex-1 h-px bg-gray-500"></span>
+                  <span className="flex-1 h-px bg-white/30"></span>
                 </div>
               );
             }
