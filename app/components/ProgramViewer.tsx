@@ -183,7 +183,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
     return (
       <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex flex-col px-16 grayscale">
         {/* Header height x3 spacer */}
-        <div className="h-40 flex-shrink-0" />
+        <div className="h-36 flex-shrink-0" />
         
         
         <div className="flex-1 flex items-center justify-center">
@@ -208,9 +208,9 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
       {/* Content — centered on page, with header-height spacer at top */}
       <div className="flex-1 flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-0 pb-20 overflow-y-auto">
         {/* Header height x3 spacer */}
-        <div className="h-40 flex-shrink-0" />
+        <div className="h-36 flex-shrink-0" />
         
-        <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale">
+        <div className="relative w-32 h-32 md:w-40 md:h-36 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale">
           {hasPhoto ? (
             <Image
               src="/regina.jpg"
