@@ -38,6 +38,10 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
           {/* Header height spacer - reduced */}
           <div className="h-16 md:h-24 flex-shrink-0" />
           
+          {/* Two empty lines before first piece */}
+          <div className="h-4" />
+          <div className="h-4" />
+          
           {program.map((piece, index) => {
             const isIntermission = piece.id === -1;
 
