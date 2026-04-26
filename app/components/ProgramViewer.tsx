@@ -141,13 +141,13 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
 
       {/* Footer - fixed bottom, translucent with backdrop blur */}
       <footer className="fixed bottom-0 left-0 right-0 z-20 bg-black/30 backdrop-blur-md border-t border-white/10">
-        <div className="pl-6 pr-8 py-4 min-h-[3rem] flex items-center justify-between grayscale">
-          {/* Page number — bottom left */}
-          <span className="pl-4 text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none">
-              {String(currentIndex + 1).padStart(2, "0")}
+        <div className="px-8 py-4 min-h-[3rem] flex items-center justify-center grayscale relative">
+          {/* Page number — bottom left, absolute positioned */}
+          <span className="absolute left-8 text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none">
+            {String(currentIndex + 1).padStart(2, "0")}
           </span>
 
-          {/* Dots — centered, sitting on footer */}
+          {/* Dots — centered in footer */}
           <div className="flex items-center gap-2">
             {pieces.map((_, index) => (
               <button
@@ -161,9 +161,6 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
               />
             ))}
           </div>
-
-          {/* Spacer to balance number on left */}
-          <div className="w-10" />
         </div>
       </footer>
     </div>
