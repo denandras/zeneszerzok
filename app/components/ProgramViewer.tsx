@@ -71,22 +71,34 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       {/* Shared background */}
       <BackgroundImage />
 
-      {/* Műsor button — fixed to left edge, vertically centered */}
-      <button
-        onClick={onBackToIndex}
-        className="fixed left-0 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center justify-center gap-1 py-6 px-2 text-white hover:opacity-70 transition-opacity"
-        aria-label="Vissza a műsorhoz"
-        style={{ writingMode: "vertical-rl", transform: "translateY(-50%) rotate(180deg)" }}
-      >
-        <span className="text-[10px] uppercase tracking-[0.25em]">Műsor</span>
-        <span className="text-xs">↓</span>
-      </button>
+      {/* Header - translucent with backdrop blur, Műsor button on top */}
+      <header className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-6 py-4 bg-black/30 backdrop-blur-md border-b border-white/10">
+        {/* Page number - static part of header */}
+        <span className="text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none w-12">
+          {String(currentIndex + 1).padStart(2, "0")}
+        </span>
+
+        {/* Műsor button - centered */}
+        <button
+          onClick={onBackToIndex}
+          className="flex items-center gap-2 text-white/80 hover:text-white transition-all duration-300 hover:scale-105"
+          aria-label="Vissza a műsorhoz"
+        >
+          <span className="text-xs uppercase tracking-[0.25em]">Műsor</span>
+          <svg className="w-4 h-4 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        {/* Spacer for balance */}
+        <div className="w-12" />
+      </header>
 
       {/* Fixed prev arrow — left side, centered vertically */}
       {showPrev && (
         <button
           onClick={goToPrev}
-          className="fixed left-8 top-1/2 -translate-y-1/2 z-30 p-2 text-white hover:opacity-70 transition-opacity"
+          className="fixed left-4 top-1/2 -translate-y-1/2 z-20 p-3 text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300"
           aria-label="Előző"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -99,7 +111,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       {showNext && (
         <button
           onClick={goToNext}
-          className="fixed right-4 top-1/2 -translate-y-1/2 z-30 p-2 text-white hover:opacity-70 transition-opacity"
+          className="fixed right-4 top-1/2 -translate-y-1/2 z-20 p-3 text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300"
           aria-label="Következő"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -108,10 +120,10 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         </button>
       )}
 
-      {/* Horizontal scroll container — fills full height */}
+      {/* Horizontal scroll container — fills full height, with top padding for header */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex"
+        className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex pt-20"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
         {pieces.map((piece, index) => (
@@ -119,19 +131,15 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
             key={piece.id}
             piece={piece}
             isActive={index === currentIndex}
+            pageNumber={index + 1}
           />
         ))}
       </div>
 
-      {/* Bottom bar: page number bottom-left + dots centered */}
-      <div className="flex-shrink-0 relative z-20 px-6 pb-10 pt-4 flex items-end justify-between">
-        {/* Page number — bottom left */}
-        <span className="text-3xl md:text-4xl font-extralight text-white/25 leading-none select-none">
-          {String(currentIndex + 1).padStart(2, "0")}
-        </span>
-
+      {/* Bottom bar: dots centered */}
+      <div className="flex-shrink-0 relative z-20 px-6 pb-8 pt-4 flex items-center justify-center">
         {/* Dots — centered */}
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-10 flex items-center gap-2">
+        <div className="flex items-center gap-2">
           {pieces.map((_, index) => (
             <button
               key={index}
@@ -139,14 +147,11 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 currentIndex === index
                   ? "bg-white w-6"
-                  : "w-1.5 bg-gray-700 hover:bg-gray-500"
+                  : "w-1.5 bg-gray-600 hover:bg-gray-400"
               }`}
             />
           ))}
         </div>
-
-        {/* Spacer to balance number on left */}
-        <div className="w-10" />
       </div>
     </div>
   );
@@ -155,13 +160,18 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
 interface PageContentProps {
   piece: Piece;
   isActive: boolean;
+  pageNumber: number;
 }
 
-function PageContent({ piece }: PageContentProps) {
+function PageContent({ piece, pageNumber }: PageContentProps) {
   // Intermission page
   if (piece.id === -1) {
     return (
       <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex items-center justify-center px-16">
+        {/* Static page number for intermission */}
+        <div className="absolute top-4 left-6 text-2xl md:text-3xl font-extralight text-white/20 leading-none select-none">
+          {String(pageNumber).padStart(2, "0")}
+        </div>
         <div className="flex items-center gap-6">
           <span className="w-16 md:w-28 h-px bg-gray-700"></span>
           <span className="text-sm md:text-base uppercase tracking-[0.4em] text-white">
@@ -178,8 +188,13 @@ function PageContent({ piece }: PageContentProps) {
   // Regular piece page
   return (
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always overflow-hidden relative flex">
-      {/* Content — padded away from fixed arrows */}
-      <div className="flex-1 flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-10 md:pt-14 pb-20 overflow-y-auto">
+      {/* Static page number - part of page, not affected by scroll */}
+      <div className="absolute top-4 left-6 z-10 text-2xl md:text-3xl font-extralight text-white/20 leading-none select-none">
+        {String(pageNumber).padStart(2, "0")}
+      </div>
+
+      {/* Content — padded away from fixed arrows, text aligned left */}
+      <div className="flex-1 flex flex-col items-start justify-start px-16 md:px-28 gap-5 pt-24 pb-20 overflow-y-auto">
         {/* Image */}
         <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden">
           {hasPhoto ? (
@@ -207,26 +222,26 @@ function PageContent({ piece }: PageContentProps) {
           )}
         </div>
 
-        {/* Composer + Title */}
-        <div className="flex flex-col items-center gap-1">
-          <p className="text-[10px] uppercase tracking-[0.15em] text-white text-center max-w-md leading-relaxed">
+        {/* Composer + Title - left aligned */}
+        <div className="flex flex-col items-start gap-1">
+          <p className="text-[10px] uppercase tracking-[0.15em] text-white text-left max-w-md leading-relaxed">
             {piece.composer}
           </p>
-          <h2 className="text-lg md:text-xl font-light leading-tight text-center max-w-md whitespace-nowrap">
+          <h2 className="text-lg md:text-xl font-light leading-tight text-left max-w-md">
             {piece.title}
           </h2>
         </div>
 
-        {/* Description */}
+        {/* Description - left aligned */}
         {piece.description && (
-          <p className="text-sm text-white/80 text-center max-w-xs leading-relaxed px-4">
+          <p className="text-sm text-white/80 text-left max-w-xs leading-relaxed">
             {piece.description}
           </p>
         )}
 
-        {/* Poem */}
+        {/* Poem - left aligned */}
         {piece.poem && (
-          <pre className="text-xs italic text-white/70 text-center max-w-xs leading-relaxed whitespace-pre-wrap font-sora px-4">
+          <pre className="text-xs italic text-white/70 text-left max-w-xs leading-relaxed whitespace-pre-wrap font-sora">
             {piece.poem.split("\n").map((line, i, arr) => {
               const isHeader = ["Elegy", "Moments", "Detachment"].includes(line.trim());
               return (
@@ -239,18 +254,18 @@ function PageContent({ piece }: PageContentProps) {
           </pre>
         )}
 
-        {/* Poem metadata */}
+        {/* Poem metadata - left aligned */}
         {piece.poem && piece.poemAuthor && (
-          <div className="text-center mt-2">
+          <div className="text-left mt-2">
             {piece.poemYear && <p className="text-xs text-white/60">{piece.poemYear}</p>}
             <p className="text-xs text-white/60">-{piece.poemAuthor}-</p>
             {piece.poemTranslator && <p className="text-xs text-white/50 mt-1">{piece.poemTranslator}</p>}
           </div>
         )}
 
-        {/* Performers */}
+        {/* Performers - left aligned */}
         {piece.performers.length > 0 && (
-          <div className="space-y-3 text-center">
+          <div className="space-y-3 text-left">
             <p className="text-xs uppercase tracking-[0.15em] text-white/60">Előadják:</p>
             {piece.performers.map((performer, i) => (
               <p key={i} className="text-sm text-white">
