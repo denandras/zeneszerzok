@@ -39,7 +39,7 @@ export const program: Piece[] = [
     composer: "Sepsi Botond",
     title: "Egyenes labirintus",
     performers: [],
-    description: "",
+    description: "“Ha bármit. A legapróbb építő elemeire bontva. Mindenhol ugyan azokhoz az építőelemekhez érkezel. Akkor mi értelme van a bármiknek? Kiút keresés egy végtelen labirintusból, mely egyszerre zuhanó és emelkedő, táguló és összezsugorodó, de legfőképp szüntelenül önmagát ismétlő.”",
   },
   {
     id: 3,
