@@ -91,7 +91,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
           </div>
           
           {/* Space below credit */}
-          <div className="h-16 md:h-24" />
+          <div className="h-8 md:h-12" />
         </div>
       </main>
     </div>
