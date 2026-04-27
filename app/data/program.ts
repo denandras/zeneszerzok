@@ -40,6 +40,23 @@ export const program: Piece[] = [
     title: "Egyenes labirintus",
     performers: [],
     description: "“Ha bármit. A legapróbb építő elemeire bontva. Mindenhol ugyan azokhoz az építőelemekhez érkezel. Akkor mi értelme van a bármiknek? Kiút keresés egy végtelen labirintusból, mely egyszerre zuhanó és emelkedő, táguló és összezsugorodó, de legfőképp szüntelenül önmagát ismétlő.”",
+    poem: `Milyen lesz az a visszaröpülés,
+amiről csak hasonlatok beszélnek,
+olyanfélék, hogy oltár, szentély,
+kézfogás, visszatérés, ölelés,
+fűben, fák alatt megterített asztal,
+hol nincs első és nincs utolsó vendég,
+végül is milyen lesz, milyen lesz
+e nyitott szárnyú emelkedő zuhanás,
+visszahullás a fókusz lángoló
+közös fészkébe? - nem tudom,
+és mégis, hogyha valamit tudok,
+hát ezt tudom, e forró folyosót,
+e nyílegyenes labirintust, melyben
+mind tömöttebb és mind tömöttebb
+és egyre szabadabb a tény, hogy röpülünk.`,
+    poemYear: "1965",
+    poemAuthor: "Pilinszky János",
   },
   {
     id: 3,
