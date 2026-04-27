@@ -1,7 +1,7 @@
-:HL["/_next/static/chunks/05n~nf2qxo6.b.css","style"]
+:HL["/_next/static/chunks/0a0giosak8j~q.css","style"]
 :HL["https://fonts.gstatic.com/s/sora/v12/xMQOuFFDK72Zl6Q9r3FxFJQ.ttf","font",{"crossOrigin":"anonymous","type":"font/ttf"}]
 :HL["/background-image.png","image",{"type":"image/png"}]
 :HL["/regina.jpg","image",{"type":"image/jpeg"}]
 :HL["https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap","style"]
 :HL["https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"jtrHYV8BIgEwOZlDJQawZ"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"qibneCQA-FhSeiQZT37Ya"}

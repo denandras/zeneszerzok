@@ -78,13 +78,13 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
           <div className="h-4 md:h-8" />
           
           {/* Website credit - small and subtle */}
-          <div className="text-[10px] text-white/10 text-center -mt-2">
+          <div className="text-[10px] text-white/5 text-center -mt-2">
             website by{" "}
             <a
               href="https://andrasdenes.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white/20 transition-colors"
+              className="hover:text-white/10 transition-colors"
             >
               András Dénes
             </a>
