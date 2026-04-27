@@ -74,11 +74,11 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
             );
           })}
           
-          {/* Bottom spacing - significant footer for last item visibility */}
-          <div className="h-16 md:h-20" />
+          {/* Bottom spacing - pushes credit up while keeping scroll space */}
+          <div className="h-4 md:h-8" />
           
-          {/* Website credit */}
-          <div className="text-[10px] text-white/10 text-center -mt-1.5 pb-1">
+          {/* Website credit - small and subtle */}
+          <div className="text-[10px] text-white/10 text-center -mt-2">
             website by{" "}
             <a
               href="https://andrasdenes.com"
@@ -90,11 +90,8 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
             </a>
           </div>
           
-          {/* Empty line below credit */}
-          <div className="h-4" />
-          
-          {/* Tiny spacing above edge */}
-          <div className="h-3" />
+          {/* Space below credit */}
+          <div className="h-16 md:h-24" />
         </div>
       </main>
     </div>
