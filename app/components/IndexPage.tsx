@@ -74,21 +74,24 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
             );
           })}
           
+          {/* Bottom spacing - significant footer for last item visibility */}
+          <div className="h-16 md:h-20" />
+          
           {/* Website credit */}
-          <div className="text-[10px] text-gray-600 text-center mt-8">
+          <div className="text-[10px] text-gray-500/60 text-center">
             website by{" "}
             <a
               href="https://andrasdenes.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-gray-500 transition-colors"
+              className="hover:text-gray-400/80 transition-colors"
             >
               András Dénes
             </a>
           </div>
           
-          {/* Bottom spacing - significant footer for last item visibility */}
-          <div className="h-16 md:h-20" />
+          {/* Tiny spacing above edge */}
+          <div className="h-2" />
         </div>
       </main>
     </div>
