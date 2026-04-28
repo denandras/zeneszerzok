@@ -197,7 +197,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
   return (
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always relative overflow-y-auto">
       {/* Content - centered on page, with header-height spacer at top and footer clearance at bottom */}
-      <div className="min-h-full flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-28 pb-40">
+      <div className="min-h-full flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-28 pb-8">
         <div className="h-28 flex-shrink-0" />
 
         <div className="relative w-32 h-32 md:w-40 md:h-36 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale">
@@ -295,10 +295,8 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
           </>
         )}
 
-        <div className="h-4 flex-shrink-0" />
-
-        {/* Footer clearance - ensures all content is scrollable above fixed footer */}
-        <div className="h-10 flex-shrink-0" />
+        {/* Footer spacer: footer is ~80px fixed at bottom */}
+        <div className="h-16 flex-shrink-0" />
       </div>
     </div>
   );
