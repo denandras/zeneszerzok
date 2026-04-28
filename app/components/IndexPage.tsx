@@ -90,7 +90,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
                 className="w-auto text-center cursor-pointer transition-all duration-[1500ms]"
               >
                 <div className="py-5 px-10">
-                  <div className="flex flex-col items-center gap-1 grayscale">
+                  <div className="flex flex-col items-center gap-0.5 grayscale">
                   <p className="text-xs uppercase tracking-[0.15em] text-gray-200 drop-shadow-md">
                     {piece.composer}
                   </p>
