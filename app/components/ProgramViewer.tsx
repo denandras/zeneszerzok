@@ -293,9 +293,6 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
             </div>
           </>
         )}
-
-        {/* Footer spacer: ~36px total to clear fixed footer */}
-        <div className="h-4 flex-shrink-0" />
       </div>
     </div>
   );
