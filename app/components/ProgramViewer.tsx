@@ -297,9 +297,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
 
         <div className="h-4 flex-shrink-0" />
 
-        {/* Footer clearance - ensures all content is scrollable above fixed footer (~96px) */}
-        <div className="h-32 flex-shrink-0" />
-        <div className="h-32 flex-shrink-0" />
+        {/* Footer clearance - ensures all content is scrollable above fixed footer */}
         <div className="h-32 flex-shrink-0" />
         <div className="h-32 flex-shrink-0" />
       </div>
