@@ -15,9 +15,9 @@ interface ArrowObstacleLayoutProps {
 // Simple CSS-based approach using padding zones
 export default function ArrowObstacleLayout({
   children,
-  leftArrowWidth = 64, // 16 * 4 = w-16
-  rightArrowWidth = 64,
-  arrowPadding = 32, // Extra padding around arrows
+  leftArrowWidth = 16, // Just the clickable area, minimal
+  rightArrowWidth = 16,
+  arrowPadding = 8, // Minimal padding around arrows
   className = "",
 }: ArrowObstacleLayoutProps) {
   const containerRef = useRef<HTMLDivElement>(null);

@@ -199,9 +199,9 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
     <div className="w-screen min-h-full flex-shrink-0 snap-center snap-always relative">
       {/* ArrowObstacleLayout - handles arrow padding with Pretext optimization */}
       <ArrowObstacleLayout
-        leftArrowWidth={64} // w-16
-        rightArrowWidth={64}
-        arrowPadding={32} // Additional padding around arrows
+        leftArrowWidth={16} // Minimal arrow zone
+        rightArrowWidth={16}
+        arrowPadding={8} // Minimal padding
         className="h-full overflow-y-auto"
       >
         {/* Content - sits naturally with arrow-aware padding */}
