@@ -116,6 +116,61 @@ Oly hű vigasztalóm.`,
       "Vida Mátyás (tuba)",
     ],
     description: "A darabot Váci Mihály, *Valami nincs sehol* című verse inspirálta. Számomra ez a vers a beteljesülés hiányának állandó feszültségéről és a kitörés ismételődő, de mégis sikertelen kísérleteiről szól.\nA zenei anyagban ezt a hiányérzetet és keresést próbáltam megragadni: olyan folyamatokkal, amelyek elindulnak a feloldás felé, de nem jutnak el odáig.\nA szavak mélysége miatt nem vállalkozom teljes értelmezésre, ezért ajánlom a vers egészének elolvasását.",
+    poem: `Süvítenek napjaink, a forró sortüzek,
+      – valamit mindennap elmulasztunk.
+Robotolunk lélekszakadva, jóttevőn,
+      – s valamit minden tettben elmulasztunk.
+Áldozóódunk a szerelemben egy életen át,
+      – s valamit minden csókban elmulasztunk.
+
+Mert valami hiányzik minden ölelésből,
+      – minden csókból hiányzik valami.
+Hiába alkotjuk meg s víünk érte naponta,
+      – minden szerelemből hiányzik valami.
+Hiába verekszünk érte halálig: – ha miénk is,
+      – a boldogságból hiányzik valami.
+
+Jóllakhatsz fuldoklásig a gyönyörökkel,
+      – az életedből hiányzik valami.
+Hiába vágyik az emberi teljességre,
+      – mert az emberből hiányzik valami.
+Hiába reménykedsz a megváltó Egészben,
+      – mert az Egészből hiányzik valami.
+
+A Mindenségből hiányzik egy csillag,
+      – a Mindenségből hiányzik valami.
+A Világból hiányzik a mi világunk,
+      – a Világból hiányzik valami.
+
+Az égboltról hiányzik egy sugár,
+      – felőlünk hiányzik valami.
+A Földből hiányzik egy talpalatnyi föld,
+      – talpunk alól hiányzik valami.
+
+Pedig így szólt az ígéret a múltból:
+      – "Valahol! Valamikor! Valami!"
+Hitették a bölcsek, hitték a hívők,
+      – mióta élünk, e hitetést hallani.
+De már reánk tört a tudás: – Valami nincs sehol!
+      – s a mi dolgunk ezt bevallani,
+s keresni azt, amit már nem szabad
+      senkinek elmulasztani.
+
+Újra kell kezdeni mindent,
+      – minden szót újra kimondani.
+Újra kezdeni minden ölelést,
+      – minden szerelmet újra kibontani.
+Újra kezdeni minden művet és minden életet,
+      – kezünket mindenkinek újra odanyújtani.
+
+Újra kezdeni mindent e világon,
+      – megteremteni, ami nincs sehol,
+de itt van mindnyájunkban mégis,
+      belőlünk sürgetve dalol,
+újra hiteti, hogy eljön
+      valami, valamikor, valahol…`,
+    poemYear: "1994",
+    poemAuthor: "Váci Mihály",
   },
   {
     id: 6,
