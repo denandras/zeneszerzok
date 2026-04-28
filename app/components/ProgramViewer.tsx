@@ -300,6 +300,14 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
 
         {/* Footer clearance spacer - increased to ensure content is visible above fixed footer */}
         <div className="h-72 flex-shrink-0" />
+
+        {/* Additional manual spacing */}
+        <div className="h-8 flex-shrink-0" />
+        <div className="h-8 flex-shrink-0" />
+        <div className="h-8 flex-shrink-0" />
+        <div className="h-8 flex-shrink-0" />
+        <div className="h-8 flex-shrink-0" />
+        <div className="h-8 flex-shrink-0" />
       </div>
     </div>
   );
