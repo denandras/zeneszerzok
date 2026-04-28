@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { program, type Piece } from "../data/program";
 import BackgroundImage from "./BackgroundImage";
+import ArrowObstacleLayout from "./ArrowObstacleLayout";
 
 interface ProgramViewerProps {
   startIndex?: number;
@@ -195,9 +196,16 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
 
   // Regular piece page
   return (
-    <div className="w-screen min-h-full flex-shrink-0 snap-center snap-always relative overflow-y-auto">
-      {/* Content - sits naturally below header, compact spacing */}
-      <div className="flex flex-col items-center px-16 md:px-28 gap-5 py-8">
+    <div className="w-screen min-h-full flex-shrink-0 snap-center snap-always relative">
+      {/* ArrowObstacleLayout - handles arrow padding with Pretext optimization */}
+      <ArrowObstacleLayout
+        leftArrowWidth={64} // w-16
+        rightArrowWidth={64}
+        arrowPadding={32} // Additional padding around arrows
+        className="h-full overflow-y-auto"
+      >
+        {/* Content - sits naturally with arrow-aware padding */}
+        <div className="flex flex-col items-center gap-5 py-8 min-h-full">
         {/* Top spacer */}
         <div className="h-16 flex-shrink-0" />
 
@@ -287,6 +295,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
         {/* Bottom spacer */}
         <div className="h-16 flex-shrink-0" />
       </div>
+      </ArrowObstacleLayout>
     </div>
   );
 }
