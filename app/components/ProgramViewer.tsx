@@ -198,8 +198,13 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
   // Regular piece page
   return (
     <div className="w-screen min-h-full flex-shrink-0 snap-center snap-always relative overflow-y-auto">
-      {/* Content - sits naturally below header, compact spacing */}
-      <div className="flex flex-col items-center px-16 md:px-28 gap-5 py-8">
+      {/* 
+        Responsive padding approach:
+        - Base: px-16 (64px) provides base arrow clearance
+        - md:px-28 (112px) extra room on larger screens
+        Content stays centered and readable, arrows sit in the extra space
+      */}
+      <div className="flex flex-col items-center px-20 md:px-32 lg:px-40 gap-5 py-8">
         {/* Top spacer */}
         <div className="h-16 flex-shrink-0" />
 
