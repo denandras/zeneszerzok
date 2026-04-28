@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import { program, concertInfo } from "../data/program";
 import BackgroundImage from "./BackgroundImage";
 
@@ -8,6 +9,32 @@ interface IndexPageProps {
 }
 
 export default function IndexPage({ onSelectPiece }: IndexPageProps) {
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const mainRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const main = mainRef.current;
+    if (!main) return;
+
+    const handleScroll = () => {
+      setIsScrolling(true);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsScrolling(false);
+      }, 150);
+    };
+
+    main.addEventListener("scroll", handleScroll);
+    return () => {
+      main.removeEventListener("scroll", handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, []);
   return (
     <div className="h-screen flex flex-col relative overflow-hidden">
       {/* Shared background - prevents flicker, consistent brightness */}
@@ -33,7 +60,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
       </header>
 
       {/* Program list - scrollable, centered */}
-      <main className="flex-1 overflow-y-auto relative z-10 w-full flex flex-col items-center pt-32">
+      <main ref={mainRef} className="flex-1 overflow-y-auto relative z-10 w-full flex flex-col items-center pt-32">
         <div className="w-full max-w-2xl flex flex-col items-center gap-6 px-8 md:px-16 pb-32">
           {/* Header height spacer - reduced */}
           <div className="h-16 md:h-24 flex-shrink-0" />
@@ -60,7 +87,9 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
               <button
                 key={piece.id}
                 onClick={() => onSelectPiece(index)}
-                className="w-full max-w-md text-center py-4 px-6 cursor-pointer"
+                className={`w-full max-w-md text-center py-4 px-6 cursor-pointer rounded-lg transition-all duration-300 ${
+                  isScrolling ? "shadow-[0_0_25px_rgba(255,255,255,0.12)] ring-1 ring-white/15" : ""
+                }`}
               >
                 <div className="flex flex-col items-center gap-1 grayscale">
                   <p className="text-xs uppercase tracking-[0.15em] text-gray-200 drop-shadow-md">
