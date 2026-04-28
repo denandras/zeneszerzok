@@ -240,58 +240,46 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
 
         {/* Description */}
         {piece.description && (
-          <>
-            <div className="h-4 flex-shrink-0" />
-            <p className="text-sm text-white/80 text-center max-w-xs leading-relaxed">
-              {piece.description}
-            </p>
-          </>
+          <p className="text-sm text-white/80 text-center max-w-xs leading-relaxed">
+            {piece.description}
+          </p>
         )}
 
         {/* Poem */}
         {piece.poem && (
-          <>
-            <div className="h-4 flex-shrink-0" />
-            <pre className="text-xs italic text-white/70 text-center max-w-xs leading-relaxed whitespace-pre-wrap font-sora">
-              {piece.poem.split("\n").map((line, i, arr) => {
-                const isHeader = ["Elegy", "Moments", "Detachment"].includes(line.trim());
-                return (
-                  <span key={i} className={isHeader ? "font-bold italic" : ""}>
-                    {line}
-                    {i < arr.length - 1 ? "\n" : ""}
-                  </span>
-                );
-              })}
-            </pre>
-          </>
+          <pre className="text-xs italic text-white/70 text-center max-w-xs leading-relaxed whitespace-pre-wrap font-sora">
+            {piece.poem.split("\n").map((line, i, arr) => {
+              const isHeader = ["Elegy", "Moments", "Detachment"].includes(line.trim());
+              return (
+                <span key={i} className={isHeader ? "font-bold italic" : ""}>
+                  {line}
+                  {i < arr.length - 1 ? "\n" : ""}
+                </span>
+              );
+            })}
+          </pre>
         )}
 
         {/* Poem metadata */}
         {piece.poem && piece.poemAuthor && (
-          <>
-            <div className="h-4 flex-shrink-0" />
-            <div className="text-center">
-              {piece.poemYear && <p className="text-xs text-white/60">{piece.poemYear}</p>}
-              <p className="text-xs text-white/60">-{piece.poemAuthor}-</p>
-              {piece.poemTranslator && <p className="text-xs text-white/50 mt-1">{piece.poemTranslator}</p>}
-            </div>
-          </>
+          <div className="text-center">
+            {piece.poemYear && <p className="text-xs text-white/60">{piece.poemYear}</p>}
+            <p className="text-xs text-white/60">-{piece.poemAuthor}-</p>
+            {piece.poemTranslator && <p className="text-xs text-white/50 mt-1">{piece.poemTranslator}</p>}
+          </div>
         )}
 
         {/* Performers */}
         {piece.performers.length > 0 && (
-          <>
-            <div className="h-4 flex-shrink-0" />
-            <div className="flex flex-col items-center gap-2">
-              <p className="text-xs uppercase tracking-[0.15em] text-white/60">Előadják:</p>
-              <div className="h-2 flex-shrink-0" />
-              {piece.performers.map((performer, i) => (
-                <p key={i} className="text-sm text-white">
-                  {performer}
-                </p>
-              ))}
-            </div>
-          </>
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-xs uppercase tracking-[0.15em] text-white/60">Előadják:</p>
+            <div className="h-2 flex-shrink-0" />
+            {piece.performers.map((performer, i) => (
+              <p key={i} className="text-sm text-white">
+                {performer}
+              </p>
+            ))}
+          </div>
         )}
       </div>
     </div>
