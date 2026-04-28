@@ -122,10 +122,10 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         />
       )}
 
-      {/* Horizontal scroll container - fills full height, with top padding for header (min-h-[4rem] + py-8*2 = ~8rem) */}
+      {/* Horizontal scroll container - fills full height, minimal top padding since content is centered */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex pt-40"
+        className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex pt-20"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
         {pieces.map((piece, index) => (
@@ -196,9 +196,8 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
   // Regular piece page
   return (
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always relative overflow-y-auto">
-      {/* Content - centered on page, with header-height spacer at top and footer clearance at bottom */}
-      <div className="flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-28 pb-2">
-        <div className="h-28 flex-shrink-0" />
+      {/* Content - centered on page, with header clearance at top and footer at bottom */}
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)] px-16 md:px-28 gap-5 py-8">
 
         <div className="relative w-32 h-32 md:w-40 md:h-36 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale">
           {hasPhoto ? (
