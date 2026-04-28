@@ -196,8 +196,8 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
   // Regular piece page
   return (
     <div className="w-screen h-full flex-shrink-0 snap-center snap-always relative overflow-y-auto">
-      {/* Content - centered on page, with header clearance at top and footer at bottom */}
-      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)] px-16 md:px-28 gap-5 py-8">
+      {/* Content - sits naturally below header, compact spacing */}
+      <div className="flex flex-col items-center px-16 md:px-28 gap-5 py-8">
 
         <div className="relative w-32 h-32 md:w-40 md:h-36 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale">
           {hasPhoto ? (
