@@ -24,7 +24,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
       }
       scrollTimeoutRef.current = setTimeout(() => {
         setIsScrolling(false);
-      }, 800);
+      }, 400);
     };
 
     main.addEventListener("scroll", handleScroll);
@@ -87,7 +87,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
               <button
                 key={piece.id}
                 onClick={() => onSelectPiece(index)}
-                className={`w-auto text-center py-4 px-6 cursor-pointer rounded-lg transition-all duration-500 ${
+                className={`w-auto text-center py-4 px-6 cursor-pointer rounded-lg transition-all duration-[1500ms] ${
                   isScrolling ? "shadow-[0_0_30px_rgba(255,255,255,0.08)] ring-1 ring-white/10" : ""
                 }`}
               >
