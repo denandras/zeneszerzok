@@ -24,7 +24,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
       }
       scrollTimeoutRef.current = setTimeout(() => {
         setIsScrolling(false);
-      }, 400);
+      }, 1500);
     };
 
     main.addEventListener("scroll", handleScroll);
