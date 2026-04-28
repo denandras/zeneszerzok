@@ -39,7 +39,7 @@ export const program: Piece[] = [
     composer: "Sepsi Botond",
     title: "Egyenes labirintus",
     performers: [],
-    description: "“Ha bármit. A legapróbb építő elemeire bontva. Mindenhol ugyan azokhoz az építőelemekhez érkezel. Akkor mi értelme van a bármiknek? Kiút keresés egy végtelen labirintusból, mely egyszerre zuhanó és emelkedő, táguló és összezsugorodó, de legfőképp szüntelenül önmagát ismétlő.”",
+    description: "\"Ha bármit. A legapróbb építő elemeire bontva. Mindenhol ugyan azokhoz az építőelemekhez érkezel. Akkor mi értelme van a bármiknek? Kiút keresés egy végtelen labirintusból, mely egyszerre zuhanó és emelkedő, táguló és összezsugorodó, de legfőképp szüntelenül önmagát ismétlő.\"",
     poem: `Milyen lesz az a visszaröpülés,
 amiről csak hasonlatok beszélnek,
 olyanfélék, hogy oltár, szentély,
@@ -69,7 +69,8 @@ mind tömöttebb és mind tömöttebb
     ],
     description: "Anna Ahmatova XX. századi orosz költő versének megzenésítése Konczek József fordításában. A szopránra, hárfára és csellóra íródott darab egyfajta kontemplatív érzelmi kettősséget próbál megeleveníteni.",
     poem: `A lágy fényhez fohászkodom…
-(„Moljusz okonnomu lucsu…”)
+(„Moljusz okonnomu lucsu…")
+
 A lágy fényhez fohászkodom,
 Szitál az ablakon.
 S egész nap nincs mit mondanom,
@@ -121,7 +122,7 @@ Oly hű vigasztalóm.`,
     composer: "Varga Nadin",
     title: "Glimmer",
     performers: ["Kalafszky Adriána (szoprán)", "Szabó Dénes (cselló)"],
-    description: "A versben szereplő szavak egymás után olvasva nem alkotnak összefüggő jelentést, ugyanakkor hangzásuk és önálló jelentésük különféle benyomásokat keltenek. A lágyabb, zeneibb hangzású szavak inkább a kellemes érzetet erősítik, míg a keményebb hangzásúak feszültséget teremtenek – bár mindez természetesen teljesen szubjektív. Számomra a szöveg egy estétől hajnalig tartó folyamat képzetét idézte fel, amelyet a darabban is igyekeztem megjeleníteni.",
+    description: "A versben szereplő szavak egymás után olvasva nem alkotnak összefüggő jelentést, ugyanakkor hangzásuk és önálló jelentésük különféle benyomásokat keltenek. A lágyabb, zeneibb hangzású szavak inkább a kellemes érzetet erősítik, míg a keményebb hangzásúak feszültséget teremtenek - bár mindez természetesen teljesen szubjektív. Számomra a szöveg egy estétől hajnalig tartó folyamat képzetét idézte fel, amelyet a darabban is igyekeztem megjeleníteni.",
     poem: `mist thin sheer dim bleak
 mist thin still drift green sheen
 deep sleep dream breeze silent silver
