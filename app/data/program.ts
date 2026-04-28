@@ -69,7 +69,6 @@ mind tömöttebb és mind tömöttebb
     ],
     description: "Anna Ahmatova XX. századi orosz költő versének megzenésítése Konczek József fordításában. A szopránra, hárfára és csellóra íródott darab egyfajta kontemplatív érzelmi kettősséget próbál megeleveníteni.",
     poem: `A lágy fényhez fohászkodom…
-
 („Moljusz okonnomu lucsu…")
 
 A lágy fényhez fohászkodom,
