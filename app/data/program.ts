@@ -116,23 +116,23 @@ Oly hű vigasztalóm.`,
       "Vida Mátyás (tuba)",
     ],
     description: "A darabot Váci Mihály, *Valami nincs sehol* című verse inspirálta. Számomra ez a vers a beteljesülés hiányának állandó feszültségéről és a kitörés ismételődő, de mégis sikertelen kísérleteiről szól.\nA zenei anyagban ezt a hiányérzetet és keresést próbáltam megragadni: olyan folyamatokkal, amelyek elindulnak a feloldás felé, de nem jutnak el odáig.\nA szavak mélysége miatt nem vállalkozom teljes értelmezésre, ezért ajánlom a vers egészének elolvasását.",
-    poem: `Süvítenek napjaink, a forró sortüzek,
+    poem: `Süvítnek napjaink, a forró sortüzek,
       – valamit mindennap elmulasztunk.
 Robotolunk lélekszakadva, jóttevőn,
       – s valamit minden tettben elmulasztunk.
-Áldozóódunk a szerelemben egy életen át,
+Áldozódunk a szerelemben egy életen át,
       – s valamit minden csókban elmulasztunk.
 
 Mert valami hiányzik minden ölelésből,
       – minden csókból hiányzik valami.
-Hiába alkotjuk meg s víünk érte naponta,
+Hiába alkotjuk meg s vívünk érte naponta,
       – minden szerelemből hiányzik valami.
 Hiába verekszünk érte halálig: – ha miénk is,
       – a boldogságból hiányzik valami.
 
 Jóllakhatsz fuldoklásig a gyönyörökkel,
       – az életedből hiányzik valami.
-Hiába vágyik az emberi teljességre,
+Hiába vágysz az emberi teljességre,
       – mert az emberből hiányzik valami.
 Hiába reménykedsz a megváltó Egészben,
       – mert az Egészből hiányzik valami.
@@ -148,7 +148,7 @@ A Földből hiányzik egy talpalatnyi föld,
       – talpunk alól hiányzik valami.
 
 Pedig így szólt az ígéret a múltból:
-      – "Valahol! Valamikor! Valami!"
+      – „Valahol! Valamikor! Valami!”
 Hitették a bölcsek, hitték a hívők,
       – mióta élünk, e hitetést hallani.
 De már reánk tört a tudás: – Valami nincs sehol!

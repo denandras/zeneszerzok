@@ -32,23 +32,23 @@ Ily egyszerű \xe9s bűntelen
 A csendes alkonyon
 E prof\xe1n szent\xe9ly szűntelen,
 S mik\xe9nt aranynak \xfcnnepe,
-Oly hű vigasztal\xf3m.`,poemYear:"1909",poemAuthor:"Anna Ahmatova",poemTranslator:"Fordította: Konczek József"},{id:4,composer:"Nagy Emma",title:"Metallic Flowers",performers:["Krulik Eszter (hegedű)","Szűcs Boglárka (hegedű)","Lachegyi Róza (brácsa)","Bali Gabriella (cselló)","Szatzker Zsanett (harmonika)"],description:""},{id:5,composer:"Sebestyén-Lázár Regina",title:"something, someday, somewhere...",performers:["Réz körút:","Nagy Sándor (trombita)","Szilágyi Dusán (trombita)","Huszti Boldizsár (trombita)","Faragó István (kürt)","Gulyás Buda (harsona)","Dénes András (harsona)","Vida Mátyás (tuba)"],description:"A darabot Váci Mihály, *Valami nincs sehol* című verse inspirálta. Számomra ez a vers a beteljesülés hiányának állandó feszültségéről és a kitörés ismételődő, de mégis sikertelen kísérleteiről szól.\nA zenei anyagban ezt a hiányérzetet és keresést próbáltam megragadni: olyan folyamatokkal, amelyek elindulnak a feloldás felé, de nem jutnak el odáig.\nA szavak mélysége miatt nem vállalkozom teljes értelmezésre, ezért ajánlom a vers egészének elolvasását.",poem:`S\xfcv\xedtenek napjaink, a forr\xf3 sort\xfczek,
+Oly hű vigasztal\xf3m.`,poemYear:"1909",poemAuthor:"Anna Ahmatova",poemTranslator:"Fordította: Konczek József"},{id:4,composer:"Nagy Emma",title:"Metallic Flowers",performers:["Krulik Eszter (hegedű)","Szűcs Boglárka (hegedű)","Lachegyi Róza (brácsa)","Bali Gabriella (cselló)","Szatzker Zsanett (harmonika)"],description:""},{id:5,composer:"Sebestyén-Lázár Regina",title:"something, someday, somewhere...",performers:["Réz körút:","Nagy Sándor (trombita)","Szilágyi Dusán (trombita)","Huszti Boldizsár (trombita)","Faragó István (kürt)","Gulyás Buda (harsona)","Dénes András (harsona)","Vida Mátyás (tuba)"],description:"A darabot Váci Mihály, *Valami nincs sehol* című verse inspirálta. Számomra ez a vers a beteljesülés hiányának állandó feszültségéről és a kitörés ismételődő, de mégis sikertelen kísérleteiről szól.\nA zenei anyagban ezt a hiányérzetet és keresést próbáltam megragadni: olyan folyamatokkal, amelyek elindulnak a feloldás felé, de nem jutnak el odáig.\nA szavak mélysége miatt nem vállalkozom teljes értelmezésre, ezért ajánlom a vers egészének elolvasását.",poem:`S\xfcv\xedtnek napjaink, a forr\xf3 sort\xfczek,
       – valamit mindennap elmulasztunk.
 Robotolunk l\xe9lekszakadva, j\xf3ttevőn,
       – s valamit minden tettben elmulasztunk.
-\xc1ldoz\xf3\xf3dunk a szerelemben egy \xe9leten \xe1t,
+\xc1ldoz\xf3dunk a szerelemben egy \xe9leten \xe1t,
       – s valamit minden cs\xf3kban elmulasztunk.
 
 Mert valami hi\xe1nyzik minden \xf6lel\xe9sből,
       – minden cs\xf3kb\xf3l hi\xe1nyzik valami.
-Hi\xe1ba alkotjuk meg s v\xed\xfcnk \xe9rte naponta,
+Hi\xe1ba alkotjuk meg s v\xedv\xfcnk \xe9rte naponta,
       – minden szerelemből hi\xe1nyzik valami.
 Hi\xe1ba vereksz\xfcnk \xe9rte hal\xe1lig: – ha mi\xe9nk is,
       – a boldogs\xe1gb\xf3l hi\xe1nyzik valami.
 
 J\xf3llakhatsz fuldokl\xe1sig a gy\xf6ny\xf6r\xf6kkel,
       – az \xe9letedből hi\xe1nyzik valami.
-Hi\xe1ba v\xe1gyik az emberi teljess\xe9gre,
+Hi\xe1ba v\xe1gysz az emberi teljess\xe9gre,
       – mert az emberből hi\xe1nyzik valami.
 Hi\xe1ba rem\xe9nykedsz a megv\xe1lt\xf3 Eg\xe9szben,
       – mert az Eg\xe9szből hi\xe1nyzik valami.
@@ -64,7 +64,7 @@ A F\xf6ldből hi\xe1nyzik egy talpalatnyi f\xf6ld,
       – talpunk al\xf3l hi\xe1nyzik valami.
 
 Pedig \xedgy sz\xf3lt az \xedg\xe9ret a m\xfaltb\xf3l:
-      – "Valahol! Valamikor! Valami!"
+      – „Valahol! Valamikor! Valami!”
 Hitett\xe9k a b\xf6lcsek, hitt\xe9k a h\xedvők,
       – mi\xf3ta \xe9l\xfcnk, e hitet\xe9st hallani.
 De m\xe1r re\xe1nk t\xf6rt a tud\xe1s: – Valami nincs sehol!
