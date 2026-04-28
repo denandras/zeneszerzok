@@ -125,7 +125,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       {/* Horizontal scroll container - fills full height, with top padding for header (min-h-[4rem] + py-8*2 = ~8rem) */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex pt-40 pb-20"
+        className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex pt-40 pb-32"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
         {pieces.map((piece, index) => (
@@ -298,8 +298,8 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
 
         <div className="h-4 flex-shrink-0" />
 
-        {/* Footer clearance spacer */}
-        <div className="h-40 flex-shrink-0" />
+        {/* Footer clearance spacer - increased to ensure content is visible above fixed footer */}
+        <div className="h-72 flex-shrink-0" />
       </div>
     </div>
   );
