@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import { program, type Piece } from "../data/program";
 import BackgroundImage from "./BackgroundImage";
 import ArrowObstacleLayout from "./ArrowObstacleLayout";
+import ArrowAwareText from "./ArrowAwareText";
 
 interface ProgramViewerProps {
   startIndex?: number;
@@ -248,26 +249,28 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
           </h2>
         </div>
 
-        {/* Description */}
+        {/* Description - with dynamic arrow avoidance */}
         {piece.description && (
-          <p className="text-sm text-white/80 text-center max-w-xs leading-relaxed">
-            {piece.description}
-          </p>
+          <div className="w-full h-24">
+            <ArrowAwareText
+              text={piece.description}
+              fontSize={14}
+              lineHeight={22}
+              className="text-sm text-white/80 text-center"
+            />
+          </div>
         )}
 
-        {/* Poem */}
+        {/* Poem - with dynamic arrow avoidance */}
         {piece.poem && (
-          <pre className="text-xs italic text-white/70 text-center max-w-xs leading-relaxed whitespace-pre-wrap font-sora">
-            {piece.poem.split("\n").map((line, i, arr) => {
-              const isHeader = ["Elegy", "Moments", "Detachment"].includes(line.trim());
-              return (
-                <span key={i} className={isHeader ? "font-bold italic" : ""}>
-                  {line}
-                  {i < arr.length - 1 ? "\n" : ""}
-                </span>
-              );
-            })}
-          </pre>
+          <div className="w-full min-h-[200px]">
+            <ArrowAwareText
+              text={piece.poem}
+              fontSize={12}
+              lineHeight={20}
+              className="text-xs italic text-white/70 whitespace-pre-wrap font-sora"
+            />
+          </div>
         )}
 
         {/* Poem metadata */}
