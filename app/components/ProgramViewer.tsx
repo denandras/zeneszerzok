@@ -13,6 +13,8 @@ interface ProgramViewerProps {
 export default function ProgramViewer({ startIndex = 0, onBackToIndex }: ProgramViewerProps) {
   const pieces = program;
   const [currentIndex, setCurrentIndex] = useState(startIndex);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const isScrollingProgrammatically = useRef(false);
 
@@ -21,6 +23,15 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
     if (!scrollContainer) return;
 
     const handleScroll = () => {
+      // Track scrolling state for glow effect
+      setIsScrolling(true);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsScrolling(false);
+      }, 150);
+
       if (isScrollingProgrammatically.current) return;
       const scrollLeft = scrollContainer.scrollLeft;
       const pageWidth = scrollContainer.clientWidth;
@@ -34,7 +45,12 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
     };
 
     scrollContainer.addEventListener("scroll", handleScroll);
-    return () => scrollContainer.removeEventListener("scroll", handleScroll);
+    return () => {
+      scrollContainer.removeEventListener("scroll", handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
   }, [pieces.length]);
 
   useEffect(() => {
@@ -76,7 +92,9 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         {/* Műsor button - left corner with space padding */}
         <button
           onClick={onBackToIndex}
-          className="flex items-center gap-2 text-white/80 hover:text-white transition-all duration-300 hover:scale-105 cursor-pointer pl-4"
+          className={`flex items-center gap-2 text-white/80 hover:text-white transition-all duration-300 hover:scale-105 cursor-pointer pl-4 rounded-lg px-3 py-2 ${
+            isScrolling ? "shadow-[0_0_20px_rgba(255,255,255,0.15)] ring-1 ring-white/20" : ""
+          }`}
           aria-label="Vissza a műsorhoz"
         >
           <span className="text-xs">  </span>
@@ -105,11 +123,13 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
         </div>
       )}
 
-      {/* Full-height clickable zones on edges */}
+      {/* Full-height clickable zones on edges with scroll glow */}
       {showPrev && (
         <button
           onClick={goToPrev}
-          className="fixed left-0 top-0 bottom-0 w-16 md:w-24 z-10 cursor-pointer"
+          className={`fixed left-0 top-0 bottom-0 w-16 md:w-24 z-10 cursor-pointer transition-all duration-300 ${
+            isScrolling ? "bg-gradient-to-r from-white/5 to-transparent" : ""
+          }`}
           aria-label="Előző"
         />
       )}
@@ -117,7 +137,9 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       {showNext && (
         <button
           onClick={goToNext}
-          className="fixed right-0 top-0 bottom-0 w-16 md:w-24 z-10 cursor-pointer"
+          className={`fixed right-0 top-0 bottom-0 w-16 md:w-24 z-10 cursor-pointer transition-all duration-300 ${
+            isScrolling ? "bg-gradient-to-l from-white/5 to-transparent" : ""
+          }`}
           aria-label="Következő"
         />
       )}
@@ -157,7 +179,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
                   currentIndex === index
                     ? "bg-white w-6"
                     : "w-1.5 bg-white/30 hover:bg-white/50 "
-                }`}
+                } ${isScrolling ? "shadow-[0_0_10px_rgba(255,255,255,0.3)]" : ""}`}
               />
             ))}
           </div>
