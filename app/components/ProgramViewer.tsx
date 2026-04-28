@@ -125,7 +125,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       {/* Horizontal scroll container - fills full height, with top padding for header (min-h-[4rem] + py-8*2 = ~8rem) */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar flex pt-40 pb-32"
+        className="flex-1 overflow-x-auto overflow-y-auto snap-x snap-mandatory hide-scrollbar flex pt-40 pb-32"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
         {pieces.map((piece, index) => (
@@ -195,9 +195,9 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
 
   // Regular piece page
   return (
-    <div className="w-screen h-full flex-shrink-0 snap-center snap-always relative flex">
+    <div className="w-screen h-full flex-shrink-0 snap-center snap-always relative flex flex-col">
       {/* Content - centered on page, with header-height spacer at top and footer clearance at bottom */}
-      <div className="flex-1 flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-0 pb-40 overflow-y-auto">
+      <div className="flex-1 flex flex-col items-center justify-start px-16 md:px-28 gap-5 pt-0 pb-40 overflow-y-auto h-full">
         {/* Header height x3 spacer */}
         <div className="h-28 flex-shrink-0" />
 
@@ -299,7 +299,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
         <div className="h-4 flex-shrink-0" />
 
         {/* Footer clearance spacer - increased to ensure content is visible above fixed footer */}
-        <div className="h-72 flex-shrink-0" />
+        <div className="h-72 flex-shrink-0 min-h-[288px]" />
 
         {/* Additional manual spacing */}
         <div className="h-8 flex-shrink-0" />
