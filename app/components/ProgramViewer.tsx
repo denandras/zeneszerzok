@@ -195,7 +195,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
 
   // Regular piece page
   return (
-    <div className="w-screen min-h-full flex-shrink-0 snap-center snap-always relative">
+    <div className="w-screen min-h-full flex-shrink-0 snap-center snap-always relative overflow-y-auto">
       {/* Content - sits naturally below header, compact spacing */}
       <div className="flex flex-col items-center px-16 md:px-28 gap-5 py-8">
 
