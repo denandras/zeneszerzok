@@ -198,6 +198,8 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
     <div className="w-screen min-h-full flex-shrink-0 snap-center snap-always relative overflow-y-auto">
       {/* Content - sits naturally below header, compact spacing */}
       <div className="flex flex-col items-center px-16 md:px-28 gap-5 py-8">
+        {/* Top spacer */}
+        <div className="h-16 flex-shrink-0" />
 
         <div className="relative w-32 h-32 md:w-40 md:h-36 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale">
           {hasPhoto ? (
@@ -281,6 +283,9 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
             ))}
           </div>
         )}
+        
+        {/* Bottom spacer */}
+        <div className="h-16 flex-shrink-0" />
       </div>
     </div>
   );
