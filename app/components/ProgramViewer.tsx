@@ -197,16 +197,9 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
 
   // Regular piece page
   return (
-    <div className="w-screen min-h-full flex-shrink-0 snap-center snap-always relative">
-      {/* ArrowObstacleLayout - handles arrow padding with Pretext optimization */}
-      <ArrowObstacleLayout
-        leftArrowWidth={16} // Minimal arrow zone
-        rightArrowWidth={16}
-        arrowPadding={8} // Minimal padding
-        className="h-full overflow-y-auto"
-      >
-        {/* Content - sits naturally with arrow-aware padding */}
-        <div className="flex flex-col items-center gap-5 py-8 min-h-full">
+    <div className="w-screen min-h-full flex-shrink-0 snap-center snap-always relative overflow-y-auto">
+      {/* Content - sits naturally below header, compact spacing */}
+      <div className="flex flex-col items-center px-16 md:px-28 gap-5 py-8">
         {/* Top spacer */}
         <div className="h-16 flex-shrink-0" />
 
@@ -249,28 +242,26 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
           </h2>
         </div>
 
-        {/* Description - with dynamic arrow avoidance */}
+        {/* Description */}
         {piece.description && (
-          <div className="w-full h-24">
-            <ArrowAwareText
-              text={piece.description}
-              fontSize={14}
-              lineHeight={22}
-              className="text-sm text-white/80 text-center"
-            />
-          </div>
+          <p className="text-sm text-white/80 text-center max-w-xs leading-relaxed">
+            {piece.description}
+          </p>
         )}
 
-        {/* Poem - with dynamic arrow avoidance */}
+        {/* Poem */}
         {piece.poem && (
-          <div className="w-full min-h-[200px]">
-            <ArrowAwareText
-              text={piece.poem}
-              fontSize={12}
-              lineHeight={20}
-              className="text-xs italic text-white/70 whitespace-pre-wrap font-sora"
-            />
-          </div>
+          <pre className="text-xs italic text-white/70 text-center max-w-xs leading-relaxed whitespace-pre-wrap font-sora">
+            {piece.poem.split("\n").map((line, i, arr) => {
+              const isHeader = ["Elegy", "Moments", "Detachment"].includes(line.trim());
+              return (
+                <span key={i} className={isHeader ? "font-bold italic" : ""}>
+                  {line}
+                  {i < arr.length - 1 ? "\n" : ""}
+                </span>
+              );
+            })}
+          </pre>
         )}
 
         {/* Poem metadata */}
@@ -298,7 +289,6 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
         {/* Bottom spacer */}
         <div className="h-16 flex-shrink-0" />
       </div>
-      </ArrowObstacleLayout>
     </div>
   );
 }
