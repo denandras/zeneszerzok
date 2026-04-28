@@ -87,16 +87,16 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
               <button
                 key={piece.id}
                 onClick={() => onSelectPiece(index)}
-                className={`w-auto text-center cursor-pointer transition-all duration-[1500ms] ${
-                  isScrolling ? "shadow-[0_15px_11px_-8px_rgba(255,255,255,0.15)]" : ""
-                }`}
+                className="w-auto text-center cursor-pointer transition-all duration-[1500ms]"
               >
                 <div className="py-5 px-10">
                   <div className="flex flex-col items-center gap-1 grayscale">
                   <p className="text-xs uppercase tracking-[0.15em] text-gray-200 drop-shadow-md">
                     {piece.composer}
                   </p>
-                  <p className="text-base md:text-lg text-white drop-shadow-md whitespace-nowrap">
+                  <p className={`text-base md:text-lg text-white drop-shadow-md whitespace-nowrap ${
+                    isScrolling ? "shadow-[0_15px_11px_-8px_rgba(255,255,255,0.15)]" : ""
+                  }`}>
                     {piece.title}
                   </p>
                   </div>
