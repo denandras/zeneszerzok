@@ -87,8 +87,8 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
               <button
                 key={piece.id}
                 onClick={() => onSelectPiece(index)}
-                className={`w-auto text-center cursor-pointer rounded-lg transition-all duration-[1500ms] ${
-                  isScrolling ? "shadow-[0_20px_15px_-10px_rgba(255,255,255,0.15),inset_0_-20px_15px_-10px_rgba(255,255,255,0.15)]" : ""
+                className={`w-auto text-center cursor-pointer transition-all duration-[1500ms] ${
+                  isScrolling ? "shadow-[0_20px_15px_-10px_rgba(255,255,255,0.15)]" : ""
                 }`}
               >
                 <div className="py-5 px-10">
