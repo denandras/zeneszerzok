@@ -94,13 +94,18 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
                   <p className="text-xs uppercase tracking-[0.15em] text-gray-200 drop-shadow-md">
                     {piece.composer}
                   </p>
-                  <div className="relative">
+                  <div className="relative inline-block">
                     <p className="text-base md:text-lg text-white drop-shadow-md whitespace-nowrap relative z-10">
                       {piece.title}
                     </p>
-                    <div className={`absolute inset-0 rounded-lg transition-opacity duration-[1500ms] ${
-                      isScrolling ? "opacity-100 shadow-[0_15px_11px_-8px_rgba(255,255,255,0.15)]" : "opacity-0"
-                    }`} aria-hidden="true" />
+                    <div 
+                      className="absolute -inset-x-4 -inset-y-2 rounded-lg pointer-events-none transition-opacity duration-[1500ms]"
+                      style={{
+                        opacity: isScrolling ? 1 : 0,
+                        boxShadow: '0 15px 11px -8px rgba(255,255,255,0.15)'
+                      }}
+                      aria-hidden="true" 
+                    />
                   </div>
                   </div>
                 </div>
