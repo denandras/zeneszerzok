@@ -197,9 +197,10 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
     "Sepsi Botond": "/sepsi-botond.jpg",
     "Sebestyén-Lázár Regina": "/regina.jpg",
     "Nagy Emma": "/nagy-emma.jpg",
+    "Varga Nadin": "/varga-nadin.jpg",
   };
   const hasPhoto = piece.composer in composerPhotos;
-  const photoSrc = hasPhoto ? composerPhotos[piece.composer] : null;
+  const photoSrc = composerPhotos[piece.composer];
 
   // Regular piece page
   return (
