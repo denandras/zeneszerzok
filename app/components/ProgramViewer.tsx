@@ -192,9 +192,14 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
     );
   }
 
-  // Regina's and Sepsi Botond's pieces have photos - preload adjacent images
-  const hasPhoto = piece.composer === "Sebestyén-Lázár Regina" || piece.composer === "Sepsi Botond";
-  const photoSrc = piece.composer === "Sepsi Botond" ? "/sepsi-botond.jpg" : "/regina.jpg";
+  // Composers with photos - preload adjacent images
+  const composerPhotos: Record<string, string> = {
+    "Sepsi Botond": "/sepsi-botond.jpg",
+    "Sebestyén-Lázár Regina": "/regina.jpg",
+    "Nagy Emma": "/nagy-emma.jpg",
+  };
+  const hasPhoto = piece.composer in composerPhotos;
+  const photoSrc = hasPhoto ? composerPhotos[piece.composer] : null;
 
   // Regular piece page
   return (
