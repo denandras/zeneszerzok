@@ -247,6 +247,61 @@ mist`,
       "Kapolcsi-Szabó Levente (zongora)",
     ],
     description: "",
+    poem: `LIMBSMOVE BETTER
+Wind blows
+Wailing
+On the hill's fans
+Step it
+Over
+You have done nothing wrong
+Slide
+Tamer soft as pillow
+Left foot to the right
+Nerve has moved on yesterday
+Now you've got the time
+Mellow
+from harsh
+Take a step
+Forward
+Limbs move
+Better
+Since together
+Wind blow
+Wailing
+on the hills fans
+Step it
+Over
+You have done nothing wrong
+Slide
+Tamer soft as pillow
+Left foot to the right
+Nerve has moved on yesterday
+Now you've got the time
+
+SATELLITE
+Who can I enlight my vision
+Or turn up the dimmer
+How can it happen
+Let me try to change view to 'nother version
+High is the mountain
+High is the firewall
+Let me try to change view to 'nother version
+Imagine
+I hope
+All these houses folding out
+What remains is the lawn
+No satellite brings me home
+Naming a street was never
+more difficult
+Is this my hometown
+Is this your hometown
+Naming a street was never
+more difficult
+Is this my hometown
+Is this your hometown
+Is this your hometown`,
+    poemYear: "2026",
+    poemAuthor: "Nagy Gergő",
   },
   {
     id: 9,
