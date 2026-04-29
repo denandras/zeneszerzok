@@ -192,8 +192,9 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
     );
   }
 
-  // Regina's pieces have photos - preload adjacent images
-  const hasPhoto = piece.composer === "Sebestyén-Lázár Regina";
+  // Regina's and Sepsi Botond's pieces have photos - preload adjacent images
+  const hasPhoto = piece.composer === "Sebestyén-Lázár Regina" || piece.composer === "Sepsi Botond";
+  const photoSrc = piece.composer === "Sepsi Botond" ? "/sepsi-botond.jpg" : "/regina.jpg";
 
   // Regular piece page
   return (
@@ -211,7 +212,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
         <div className="relative w-32 h-32 md:w-40 md:h-36 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale">
           {hasPhoto ? (
             <Image
-              src="/regina.jpg"
+              src={photoSrc}
               alt={piece.composer}
               fill
               className="object-cover"
