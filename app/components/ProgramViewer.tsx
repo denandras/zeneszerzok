@@ -111,7 +111,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       {showPrev && (
         <button
           onClick={goToPrev}
-          className="fixed left-0 top-0 bottom-0 w-16 md:w-24 z-10 cursor-pointer"
+          className="fixed left-0 top-0 bottom-0 w-12 sm:w-16 md:w-24 z-10 cursor-pointer"
           aria-label="Előző"
         />
       )}
@@ -119,7 +119,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       {showNext && (
         <button
           onClick={goToNext}
-          className="fixed right-0 top-0 bottom-0 w-16 md:w-24 z-10 cursor-pointer"
+          className="fixed right-0 top-0 bottom-0 w-12 sm:w-16 md:w-24 z-10 cursor-pointer"
           aria-label="Következő"
         />
       )}
@@ -204,7 +204,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
         - md:px-28 (112px) extra room on larger screens
         Content stays centered and readable, arrows sit in the extra space
       */}
-      <div className="flex flex-col items-center px-20 md:px-32 lg:px-40 gap-5 py-8">
+      <div className="flex flex-col items-center px-16 sm:px-20 md:px-28 lg:px-36 gap-5 py-8">
         {/* Top spacer */}
         <div className="h-16 flex-shrink-0" />
 
