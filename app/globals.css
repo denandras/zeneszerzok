@@ -66,6 +66,54 @@ body {
   background: #555;
 }
 
+/* Reveal animation styles - matching andrasdenes.com */
+[data-reveal] {
+  --reveal-y: 28px;
+  --reveal-scale: 0.992;
+  opacity: 0.001;
+  transform: translateY(var(--reveal-y)) scale(var(--reveal-scale));
+  filter: blur(3px);
+  transition-property: opacity, transform, filter;
+  transition-duration: 900ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+[data-reveal].is-visible {
+  --reveal-y: 0px;
+  --reveal-scale: 1;
+  opacity: 1;
+  transform: translateY(var(--reveal-y)) scale(var(--reveal-scale));
+  filter: none;
+}
+
+/* Fade-only reveal for intermission text */
+[data-reveal="fade-only"] {
+  --reveal-y: 0px;
+  --reveal-scale: 1;
+  filter: blur(0px);
+  transition-duration: 700ms;
+}
+
+[data-reveal="fade-only"].is-visible {
+  filter: none;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal].is-visible,
+  [data-reveal="fade-only"],
+  [data-reveal="fade-only"].is-visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+    transition: none;
+  }
+}
+
 /* Page number large display */
 .page-number {
   font-size: clamp(8rem, 25vw, 20rem);

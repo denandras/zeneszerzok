@@ -4,8 +4,6 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { program, type Piece } from "../data/program";
 import BackgroundImage from "./BackgroundImage";
-import ArrowObstacleLayout from "./ArrowObstacleLayout";
-import ArrowAwareText from "./ArrowAwareText";
 
 interface ProgramViewerProps {
   startIndex?: number;
@@ -17,6 +15,33 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
   const [currentIndex, setCurrentIndex] = useState(startIndex);
   const scrollRef = useRef<HTMLDivElement>(null);
   const isScrollingProgrammatically = useRef(false);
+
+  // Reveal animation observer setup
+  useEffect(() => {
+    const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    if (!nodes.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -6% 0px" }
+    );
+
+    const raf = window.requestAnimationFrame(() => {
+      nodes.forEach((node) => observer.observe(node));
+    });
+
+    return () => {
+      window.cancelAnimationFrame(raf);
+      observer.disconnect();
+    };
+  }, [currentIndex]); // Re-run when page changes
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
@@ -70,6 +95,12 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
 
   return (
     <div className="h-[100dvh] overflow-hidden relative flex flex-col">
+      {/* Preload adjacent images for smooth transitions */}
+      <link rel="prefetch" href="/sepsi-botond.jpg" />
+      <link rel="prefetch" href="/regina.jpg" />
+      <link rel="prefetch" href="/nagy-emma.jpg" />
+      <link rel="prefetch" href="/varga-nadin.jpg" />
+
       {/* Shared background */}
       <BackgroundImage />
 
@@ -181,7 +212,12 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
   if (piece.id === -1) {
     return (
       <div className="w-screen h-full flex-shrink-0 snap-center snap-always relative flex items-center justify-center">
-        <div className="flex items-center gap-6 px-16 md:px-24 w-full max-w-[calc(100%-52px)] md:max-w-[calc(100%-84px)]">
+        {/* Intermission text - fade only, no slide */}
+        <div 
+          className="flex items-center gap-6 px-16 md:px-24 w-full max-w-[calc(100%-52px)] md:max-w-[calc(100%-84px)]"
+          data-reveal="fade-only"
+          style={{ "--reveal-delay": "200ms" } as React.CSSProperties}
+        >
           <span className="flex-1 h-px bg-white/30"></span>
           <span className="text-sm md:text-base uppercase tracking-[0.4em] text-white flex-shrink-0">
             {piece.title}
@@ -215,7 +251,12 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
         {/* Top spacer */}
         <div className="h-16 flex-shrink-0" />
 
-        <div className="relative w-32 h-32 md:w-40 md:h-36 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale">
+        {/* Composer Photo - with reveal animation */}
+        <div 
+          className="relative w-32 h-32 md:w-40 md:h-36 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale"
+          data-reveal
+          style={{ "--reveal-delay": "120ms" } as React.CSSProperties}
+        >
           {hasPhoto ? (
             <Image
               src={photoSrc}
@@ -244,8 +285,12 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
           )}
         </div>
 
-        {/* Composer + Title - centered */}
-        <div className="flex flex-col items-center gap-4">
+        {/* Composer + Title - centered with reveal */}
+        <div 
+          className="flex flex-col items-center gap-4"
+          data-reveal
+          style={{ "--reveal-delay": "240ms" } as React.CSSProperties}
+        >
           <p className="text-[10px] uppercase tracking-[0.15em] text-white text-center max-w-md leading-relaxed">
             {piece.composer}
           </p>
@@ -254,16 +299,24 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
           </h2>
         </div>
 
-        {/* Description */}
+        {/* Description - with reveal */}
         {piece.description && (
-          <p className="text-sm text-white/80 text-center max-w-xs leading-relaxed">
+          <p 
+            className="text-sm text-white/80 text-center max-w-xs leading-relaxed"
+            data-reveal
+            style={{ "--reveal-delay": "360ms" } as React.CSSProperties}
+          >
             {piece.description}
           </p>
         )}
 
-        {/* Poem */}
+        {/* Poem - with reveal */}
         {piece.poem && (
-          <pre className="text-xs italic text-white/70 text-center max-w-xs leading-relaxed whitespace-pre-wrap font-sora">
+          <pre 
+            className="text-xs italic text-white/70 text-center max-w-xs leading-relaxed whitespace-pre-wrap font-sora"
+            data-reveal
+            style={{ "--reveal-delay": "480ms" } as React.CSSProperties}
+          >
             {piece.poem.split("\n").map((line, i, arr) => {
               const isHeader = ["Elegy", "Moments", "Detachment"].includes(line.trim());
               return (
@@ -276,18 +329,26 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
           </pre>
         )}
 
-        {/* Poem metadata */}
+        {/* Poem metadata - with reveal */}
         {piece.poem && piece.poemAuthor && (
-          <div className="text-center">
+          <div 
+            className="text-center"
+            data-reveal
+            style={{ "--reveal-delay": "560ms" } as React.CSSProperties}
+          >
             {piece.poemYear && <p className="text-xs text-white/60">{piece.poemYear}</p>}
             <p className="text-xs text-white/60">-{piece.poemAuthor}-</p>
             {piece.poemTranslator && <p className="text-xs text-white/50 mt-1">{piece.poemTranslator}</p>}
           </div>
         )}
 
-        {/* Performers */}
+        {/* Performers - with reveal */}
         {piece.performers.length > 0 && (
-          <div className="flex flex-col items-center gap-2">
+          <div 
+            className="flex flex-col items-center gap-2"
+            data-reveal
+            style={{ "--reveal-delay": "640ms" } as React.CSSProperties}
+          >
             <p className="text-xs uppercase tracking-[0.15em] text-white/60">Előadják:</p>
             <div className="h-2 flex-shrink-0" />
             {piece.performers.map((performer, i) => (
