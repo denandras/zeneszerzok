@@ -100,6 +100,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       <link rel="prefetch" href="/regina.jpg" />
       <link rel="prefetch" href="/nagy-emma.jpg" />
       <link rel="prefetch" href="/varga-nadin.jpg" />
+      <link rel="prefetch" href="/botos-gergely.jpg" />
 
       {/* Shared background */}
       <BackgroundImage />
@@ -234,6 +235,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
     "Sebestyén-Lázár Regina": "/regina.jpg",
     "Nagy Emma": "/nagy-emma.jpg",
     "Varga Nadin": "/varga-nadin.jpg",
+    "Botos Gergely": "/botos-gergely.jpg",
   };
   const hasPhoto = piece.composer in composerPhotos;
   const photoSrc = composerPhotos[piece.composer];
