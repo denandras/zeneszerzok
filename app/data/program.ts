@@ -105,7 +105,7 @@ Oly hű vigasztalóm.`,
       "Bali Gabriella (cselló)",
       "Szatzker Zsanett (harmonika)",
     ],
-    description: "",
+    description: "A fémesség áttetsző ragyogás, ami egy lassan lélegző formát képez, mindezt hajlékonyan, lassan alakot váltva",
   },
   {
     id: 5,
