@@ -354,13 +354,13 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
               >
                 <button 
                   onClick={() => setLang("HU")}
-                  className={`text-sm uppercase tracking-widest px-8 py-3 rounded-md transition-all duration-300 border ${lang === "HU" ? "bg-white text-black border-white" : "bg-transparent text-white/60 border-white/30 hover:text-white"}`}
+                  className={`text-sm uppercase tracking-widest px-10 py-3 rounded-md transition-all duration-300 border ${lang === "HU" ? "bg-white text-black border-white" : "bg-transparent text-white/60 border-white/30 hover:text-white"}`}
                 >
                   HU
                 </button>
                 <button 
                   onClick={() => setLang("EN")}
-                  className={`text-sm uppercase tracking-widest px-8 py-3 rounded-md transition-all duration-300 border ${lang === "EN" ? "bg-white text-black border-white" : "bg-transparent text-white/60 border-white/30 hover:text-white"}`}
+                  className={`text-sm uppercase tracking-widest px-10 py-3 rounded-md transition-all duration-300 border ${lang === "EN" ? "bg-white text-black border-white" : "bg-transparent text-white/60 border-white/30 hover:text-white"}`}
                 >
                   EN
                 </button>
