@@ -1,5 +1,1 @@
-Safe Text State - 2026-04-28 18:38 CET
-Commit: 841bb4a268314c5801ad736ecc011e4df101386b
-Short: 841bb4a
-
-State: Composer-title gap reduced to 2px, smooth opacity-based glow effect
+050344444054e4b0c6a73adaf5a784c2cd9178e1

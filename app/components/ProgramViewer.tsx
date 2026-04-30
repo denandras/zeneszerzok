@@ -16,8 +16,10 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
   const [displayNumber, setDisplayNumber] = useState(
     pieces.slice(0, startIndex + 1).filter(p => p.id > 0).length
   );
+  const [showUI, setShowUI] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
   const isScrollingProgrammatically = useRef(false);
+  const hideUITimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Update display number only when on a real piece (not intermission)
   useEffect(() => {
@@ -26,6 +28,28 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       setDisplayNumber(newNumber);
     }
   }, [currentIndex, pieces]);
+
+  // Auto-hide UI after 3 seconds of inactivity, show on navigation
+  useEffect(() => {
+    // Show UI immediately on navigation
+    setShowUI(true);
+    
+    // Clear existing timer
+    if (hideUITimerRef.current) {
+      clearTimeout(hideUITimerRef.current);
+    }
+    
+    // Set new timer to hide UI after 3 seconds
+    hideUITimerRef.current = setTimeout(() => {
+      setShowUI(false);
+    }, 3000);
+    
+    return () => {
+      if (hideUITimerRef.current) {
+        clearTimeout(hideUITimerRef.current);
+      }
+    };
+  }, [currentIndex]);
 
   // Reveal animation observer setup - check for image-ready state
   useEffect(() => {
@@ -106,7 +130,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       <BackgroundImage />
 
       {/* Header - translucent with backdrop blur, larger */}
-      <header className="fixed top-0 left-0 right-0 z-30 flex items-center px-6 py-8 min-h-[4rem] bg-black/30 backdrop-blur-md border-b border-white/10">
+      <header className={`fixed top-0 left-0 right-0 z-30 flex items-center px-6 py-8 min-h-[4rem] bg-black/30 backdrop-blur-md border-b border-white/10 transition-opacity duration-700 ease-in-out ${showUI ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         {/* Műsor button - left corner with space padding */}
         <button
           onClick={onBackToIndex}
@@ -174,7 +198,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       </div>
 
       {/* Footer - fixed bottom, translucent with backdrop blur */}
-      <footer className="fixed bottom-0 left-0 right-0 z-20 bg-black/30 backdrop-blur-md border-t border-white/10">
+      <footer className={`fixed bottom-0 left-0 right-0 z-20 bg-black/30 backdrop-blur-md border-t border-white/10 transition-opacity duration-700 ease-in-out ${showUI ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <div className="px-8 py-4 min-h-[3rem] flex items-center justify-center grayscale relative">
           {/* Page number - bottom left, absolute positioned */}
           {/* Only show number for actual pieces (not SZÜNET) */}
