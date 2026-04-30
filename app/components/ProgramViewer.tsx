@@ -33,32 +33,10 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
       if (!nodes.length) return;
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting) {
-              const target = entry.target as HTMLElement;
-              // Check if parent page is ready to reveal (image loaded)
-              const parentPage = target.closest('[data-page-ready]');
-              if (parentPage && parentPage.getAttribute('data-page-ready') !== 'true') {
-                continue; // Skip reveal until page is ready
-              }
-              target.classList.add("is-visible");
-              observer.unobserve(target);
-            }
-          }
-        },
-        { threshold: 0.08, rootMargin: "0px 0px -6% 0px" }
-      );
-
-      const raf = window.requestAnimationFrame(() => {
-        nodes.forEach((node) => observer.observe(node));
+      // Directly reveal all elements on the current page, regardless of intersection
+      nodes.forEach((node) => {
+        node.classList.add("is-visible");
       });
-
-      return () => {
-        window.cancelAnimationFrame(raf);
-        observer.disconnect();
-      };
     }, 50);
 
     return () => clearTimeout(timer);
@@ -251,11 +229,6 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
 
   const handleImageLoad = useCallback(() => {
     setImageLoaded(true);
-    // Trigger re-observation after image loads
-    if (contentRef.current) {
-      const event = new CustomEvent('imageReady');
-      window.dispatchEvent(event);
-    }
   }, []);
 
   // Listen for image ready event to re-trigger observation
@@ -266,21 +239,9 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
       const nodes = contentRef.current?.querySelectorAll<HTMLElement>("[data-reveal]");
       if (!nodes) return;
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting && !entry.target.classList.contains('is-visible')) {
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target);
-            }
-          }
-        },
-        { threshold: 0.08, rootMargin: "0px 0px -6% 0px" }
-      );
-
-      nodes.forEach((node) => observer.observe(node));
-
-      return () => observer.disconnect();
+      nodes.forEach((node) => {
+        node.classList.add("is-visible");
+      });
     }, 50);
 
     return () => clearTimeout(timer);
@@ -311,7 +272,6 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
     <div 
       ref={contentRef} 
       className="w-screen min-h-full flex-shrink-0 snap-center snap-always relative overflow-y-auto"
-      data-page-ready={imageLoaded ? "true" : "false"}
     >
       {/* 
         Responsive padding approach:
