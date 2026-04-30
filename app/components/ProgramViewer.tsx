@@ -13,8 +13,19 @@ interface ProgramViewerProps {
 export default function ProgramViewer({ startIndex = 0, onBackToIndex }: ProgramViewerProps) {
   const pieces = program;
   const [currentIndex, setCurrentIndex] = useState(startIndex);
+  const [displayNumber, setDisplayNumber] = useState(
+    pieces.slice(0, startIndex + 1).filter(p => p.id > 0).length
+  );
   const scrollRef = useRef<HTMLDivElement>(null);
   const isScrollingProgrammatically = useRef(false);
+
+  // Update display number only when on a real piece (not intermission)
+  useEffect(() => {
+    if (pieces[currentIndex].id !== -1) {
+      const newNumber = pieces.slice(0, currentIndex + 1).filter(p => p.id > 0).length;
+      setDisplayNumber(newNumber);
+    }
+  }, [currentIndex, pieces]);
 
   // Reveal animation observer setup - check for image-ready state
   useEffect(() => {
@@ -193,7 +204,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
             className="absolute left-[10px] text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none transition-opacity duration-300"
             style={{ opacity: pieces[currentIndex].id !== -1 ? 1 : 0 }}
           >
-            {String(pieces.slice(0, currentIndex + 1).filter(p => p.id > 0).length).padStart(2, "0")}
+            {String(displayNumber).padStart(2, "0")}
           </span>
 
           {/* Dots - centered in footer */}
