@@ -347,7 +347,11 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
         {piece.poem && (
           <div className="flex flex-col items-center gap-4">
             {piece.poemHu && (
-              <div className="flex gap-3 mb-2">
+              <div 
+                className="flex gap-3 mb-2"
+                data-reveal
+                style={{ "--reveal-delay": "460ms" } as React.CSSProperties}
+              >
                 <button 
                   onClick={() => setLang("HU")}
                   className={`text-sm uppercase tracking-widest px-8 py-3 rounded-md transition-all duration-300 border ${lang === "HU" ? "bg-white text-black border-white" : "bg-transparent text-white/60 border-white/30 hover:text-white"}`}
