@@ -97,8 +97,8 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
           
           {program.map((piece, index) => {
             const isIntermission = piece.id === -1;
-            // Stagger delays: start at 400ms, add 80ms per item
-            const revealDelay = 400 + (index * 80);
+            // Stagger delays: start at 200ms, add 50ms per item for faster scroll reveals
+            const revealDelay = 200 + (index * 50);
 
             if (isIntermission) {
               return (
@@ -156,7 +156,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
           <div 
             className="text-[10px] text-white/5 text-center -mt-2"
             data-reveal="fade-only"
-            style={{ "--reveal-delay": `${500 + (program.length * 80)}ms` } as React.CSSProperties}
+            style={{ "--reveal-delay": `${300 + (program.length * 50)}ms` } as React.CSSProperties}
           >
             website by{" "}
             <a
