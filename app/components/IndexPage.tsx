@@ -13,6 +13,33 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const mainRef = useRef<HTMLElement>(null);
 
+  // Reveal animation observer
+  useEffect(() => {
+    const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    if (!nodes.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -6% 0px" }
+    );
+
+    const raf = window.requestAnimationFrame(() => {
+      nodes.forEach((node) => observer.observe(node));
+    });
+
+    return () => {
+      window.cancelAnimationFrame(raf);
+      observer.disconnect();
+    };
+  }, []);
+
   useEffect(() => {
     const main = mainRef.current;
     if (!main) return;
@@ -44,13 +71,25 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
       <header className="fixed top-0 left-0 right-0 z-30 px-6 py-8 min-h-[4rem] bg-black/30 backdrop-blur-md border-b border-white/10 flex items-center justify-center">
         <div className="w-full max-w-2xl text-center">
           <div className="space-y-4">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-gray-200 whitespace-pre-line leading-relaxed drop-shadow-md">
+            <p 
+              className="text-[10px] uppercase tracking-[0.3em] text-gray-200 whitespace-pre-line leading-relaxed drop-shadow-md"
+              data-reveal
+              style={{ "--reveal-delay": "100ms" } as React.CSSProperties}
+            >
               {concertInfo.venue}
             </p>
-            <h1 className="text-sm md:text-base font-light whitespace-pre-line leading-relaxed text-white drop-shadow-md">
+            <h1 
+              className="text-sm md:text-base font-light whitespace-pre-line leading-relaxed text-white drop-shadow-md"
+              data-reveal
+              style={{ "--reveal-delay": "200ms" } as React.CSSProperties}
+            >
               {concertInfo.title}
             </h1>
-            <p className="text-xs text-gray-200 drop-shadow-md">
+            <p 
+              className="text-xs text-gray-200 drop-shadow-md"
+              data-reveal
+              style={{ "--reveal-delay": "300ms" } as React.CSSProperties}
+            >
               {concertInfo.date} {concertInfo.time}
             </p>
             {/* Empty line after date */}
@@ -70,10 +109,17 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
           
           {program.map((piece, index) => {
             const isIntermission = piece.id === -1;
+            // Stagger delays: start at 400ms, add 80ms per item
+            const revealDelay = 400 + (index * 80);
 
             if (isIntermission) {
               return (
-                <div key={piece.id} className="py-6 flex items-center justify-center gap-4 w-full max-w-md">
+                <div 
+                  key={piece.id} 
+                  className="py-6 flex items-center justify-center gap-4 w-full max-w-md"
+                  data-reveal="fade-only"
+                  style={{ "--reveal-delay": `${revealDelay}ms` } as React.CSSProperties}
+                >
                   <span className="flex-1 h-px bg-white/30"></span>
                   <span className="text-xs uppercase tracking-[0.3em] text-gray-300 flex-shrink-0 drop-shadow-md">
                     {piece.title}
@@ -88,6 +134,8 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
                 key={piece.id}
                 onClick={() => onSelectPiece(index)}
                 className="w-auto text-center cursor-pointer transition-all duration-[1500ms]"
+                data-reveal
+                style={{ "--reveal-delay": `${revealDelay}ms` } as React.CSSProperties}
               >
                 <div className="py-5 px-10">
                   <div className="flex flex-col items-center gap-0.5 grayscale">
@@ -117,7 +165,11 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
           <div className="h-4 md:h-8" />
           
           {/* Website credit - small and subtle */}
-          <div className="text-[10px] text-white/5 text-center -mt-2">
+          <div 
+            className="text-[10px] text-white/5 text-center -mt-2"
+            data-reveal="fade-only"
+            style={{ "--reveal-delay": `${500 + (program.length * 80)}ms` } as React.CSSProperties}
+          >
             website by{" "}
             <a
               href="https://andrasdenes.com"
