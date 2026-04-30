@@ -71,25 +71,13 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
       <header className="fixed top-0 left-0 right-0 z-30 px-6 py-8 min-h-[4rem] bg-black/30 backdrop-blur-md border-b border-white/10 flex items-center justify-center">
         <div className="w-full max-w-2xl text-center">
           <div className="space-y-4">
-            <p 
-              className="text-[10px] uppercase tracking-[0.3em] text-gray-200 whitespace-pre-line leading-relaxed drop-shadow-md"
-              data-reveal
-              style={{ "--reveal-delay": "100ms" } as React.CSSProperties}
-            >
+            <p className="text-[10px] uppercase tracking-[0.3em] text-gray-200 whitespace-pre-line leading-relaxed drop-shadow-md">
               {concertInfo.venue}
             </p>
-            <h1 
-              className="text-sm md:text-base font-light whitespace-pre-line leading-relaxed text-white drop-shadow-md"
-              data-reveal
-              style={{ "--reveal-delay": "200ms" } as React.CSSProperties}
-            >
+            <h1 className="text-sm md:text-base font-light whitespace-pre-line leading-relaxed text-white drop-shadow-md">
               {concertInfo.title}
             </h1>
-            <p 
-              className="text-xs text-gray-200 drop-shadow-md"
-              data-reveal
-              style={{ "--reveal-delay": "300ms" } as React.CSSProperties}
-            >
+            <p className="text-xs text-gray-200 drop-shadow-md">
               {concertInfo.date} {concertInfo.time}
             </p>
             {/* Empty line after date */}
@@ -100,12 +88,9 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
 
       {/* Program list - scrollable, centered */}
       <main ref={mainRef} className="flex-1 overflow-y-auto relative z-10 w-full flex flex-col items-center pt-32">
-        <div className="w-full max-w-2xl flex flex-col items-center gap-6 px-8 md:px-16 pb-32">
-          {/* Header height spacer - reduced */}
-          <div className="h-16 md:h-24 flex-shrink-0" />
-          
-          {/* Empty line before first piece */}
-          <div className="h-4" />
+        <div className="w-full max-w-2xl flex flex-col items-center gap-4 px-8 md:px-16 pb-32">
+          {/* Header height spacer - reduced to show more pieces */}
+          <div className="h-8 md:h-12 flex-shrink-0" />
           
           {program.map((piece, index) => {
             const isIntermission = piece.id === -1;
