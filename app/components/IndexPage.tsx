@@ -64,6 +64,14 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
   }, []);
   return (
     <div className="h-screen flex flex-col relative overflow-hidden">
+      {/* Preload all composer images for smooth piece page transitions */}
+      <link rel="preload" as="image" href="/sepsi-botond.jpg" />
+      <link rel="preload" as="image" href="/regina.jpg" />
+      <link rel="preload" as="image" href="/nagy-emma.jpg" />
+      <link rel="preload" as="image" href="/varga-nadin.jpg" />
+      <link rel="preload" as="image" href="/botos-gergely.jpg" />
+      <link rel="preload" as="image" href="/torocsik-kristof.jpg" />
+
       {/* Shared background - prevents flicker, consistent brightness */}
       <BackgroundImage />
 

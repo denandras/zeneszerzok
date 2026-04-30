@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { program, type Piece } from "../data/program";
 import BackgroundImage from "./BackgroundImage";
 
@@ -16,31 +16,41 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
   const scrollRef = useRef<HTMLDivElement>(null);
   const isScrollingProgrammatically = useRef(false);
 
-  // Reveal animation observer setup
+  // Reveal animation observer setup - check for image-ready state
   useEffect(() => {
-    const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
-    if (!nodes.length) return;
+    const timer = setTimeout(() => {
+      const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+      if (!nodes.length) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              const target = entry.target as HTMLElement;
+              // Check if parent page is ready to reveal (image loaded)
+              const parentPage = target.closest('[data-page-ready]');
+              if (parentPage && parentPage.getAttribute('data-page-ready') !== 'true') {
+                continue; // Skip reveal until page is ready
+              }
+              target.classList.add("is-visible");
+              observer.unobserve(target);
+            }
           }
-        }
-      },
-      { threshold: 0.08, rootMargin: "0px 0px -6% 0px" }
-    );
+        },
+        { threshold: 0.08, rootMargin: "0px 0px -6% 0px" }
+      );
 
-    const raf = window.requestAnimationFrame(() => {
-      nodes.forEach((node) => observer.observe(node));
-    });
+      const raf = window.requestAnimationFrame(() => {
+        nodes.forEach((node) => observer.observe(node));
+      });
 
-    return () => {
-      window.cancelAnimationFrame(raf);
-      observer.disconnect();
-    };
+      return () => {
+        window.cancelAnimationFrame(raf);
+        observer.disconnect();
+      };
+    }, 50);
+
+    return () => clearTimeout(timer);
   }, [currentIndex]); // Re-run when page changes
 
   useEffect(() => {
@@ -101,6 +111,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       <link rel="prefetch" href="/nagy-emma.jpg" />
       <link rel="prefetch" href="/varga-nadin.jpg" />
       <link rel="prefetch" href="/botos-gergely.jpg" />
+      <link rel="prefetch" href="/torocsik-kristof.jpg" />
 
       {/* Shared background */}
       <BackgroundImage />
@@ -212,6 +223,57 @@ interface PageContentProps {
 }
 
 function PageContent({ piece, isAdjacent }: PageContentProps) {
+  const composerPhotos: Record<string, string> = {
+    "Sepsi Botond": "/sepsi-botond.jpg",
+    "Sebestyén-Lázár Regina": "/regina.jpg",
+    "Nagy Emma": "/nagy-emma.jpg",
+    "Varga Nadin": "/varga-nadin.jpg",
+    "Botos Gergely": "/botos-gergely.jpg",
+    "Törőcsik Kristóf": "/torocsik-kristof.jpg",
+  };
+  const hasPhoto = piece.composer in composerPhotos;
+  const photoSrc = composerPhotos[piece.composer];
+  
+  const [imageLoaded, setImageLoaded] = useState(!hasPhoto); // If no photo, start as loaded
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const handleImageLoad = useCallback(() => {
+    setImageLoaded(true);
+    // Trigger re-observation after image loads
+    if (contentRef.current) {
+      const event = new CustomEvent('imageReady');
+      window.dispatchEvent(event);
+    }
+  }, []);
+
+  // Listen for image ready event to re-trigger observation
+  useEffect(() => {
+    if (!imageLoaded) return;
+    
+    const timer = setTimeout(() => {
+      const nodes = contentRef.current?.querySelectorAll<HTMLElement>("[data-reveal]");
+      if (!nodes) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting && !entry.target.classList.contains('is-visible')) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          }
+        },
+        { threshold: 0.08, rootMargin: "0px 0px -6% 0px" }
+      );
+
+      nodes.forEach((node) => observer.observe(node));
+
+      return () => observer.disconnect();
+    }, 50);
+
+    return () => clearTimeout(timer);
+  }, [imageLoaded]);
+
   // Intermission page - centered vertically (aligned with arrows)
   if (piece.id === -1) {
     return (
@@ -232,20 +294,13 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
     );
   }
 
-  // Composers with photos - preload adjacent images
-  const composerPhotos: Record<string, string> = {
-    "Sepsi Botond": "/sepsi-botond.jpg",
-    "Sebestyén-Lázár Regina": "/regina.jpg",
-    "Nagy Emma": "/nagy-emma.jpg",
-    "Varga Nadin": "/varga-nadin.jpg",
-    "Botos Gergely": "/botos-gergely.jpg",
-  };
-  const hasPhoto = piece.composer in composerPhotos;
-  const photoSrc = composerPhotos[piece.composer];
-
   // Regular piece page
   return (
-    <div className="w-screen min-h-full flex-shrink-0 snap-center snap-always relative overflow-y-auto">
+    <div 
+      ref={contentRef} 
+      className="w-screen min-h-full flex-shrink-0 snap-center snap-always relative overflow-y-auto"
+      data-page-ready={imageLoaded ? "true" : "false"}
+    >
       {/* 
         Responsive padding approach:
         - Base: px-16 (64px) provides base arrow clearance
@@ -256,7 +311,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
         {/* Top spacer */}
         <div className="h-16 flex-shrink-0" />
 
-        {/* Composer Photo - with reveal animation */}
+        {/* Composer Photo - with reveal animation after load */}
         <div 
           className="relative w-32 h-32 md:w-40 md:h-36 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale"
           data-reveal
@@ -272,6 +327,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
               sizes="160px"
               loading={isAdjacent ? "eager" : "lazy"}
               priority={isAdjacent}
+              onLoad={handleImageLoad}
             />
           ) : (
             <svg
