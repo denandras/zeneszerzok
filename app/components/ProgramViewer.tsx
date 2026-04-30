@@ -177,9 +177,12 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       <footer className="fixed bottom-0 left-0 right-0 z-20 bg-black/30 backdrop-blur-md border-t border-white/10">
         <div className="px-8 py-4 min-h-[3rem] flex items-center justify-center grayscale relative">
           {/* Page number - bottom left, absolute positioned */}
-          <span className="absolute left-[10px] text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none">
-            {String(currentIndex + 1).padStart(2, "0")}
-          </span>
+          {/* Only show number for actual pieces (not SZÜNET) */}
+          {pieces[currentIndex].id !== -1 && (
+            <span className="absolute left-[10px] text-2xl md:text-3xl font-extralight text-white/40 leading-none select-none">
+              {String(pieces.slice(0, currentIndex + 1).filter(p => p.id > 0).length).padStart(2, "0")}
+            </span>
+          )}
 
           {/* Dots - centered in footer */}
           <div className="flex items-center gap-2">
