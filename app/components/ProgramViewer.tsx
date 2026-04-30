@@ -225,6 +225,7 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
   const photoSrc = composerPhotos[piece.composer];
   
   const [imageLoaded, setImageLoaded] = useState(!hasPhoto); // If no photo, start as loaded
+  const [lang, setLang] = useState<"EN" | "HU">("EN");
   const contentRef = useRef<HTMLDivElement>(null);
 
   const handleImageLoad = useCallback(() => {
@@ -344,21 +345,39 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
 
         {/* Poem - with reveal */}
         {piece.poem && (
-          <pre 
-            className="text-xs italic text-white/70 text-center max-w-xs leading-relaxed whitespace-pre-wrap font-sora"
-            data-reveal
-            style={{ "--reveal-delay": "480ms" } as React.CSSProperties}
-          >
-            {piece.poem.split("\n").map((line, i, arr) => {
-              const isHeader = ["Elegy", "Moments", "Detachment"].includes(line.trim());
-              return (
-                <span key={i} className={isHeader ? "font-bold italic" : ""}>
-                  {line}
-                  {i < arr.length - 1 ? "\n" : ""}
-                </span>
-              );
-            })}
-          </pre>
+          <div className="flex flex-col items-center gap-4">
+            {piece.poemHu && (
+              <div className="flex gap-2 mb-2">
+                <button 
+                  onClick={() => setLang("HU")}
+                  className={`text-xs uppercase tracking-widest px-3 py-1 rounded-full transition-all duration-300 border ${lang === "HU" ? "bg-white text-black border-white" : "bg-transparent text-white/60 border-white/30 hover:text-white"}`}
+                >
+                  HU
+                </button>
+                <button 
+                  onClick={() => setLang("EN")}
+                  className={`text-xs uppercase tracking-widest px-3 py-1 rounded-full transition-all duration-300 border ${lang === "EN" ? "bg-white text-black border-white" : "bg-transparent text-white/60 border-white/30 hover:text-white"}`}
+                >
+                  EN
+                </button>
+              </div>
+            )}
+            <pre 
+              className="text-xs italic text-white/70 text-center max-w-xs leading-relaxed whitespace-pre-wrap font-sora"
+              data-reveal
+              style={{ "--reveal-delay": "480ms" } as React.CSSProperties}
+            >
+              {(lang === "HU" && piece.poemHu ? piece.poemHu : piece.poem)?.split("\n").map((line, i, arr) => {
+                const isHeader = ["Elegy", "Moments", "Detachment", "Elégia", "Pillanatok", "Leválasztás", "VÉGTAGOK JOBBAN MOZOGNAK", "MŰHOLD", "LIMBSMOVE BETTER", "SATELLITE"].includes(line.trim());
+                return (
+                  <span key={i} className={isHeader ? "font-bold italic" : ""}>
+                    {line}
+                    {i < arr.length - 1 ? "\n" : ""}
+                  </span>
+                );
+              })}
+            </pre>
+          </div>
         )}
 
         {/* Poem metadata - with reveal */}

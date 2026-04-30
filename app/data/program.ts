@@ -5,6 +5,7 @@ export interface Piece {
   performers: string[];
   description: string;
   poem?: string;
+  poemHu?: string;
   poemYear?: string;
   poemAuthor?: string;
   poemTranslator?: string;
@@ -215,6 +216,35 @@ mist thin sheer still drift sleep dream
 green sheen mist thin sheer
 mist thin
 mist`,
+    poemHu: `Lorem ipsum dolor sit amet
+consectetur adipiscing elit sed
+do eiusmod tempor incididunt ut
+labore et dolore magna aliqua
+ut enim ad minim veniam quis
+nostrud exercitatio ullamco
+laboris nisi ut
+a
+l
+i
+q
+u
+ip
+e
+x
+ea
+commodo
+consequat duis aute irure dolor
+in reprehenderit in voluptate velit
+esse cillum dolore eu fugiat nulla
+pariatur excepteur sint occaecat cupidatat
+non proident sunt in culpa qui officia
+deserunt mollit anim id est laborum sed ut
+perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+laudantium totam rem aperiam eaque ipsa quae
+ab illo inventore veritatis et quasi
+architecto beatae vitae
+dicta sunt
+explicabo`,
     poemYear: "2026",
     poemAuthor: "Zsigmond Soma",
   },
@@ -300,6 +330,56 @@ more difficult
 Is this my hometown
 Is this your hometown
 Is this your hometown`,
+    poemHu: `VÉGTAGOK JOBBAN MOZOGNAK
+Lorem ipsum dolor
+Sit amet
+Consectetur adipiscing
+Elit sed
+Do eiusmod
+Tempor incididunt ut labore
+Et dolore
+Magna aliqua ut enim
+Ad minim veniam quis
+Nostrud exercitation ullamco
+Laboris nisi ut aliquip
+Ex ea
+commodo consequat
+Duis aute
+Irure
+Dolor in
+Reprehenderit
+In voluptate velit
+Esse cillum
+Dolore
+eu fugiat nulla
+Pariatur
+Excepteur
+Sint occaecat cupidatat
+Non proident
+Sunt in culpa qui officia
+Deserunt mollit anim id
+Est laborum sed ut
+
+MŰHOLD
+Sed ut perspiciatis unde omnis
+Iste natus error sit
+Voluptatem accusantium
+Doloremque laudantium totam rem aperiam
+Eaque ipsa quae ab
+Illo inventore veritatis
+Et quasi architecto beatae vitae
+Dicta sunt
+Explicabo
+Nemo enim ipsam voluptatem
+Qu ia voluptas sit aspernatur
+Aut odit aut fugit
+Sed quia consequuntur
+magni dolores
+Eos qui ratione
+Voluptatem sequi nesciunt
+Neque porro quisquam
+Est qui dolorem ipsum
+Qu ia dolor sit amet`,
     poemYear: "2026",
     poemAuthor: "Nagy Gergő",
   },
@@ -394,6 +474,44 @@ and Your face becomes memory
 on strangers faces
 forgotten by the wind
 like a spider web flowing in the breeze`,
+    poemHu: `Elégia
+Lorem ipsum dolor
+sit amet consectetur
+adipiscing elit sed
+do eiusmod
+tempor incididunt
+ut labore
+et dolore magna
+aliqua ut enim ad
+Minim veniam
+
+Pillanatok
+Quis nostrud exercitation
+ullamco laboris
+nisi ut aliquip
+ex ea commodo
+consequat duis aute
+irure dolor in reprehenderit
+in voluptate velit esse
+cillum dolore eu fugiat
+nulla pariatur excepteur sint
+occaecat cupidatat non
+proident sunt
+in culpa qui officia
+deserunt mollit anim
+id est laborum sed ut perspiciatis
+
+Leválasztás
+unde omnis iste natus error
+sit voluptatem accusantium
+Doloremque laudantium totam
+rem aperiam eaque
+ipsa quae ab illo
+inventore veritatis et
+quasi architecto beatae
+vitae dicta sunt
+explicabo nemo enim
+ipsam voluptatem`,
     poemYear: "2025",
     poemAuthor: "Zselyke Szentgyörgyi",
   },
