@@ -66,7 +66,7 @@ body {
   background: #555;
 }
 
-/* Reveal animation styles - faster for scroll-based reveals */
+/* Reveal animation styles - slow smooth animation, fast trigger */
 [data-reveal] {
   --reveal-y: 28px;
   --reveal-scale: 0.992;
@@ -74,7 +74,7 @@ body {
   transform: translateY(var(--reveal-y)) scale(var(--reveal-scale));
   filter: blur(3px);
   transition-property: opacity, transform, filter;
-  transition-duration: 550ms;
+  transition-duration: 800ms;
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0ms);
   will-change: opacity, transform, filter;
@@ -93,7 +93,7 @@ body {
   --reveal-y: 0px;
   --reveal-scale: 1;
   filter: blur(0px);
-  transition-duration: 500ms;
+  transition-duration: 700ms;
 }
 
 [data-reveal="fade-only"].is-visible {

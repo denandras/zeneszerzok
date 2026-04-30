@@ -13,7 +13,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const mainRef = useRef<HTMLElement>(null);
 
-  // Reveal animation observer - more aggressive to show one more piece initially
+  // Reveal animation observer - trigger early, animate smoothly
   useEffect(() => {
     const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     if (!nodes.length) return;
@@ -27,7 +27,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
           }
         }
       },
-      { threshold: 0.08, rootMargin: "0px 0px 30% 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px 60% 0px" }
     );
 
     const raf = window.requestAnimationFrame(() => {
@@ -97,8 +97,8 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
           
           {program.map((piece, index) => {
             const isIntermission = piece.id === -1;
-            // Stagger delays: start at 200ms, add 50ms per item for faster scroll reveals
-            const revealDelay = 200 + (index * 50);
+            // Minimal stagger for immediate scroll response
+            const revealDelay = 100 + (index * 30);
 
             if (isIntermission) {
               return (
@@ -156,7 +156,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
           <div 
             className="text-[10px] text-white/5 text-center -mt-2"
             data-reveal="fade-only"
-            style={{ "--reveal-delay": `${300 + (program.length * 50)}ms` } as React.CSSProperties}
+            style={{ "--reveal-delay": `${200 + (program.length * 30)}ms` } as React.CSSProperties}
           >
             website by{" "}
             <a
