@@ -121,7 +121,7 @@ Oly hű vigasztalóm.`,
       "Dénes András (harsona)",
       "Vida Mátyás (tuba)",
     ],
-    description: "A darabot Váci Mihály, _Valami nincs sehol_ című verse inspirálta. Számomra ez a vers a beteljesülés hiányának állandó feszültségéről és a kitörés ismételődő, de mégis sikertelen kísérleteiről szól.\nA zenei anyagban ezt a hiányérzetet és keresést próbáltam megragadni: olyan folyamatokkal, amelyek elindulnak a feloldás felé, de nem jutnak el odáig.\nA szavak mélysége miatt nem vállalkozom teljes értelmezésre, ezért ajánlom a vers egészének elolvasását.",
+    description: "A darabot Váci Mihály, *Valami nincs sehol* című verse inspirálta. Számomra ez a vers a beteljesülés hiányának állandó feszültségéről és a kitörés ismételődő, de mégis sikertelen kísérleteiről szól.\nA zenei anyagban ezt a hiányérzetet és keresést próbáltam megragadni: olyan folyamatokkal, amelyek elindulnak a feloldás felé, de nem jutnak el odáig.\nA szavak mélysége miatt nem vállalkozom teljes értelmezésre, ezért ajánlom a vers egészének elolvasását.",
     poem: `Süvítnek napjaink, a forró sortüzek,
       – valamit mindennap elmulasztunk.
 Robotolunk lélekszakadva, jóttevőn,

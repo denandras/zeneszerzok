@@ -378,9 +378,8 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
             className="text-sm text-white/80 text-center max-w-xs leading-relaxed"
             data-reveal
             style={{ "--reveal-delay": "360ms" } as React.CSSProperties}
-          >
-            {piece.description}
-          </p>
+            dangerouslySetInnerHTML={{ __html: formatText(piece.description) }}
+          />
         )}
 
         {/* Poem - with reveal */}
@@ -438,4 +437,14 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
     </div>
   );
 }
+/**
+ * Format text with markdown-style italic support
+ * Converts *text* to <em>text</em> for proper HTML rendering
+ */
+function formatText(text: string): string {
+  return text
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/_([^_]+)_/g, '<em>$1</em>');
+}
+
 // force rebuild 1777370038
