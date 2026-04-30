@@ -13,7 +13,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const mainRef = useRef<HTMLElement>(null);
 
-  // Reveal animation observer
+  // Reveal animation observer - more aggressive to show one more piece initially
   useEffect(() => {
     const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     if (!nodes.length) return;
@@ -27,7 +27,7 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
           }
         }
       },
-      { threshold: 0.08, rootMargin: "0px 0px -6% 0px" }
+      { threshold: 0.08, rootMargin: "0px 0px 30% 0px" }
     );
 
     const raf = window.requestAnimationFrame(() => {
@@ -88,9 +88,12 @@ export default function IndexPage({ onSelectPiece }: IndexPageProps) {
 
       {/* Program list - scrollable, centered */}
       <main ref={mainRef} className="flex-1 overflow-y-auto relative z-10 w-full flex flex-col items-center pt-32">
-        <div className="w-full max-w-2xl flex flex-col items-center gap-4 px-8 md:px-16 pb-32">
-          {/* Header height spacer - reduced to show more pieces */}
-          <div className="h-8 md:h-12 flex-shrink-0" />
+        <div className="w-full max-w-2xl flex flex-col items-center gap-6 px-8 md:px-16 pb-32">
+          {/* Header height spacer - reduced */}
+          <div className="h-16 md:h-24 flex-shrink-0" />
+          
+          {/* Empty line before first piece */}
+          <div className="h-4" />
           
           {program.map((piece, index) => {
             const isIntermission = piece.id === -1;
