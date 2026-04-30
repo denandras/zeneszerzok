@@ -51,6 +51,19 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
     };
   }, [currentIndex]);
 
+  // Function to show UI and reset hide timer
+  const showUIAndResetTimer = useCallback(() => {
+    setShowUI(true);
+    
+    if (hideUITimerRef.current) {
+      clearTimeout(hideUITimerRef.current);
+    }
+    
+    hideUITimerRef.current = setTimeout(() => {
+      setShowUI(false);
+    }, 3000);
+  }, []);
+
   // Reveal animation observer setup - check for image-ready state
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -193,6 +206,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
             isActive={index === currentIndex}
             pageNumber={index + 1}
             isAdjacent={Math.abs(index - currentIndex) <= 1}
+            onScroll={showUIAndResetTimer}
           />
         ))}
       </div>
@@ -234,9 +248,10 @@ interface PageContentProps {
   isActive: boolean;
   pageNumber: number;
   isAdjacent: boolean;
+  onScroll: () => void;
 }
 
-function PageContent({ piece, isAdjacent }: PageContentProps) {
+function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
   const composerPhotos: Record<string, string> = {
     "Sepsi Botond": "/sepsi-botond.jpg",
     "Sebestyén-Lázár Regina": "/regina.jpg",
@@ -271,6 +286,19 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
 
     return () => clearTimeout(timer);
   }, [imageLoaded]);
+
+  // Detect vertical scrolling and show UI
+  useEffect(() => {
+    const contentElement = contentRef.current;
+    if (!contentElement) return;
+
+    const handleScroll = () => {
+      onScroll();
+    };
+
+    contentElement.addEventListener('scroll', handleScroll);
+    return () => contentElement.removeEventListener('scroll', handleScroll);
+  }, [onScroll]);
 
   // Intermission page - centered vertically (aligned with arrows)
   if (piece.id === -1) {
