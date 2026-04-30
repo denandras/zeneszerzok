@@ -41,7 +41,7 @@ export const program: Piece[] = [
     performers: [
       "Híves Boglárka (szoprán)",
       "Sárréti Márton (hegedű)",
-      "Paulovics Boglárka (hegedű)",
+      "Pinkert Edina (hegedű)",
       "Sándor József (brácsa)",
       "Donáczi Cseperke (cselló)",
     ],
