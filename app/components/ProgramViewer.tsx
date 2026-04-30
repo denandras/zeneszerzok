@@ -347,16 +347,16 @@ function PageContent({ piece, isAdjacent }: PageContentProps) {
         {piece.poem && (
           <div className="flex flex-col items-center gap-4">
             {piece.poemHu && (
-              <div className="flex gap-2 mb-2">
+              <div className="flex gap-3 mb-2">
                 <button 
                   onClick={() => setLang("HU")}
-                  className={`text-xs uppercase tracking-widest px-3 py-1 rounded-full transition-all duration-300 border ${lang === "HU" ? "bg-white text-black border-white" : "bg-transparent text-white/60 border-white/30 hover:text-white"}`}
+                  className={`text-sm uppercase tracking-widest px-5 py-2 rounded-full transition-all duration-300 border ${lang === "HU" ? "bg-white text-black border-white" : "bg-transparent text-white/60 border-white/30 hover:text-white"}`}
                 >
                   HU
                 </button>
                 <button 
                   onClick={() => setLang("EN")}
-                  className={`text-xs uppercase tracking-widest px-3 py-1 rounded-full transition-all duration-300 border ${lang === "EN" ? "bg-white text-black border-white" : "bg-transparent text-white/60 border-white/30 hover:text-white"}`}
+                  className={`text-sm uppercase tracking-widest px-5 py-2 rounded-full transition-all duration-300 border ${lang === "EN" ? "bg-white text-black border-white" : "bg-transparent text-white/60 border-white/30 hover:text-white"}`}
                 >
                   EN
                 </button>
