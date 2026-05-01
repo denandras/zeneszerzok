@@ -291,28 +291,17 @@ function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
       {
         root: contentElement,
         threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
+        rootMargin: "0px",
       }
     );
 
-    // Observe all reveal elements after a short delay for initial render
-    const timer = setTimeout(() => {
-      const nodes = contentElement.querySelectorAll<HTMLElement>("[data-reveal]");
-      nodes.forEach((node) => {
-        observer.observe(node);
-      });
-      // Trigger initial check for elements already in view
-      nodes.forEach((node) => {
-        const rect = node.getBoundingClientRect();
-        const containerRect = contentElement.getBoundingClientRect();
-        if (rect.top < containerRect.bottom && rect.bottom > containerRect.top) {
-          node.classList.add("is-visible");
-        }
-      });
-    }, 50);
+    // Observe all reveal elements
+    const nodes = contentElement.querySelectorAll<HTMLElement>("[data-reveal]");
+    nodes.forEach((node) => {
+      observer.observe(node);
+    });
 
     return () => {
-      clearTimeout(timer);
       observer.disconnect();
     };
   }, [imageLoaded]);
