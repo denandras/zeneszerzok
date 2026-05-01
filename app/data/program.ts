@@ -330,37 +330,7 @@ more difficult
 Is this my hometown
 Is this your hometown
 Is this your hometown`,
-    poemHu: `VÉGTAGOK JOBBAN MOZOGNAK
-Lorem ipsum dolor
-Sit amet
-Consectetur adipiscing
-Elit sed
-Do eiusmod
-Tempor incididunt ut labore
-Et dolore
-Magna aliqua ut enim
-Ad minim veniam quis
-Nostrud exercitation ullamco
-Laboris nisi ut aliquip
-Ex ea
-commodo consequat
-Duis aute
-Irure
-Dolor in
-Reprehenderit
-In voluptate velit
-Esse cillum
-Dolore
-eu fugiat nulla
-Pariatur
-Excepteur
-Sint occaecat cupidatat
-Non proident
-Sunt in culpa qui officia
-Deserunt mollit anim id
-Est laborum sed ut
-
-MŰHOLD
+    poemHu: `MŰHOLD
 Sed ut perspiciatis unde omnis
 Iste natus error sit
 Voluptatem accusantium
@@ -475,43 +445,44 @@ on strangers faces
 forgotten by the wind
 like a spider web flowing in the breeze`,
     poemHu: `Elégia
-Lorem ipsum dolor
-sit amet consectetur
-adipiscing elit sed
-do eiusmod
-tempor incididunt
-ut labore
-et dolore magna
-aliqua ut enim ad
-Minim veniam
+tört fények homályán
+keresztül megpillantani az igazit
+partra sodort
+időt
+a tenger
+tapogatózva indulni
+hol rátalálása
+csak a búcsú pillanatában teljes
+találkozás
 
 Pillanatok
-Quis nostrud exercitation
-ullamco laboris
-nisi ut aliquip
-ex ea commodo
-consequat duis aute
-irure dolor in reprehenderit
-in voluptate velit esse
-cillum dolore eu fugiat
-nulla pariatur excepteur sint
-occaecat cupidatat non
-proident sunt
-in culpa qui officia
-deserunt mollit anim
-id est laborum sed ut perspiciatis
+magadhoz hívtál
+két alma
+hideg szendvics
+egy hangszál csokor
+ha gúzsba kötötted torkomat
+mint tél után az első leégés
+jéghideg partokon arcomat
+talpamba fúródott szilánkok súrolják
+tudod, sosem szerethettelek igazán
+sétálok
+csókjaiddal etetem magam
+melyet mindketten elhittünk
+annyira
+hogy az elválásból csak porsöprés lett
 
-Leválasztás
-unde omnis iste natus error
-sit voluptatem accusantium
-Doloremque laudantium totam
-rem aperiam eaque
-ipsa quae ab illo
-inventore veritatis et
-quasi architecto beatae
-vitae dicta sunt
-explicabo nemo enim
-ipsam voluptatem`,
+Elhajlás
+magamba zárva napokat számolni
+mint otthonról kergetett eb
+egy rögzített pillanat
+távoli hangjai
+kiejett szó
+ha nem jössz
+s arcod
+idegenek maszkjára
+mosódott emlék
+levegőben felejtett foszlányok,
+mint ökörnyálat lenget a szellő.`,
     poemYear: "2025",
     poemAuthor: "Zselyke Szentgyörgyi",
   },
