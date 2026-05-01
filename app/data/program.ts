@@ -444,7 +444,7 @@ and Your face becomes memory
 on strangers faces
 forgotten by the wind
 like a spider web flowing in the breeze`,
-    poemHu: `Elégia
+    poemHu: `**Elégia**
 tört fények homályán
 keresztül megpillantani az igazit
 partra sodort
@@ -455,7 +455,7 @@ hol rátalálása
 csak a búcsú pillanatában teljes
 találkozás
 
-Pillanatok
+**Pillanatok**
 magadhoz hívtál
 két alma
 hideg szendvics
@@ -471,7 +471,7 @@ melyet mindketten elhittünk
 annyira
 hogy az elválásból csak porsöprés lett
 
-Elhajlás
+**Elhajlás**
 magamba zárva napokat számolni
 mint otthonról kergetett eb
 egy rögzített pillanat
