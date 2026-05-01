@@ -64,20 +64,8 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
     }, 3000);
   }, []);
 
-  // Reveal animation observer setup - check for image-ready state
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
-      if (!nodes.length) return;
-
-      // Directly reveal all elements on the current page, regardless of intersection
-      nodes.forEach((node) => {
-        node.classList.add("is-visible");
-      });
-    }, 50);
-
-    return () => clearTimeout(timer);
-  }, [currentIndex]); // Re-run when page changes
+  // Reveal animation is now handled by PageContent using Intersection Observer
+  // Elements fade in as they enter the viewport during vertical scroll
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
@@ -110,16 +98,18 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
     }
   }, [startIndex]);
   
-  // Show UI on any click/tap anywhere in the viewer
+  // Show UI on any click/tap or mouse movement anywhere in the viewer
   useEffect(() => {
     const handleInteraction = () => {
       showUIAndResetTimer();
     };
     window.addEventListener("mousedown", handleInteraction);
     window.addEventListener("touchstart", handleInteraction);
+    window.addEventListener("mousemove", handleInteraction);
     return () => {
       window.removeEventListener("mousedown", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("mousemove", handleInteraction);
     };
   }, [showUIAndResetTimer]);
 
@@ -285,21 +275,49 @@ function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
     setImageLoaded(true);
   }, []);
 
-  // Listen for image ready event to re-trigger observation
+  // Intersection Observer for reveal animations on vertical scroll
   useEffect(() => {
-    if (!imageLoaded) return;
-    
-    const timer = setTimeout(() => {
-      const nodes = contentRef.current?.querySelectorAll<HTMLElement>("[data-reveal]");
-      if (!nodes) return;
+    const contentElement = contentRef.current;
+    if (!contentElement) return;
 
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        });
+      },
+      {
+        root: contentElement,
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      }
+    );
+
+    // Observe all reveal elements after a short delay for initial render
+    const timer = setTimeout(() => {
+      const nodes = contentElement.querySelectorAll<HTMLElement>("[data-reveal]");
       nodes.forEach((node) => {
-        node.classList.add("is-visible");
+        observer.observe(node);
+      });
+      // Trigger initial check for elements already in view
+      nodes.forEach((node) => {
+        const rect = node.getBoundingClientRect();
+        const containerRect = contentElement.getBoundingClientRect();
+        if (rect.top < containerRect.bottom && rect.bottom > containerRect.top) {
+          node.classList.add("is-visible");
+        }
       });
     }, 50);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
   }, [imageLoaded]);
+
+  // Listen for image ready event to re-trigger observation
 
   // Detect vertical scrolling and show UI
   useEffect(() => {
