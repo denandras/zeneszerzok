@@ -99,7 +99,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
 
     scrollContainer.addEventListener("scroll", handleScroll);
     return () => scrollContainer.removeEventListener("scroll", handleScroll);
-  }, [pieces.length, onScroll]);
+  }, [pieces.length, showUIAndResetTimer]);
 
   useEffect(() => {
     if (scrollRef.current && startIndex > 0) {
