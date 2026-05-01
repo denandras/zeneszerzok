@@ -255,7 +255,7 @@ interface PageContentProps {
   onScroll: () => void;
 }
 
-function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
+function PageContent({ piece, isAdjacent, onScroll, isActive }: PageContentProps) {
   const composerPhotos: Record<string, string> = {
     "Sepsi Botond": "/sepsi-botond.jpg",
     "Sebestyén-Lázár Regina": "/regina.jpg",
@@ -275,8 +275,10 @@ function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
     setImageLoaded(true);
   }, []);
 
-  // Reveal animation - staggered fade in when piece becomes active or scrolls into view
+  // Reveal animation - staggered fade in when piece becomes active
   useEffect(() => {
+    if (!isActive) return; // Only animate when this piece is active
+    
     const contentElement = contentRef.current;
     if (!contentElement) return;
 
@@ -286,10 +288,9 @@ function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
       node.classList.remove("is-visible");
     });
 
-    // After a brief delay, trigger staggered reveal for visible elements
+    // After a brief delay, trigger staggered reveal
     const timer = setTimeout(() => {
       allNodes.forEach((node) => {
-        // Get the reveal delay from CSS custom property
         const delay = node.style.getPropertyValue("--reveal-delay") || "0ms";
         const delayMs = parseInt(delay.replace("ms", ""));
         
@@ -302,7 +303,7 @@ function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
     return () => {
       clearTimeout(timer);
     };
-  }, [imageLoaded, piece.id]); // Re-run when piece changes
+  }, [isActive, imageLoaded]); // Trigger when piece becomes active
 
   // Listen for image ready event to re-trigger observation
 
