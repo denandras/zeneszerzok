@@ -275,7 +275,7 @@ function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
     setImageLoaded(true);
   }, []);
 
-  // Intersection Observer for reveal animations on vertical scroll
+  // Reveal animation - staggered fade in when piece becomes active or scrolls into view
   useEffect(() => {
     const contentElement = contentRef.current;
     if (!contentElement) return;
@@ -286,31 +286,21 @@ function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
       node.classList.remove("is-visible");
     });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-          }
-        });
-      },
-      {
-        root: contentElement,
-        threshold: 0,
-        rootMargin: "0px 0px -90% 0px", // Only trigger when element enters top 10% of visible area
-      }
-    );
-
-    // Observe all reveal elements after a small delay to ensure CSS is ready
+    // After a brief delay, trigger staggered reveal for visible elements
     const timer = setTimeout(() => {
       allNodes.forEach((node) => {
-        observer.observe(node);
+        // Get the reveal delay from CSS custom property
+        const delay = node.style.getPropertyValue("--reveal-delay") || "0ms";
+        const delayMs = parseInt(delay.replace("ms", ""));
+        
+        setTimeout(() => {
+          node.classList.add("is-visible");
+        }, delayMs);
       });
-    }, 10);
+    }, 50);
 
     return () => {
       clearTimeout(timer);
-      observer.disconnect();
     };
   }, [imageLoaded, piece.id]); // Re-run when piece changes
 
