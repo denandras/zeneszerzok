@@ -424,7 +424,7 @@ function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
               style={{ "--reveal-delay": "480ms" } as React.CSSProperties}
             >
               {(lang === "HU" && piece.poemHu ? piece.poemHu : piece.poem)?.split("\n").map((line, i, arr) => {
-                const isHeader = ["Elegy", "Moments", "Detachment", "Elégia", "Pillanatok", "Leválasztás", "VÉGTAGOK JOBBAN MOZOGNAK", "MŰHOLD", "LIMBSMOVE BETTER", "SATELLITE"].includes(line.trim());
+                const isHeader = ["Elegy", "Moments", "Detachment", "Elégia", "Pillanatok", "Elhajlás", "VÉGTAGOK JOBBAN MOZOGNAK", "MŰHOLD", "LIMBSMOVE BETTER", "SATELLITE"].includes(line.trim());
                 return (
                   <span key={i} className={isHeader ? "font-bold italic" : ""}>
                     {line}
