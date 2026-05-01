@@ -338,7 +338,7 @@ function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
 
         {/* Composer Photo - with reveal animation after load */}
         <div 
-          className="relative w-32 h-32 md:w-40 md:h-36 flex-shrink-0 border border-gray-800 bg-gray-950 overflow-hidden rounded-lg grayscale"
+          className="relative w-32 h-32 md:w-40 md:h-36 flex-shrink-0 border-none bg-gray-950 overflow-hidden rounded-lg grayscale"
           data-reveal
           style={{ "--reveal-delay": "120ms" } as React.CSSProperties}
         >
