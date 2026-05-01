@@ -280,6 +280,12 @@ function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
     const contentElement = contentRef.current;
     if (!contentElement) return;
 
+    // First, ensure all elements start hidden
+    const allNodes = contentElement.querySelectorAll<HTMLElement>("[data-reveal]");
+    allNodes.forEach((node) => {
+      node.classList.remove("is-visible");
+    });
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -290,21 +296,23 @@ function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
       },
       {
         root: contentElement,
-        threshold: 0.1,
-        rootMargin: "0px",
+        threshold: 0,
+        rootMargin: "0px 0px -90% 0px", // Only trigger when element enters top 10% of visible area
       }
     );
 
-    // Observe all reveal elements
-    const nodes = contentElement.querySelectorAll<HTMLElement>("[data-reveal]");
-    nodes.forEach((node) => {
-      observer.observe(node);
-    });
+    // Observe all reveal elements after a small delay to ensure CSS is ready
+    const timer = setTimeout(() => {
+      allNodes.forEach((node) => {
+        observer.observe(node);
+      });
+    }, 10);
 
     return () => {
+      clearTimeout(timer);
       observer.disconnect();
     };
-  }, [imageLoaded]);
+  }, [imageLoaded, piece.id]); // Re-run when piece changes
 
   // Listen for image ready event to re-trigger observation
 
