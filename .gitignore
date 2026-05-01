@@ -20,6 +20,9 @@
 # production
 /build
 
+# dist folder (static export)
+/dist/
+
 # misc
 .DS_Store
 *.pem
