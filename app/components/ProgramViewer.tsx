@@ -85,6 +85,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
 
     const handleScroll = () => {
       if (isScrollingProgrammatically.current) return;
+      onScroll(); // Trigger UI show when scrolling horizontally
       const scrollLeft = scrollContainer.scrollLeft;
       const pageWidth = scrollContainer.clientWidth;
       const newIndex = Math.round(scrollLeft / pageWidth);
@@ -98,7 +99,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
 
     scrollContainer.addEventListener("scroll", handleScroll);
     return () => scrollContainer.removeEventListener("scroll", handleScroll);
-  }, [pieces.length]);
+  }, [pieces.length, onScroll]);
 
   useEffect(() => {
     if (scrollRef.current && startIndex > 0) {
@@ -108,6 +109,19 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
       });
     }
   }, [startIndex]);
+  
+  // Show UI on any click/tap anywhere in the viewer
+  useEffect(() => {
+    const handleInteraction = () => {
+      showUIAndResetTimer();
+    };
+    window.addEventListener("mousedown", handleInteraction);
+    window.addEventListener("touchstart", handleInteraction);
+    return () => {
+      window.removeEventListener("mousedown", handleInteraction);
+      window.removeEventListener("touchstart", handleInteraction);
+    };
+  }, [showUIAndResetTimer]);
 
   const scrollToPage = (index: number) => {
     if (scrollRef.current && index >= 0 && index < pieces.length) {
@@ -324,7 +338,7 @@ function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
   return (
     <div 
       ref={contentRef} 
-      className="w-screen min-h-full flex-shrink-0 snap-center snap-always relative overflow-y-auto"
+      className="w-screen min-h-[101dvh] flex-shrink-0 snap-center snap-always relative overflow-y-auto"
     >
       {/* 
         Responsive padding approach:
