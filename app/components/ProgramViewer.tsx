@@ -85,7 +85,7 @@ export default function ProgramViewer({ startIndex = 0, onBackToIndex }: Program
 
     const handleScroll = () => {
       if (isScrollingProgrammatically.current) return;
-      onScroll(); // Trigger UI show when scrolling horizontally
+      showUIAndResetTimer(); // Trigger UI show when scrolling horizontally
       const scrollLeft = scrollContainer.scrollLeft;
       const pageWidth = scrollContainer.clientWidth;
       const newIndex = Math.round(scrollLeft / pageWidth);
