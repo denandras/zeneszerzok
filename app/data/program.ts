@@ -277,7 +277,7 @@ explicabo`,
       "Kapolcsi-Szabó Levente (zongora)",
     ],
     description: "",
-    poem: `LIMBSMOVE BETTER
+    poem: `LIMBS MOVE BETTER
 Wind blows
 Wailing
 On the hill's fans
@@ -330,26 +330,6 @@ more difficult
 Is this my hometown
 Is this your hometown
 Is this your hometown`,
-    poemHu: `MŰHOLD
-Sed ut perspiciatis unde omnis
-Iste natus error sit
-Voluptatem accusantium
-Doloremque laudantium totam rem aperiam
-Eaque ipsa quae ab
-Illo inventore veritatis
-Et quasi architecto beatae vitae
-Dicta sunt
-Explicabo
-Nemo enim ipsam voluptatem
-Qu ia voluptas sit aspernatur
-Aut odit aut fugit
-Sed quia consequuntur
-magni dolores
-Eos qui ratione
-Voluptatem sequi nesciunt
-Neque porro quisquam
-Est qui dolorem ipsum
-Qu ia dolor sit amet`,
     poemYear: "2026",
     poemAuthor: "Nagy Gergő",
   },
