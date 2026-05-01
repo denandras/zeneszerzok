@@ -456,7 +456,13 @@ function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
               style={{ "--reveal-delay": "480ms" } as React.CSSProperties}
             >
               {(lang === "HU" && piece.poemHu ? piece.poemHu : piece.poem)?.split("\n").map((line, i, arr) => {
-                const isHeader = ["Elegy", "Moments", "Detachment", "Elégia", "Pillanatok", "Elhajlás", "VÉGTAGOK JOBBAN MOZOGNAK", "MŰHOLD", "LIMBSMOVE BETTER", "SATELLITE"].includes(line.trim());
+                const trimmed = line.trim();
+                const isHeader = ["Elegy", "Moments", "Detachment", "Elégia", "Pillanatok", "Elhajlás", "VÉGTAGOK JOBBAN MOZOGNAK", "MŰHOLD", "LIMBSMOVE BETTER", "SATELLITE"].includes(trimmed);
+                const isBold = trimmed.startsWith("**") && trimmed.endsWith("**");
+                if (isBold) {
+                  const content = trimmed.slice(2, -2);
+                  return <span key={i} className="font-bold italic">{content}{i < arr.length - 1 ? "\n" : ""}</span>;
+                }
                 return (
                   <span key={i} className={isHeader ? "font-bold italic" : ""}>
                     {line}
@@ -505,11 +511,12 @@ function PageContent({ piece, isAdjacent, onScroll }: PageContentProps) {
   );
 }
 /**
- * Format text with markdown-style italic support
- * Converts *text* to <em>text</em> for proper HTML rendering
+ * Format text with markdown-style bold and italic support
+ * Converts **text** to <strong>text</strong> and *text* to <em>text</em>
  */
 function formatText(text: string): string {
   return text
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/\*([^*]+)\*/g, '<em>$1</em>')
     .replace(/_([^_]+)_/g, '<em>$1</em>');
 }
