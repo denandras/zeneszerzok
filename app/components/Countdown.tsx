@@ -18,11 +18,6 @@ export default function Countdown({ onSkip }: CountdownProps) {
     );
   }
 
-  if (isExpired) {
-    onSkip();
-    return null;
-  }
-
   return (
     <>
       <VideoBackground />
@@ -82,8 +77,16 @@ export default function Countdown({ onSkip }: CountdownProps) {
           {/* Spacer before registration */}
           <div className="h-8 md:h-12" />
 
-          {/* Links - only registration visible during countdown */}
+          {/* Links - program button revealed after countdown, registration always visible */}
           <div className="flex flex-col items-center gap-4">
+            {isExpired && (
+              <a
+                href="/programme"
+                className="text-sm text-white underline hover:no-underline transition-all"
+              >
+                Program megtekintése
+              </a>
+            )}
             <a
               href="https://zeneakademia.jegy.hu/program/zeneszerzes-ba-diplomakoncert-103155/1433641"
               target="_blank"
@@ -92,7 +95,6 @@ export default function Countdown({ onSkip }: CountdownProps) {
             >
               Regisztráció
             </a>
-            {/* Program megtekintése hidden until countdown expires */}
           </div>
         </div>
         
