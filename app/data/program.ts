@@ -216,35 +216,34 @@ mist thin sheer still drift sleep dream
 green sheen mist thin sheer
 mist thin
 mist`,
-    poemHu: `Lorem ipsum dolor sit amet
-consectetur adipiscing elit sed
-do eiusmod tempor incididunt ut
-labore et dolore magna aliqua
-ut enim ad minim veniam quis
-nostrud exercitatio ullamco
-laboris nisi ut
+    poemHu: `köd vékony áttetsző halvány kietlen
+köd vékony mozdulatlan sodródik zöld fénylés
+mély alvás álom szellő csendes ezüst
+este dallam horizont lassan
+fölött álmos alacsony magányos lágy kicsi
+esik lassú alacsony magányos
+lágy kicsi esik
 a
 l
-i
-q
-u
-ip
-e
-x
-ea
-commodo
-consequat duis aute irure dolor
-in reprehenderit in voluptate velit
-esse cillum dolore eu fugiat nulla
-pariatur excepteur sint occaecat cupidatat
-non proident sunt in culpa qui officia
-deserunt mollit anim id est laborum sed ut
-perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-laudantium totam rem aperiam eaque ipsa quae
-ab illo inventore veritatis et quasi
-architecto beatae vitae
-dicta sunt
-explicabo`,
+v
+a
+j
+á
+r
+á
+s
+nyugodt balzsam pálma meleg öreg lélek
+ború virágzás alkony dereng vályog szoba hold
+láp gyászol vihar csüng dúdol ájul nyújtott beszéd
+üres bánat követ kölcsönöz holnap árnyék
+magányos megnyugtató hangulatos ősz havazás hajnal alkony
+hold szoba dereng ború virágzás alkony vályog nyugodt balzsam pálma meleg
+köd tó raj ivadék szakadt húzott szunyókál zümmög nyög ringat lassú kóborol part réges-rég
+álom mély alvás álom sodródik sodródik zöld fénylés
+köd vékony áttetsző mozdulatlan sodródik alvás álom
+zöld fénylés köd vékony áttetsző
+köd vékony
+köd`,
     poemYear: "2026",
     poemAuthor: "Zsigmond Soma",
   },
