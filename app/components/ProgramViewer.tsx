@@ -269,26 +269,43 @@ function PageContent({ piece, isAdjacent, onScroll, isActive }: PageContentProps
   
   const [imageLoaded, setImageLoaded] = useState(!hasPhoto); // If no photo, start as loaded
   const [lang, setLang] = useState<"EN" | "HU">("EN");
+  const [hasAnimated, setHasAnimated] = useState(false); // Track if already animated
   const contentRef = useRef<HTMLDivElement>(null);
 
   const handleImageLoad = useCallback(() => {
     setImageLoaded(true);
   }, []);
 
-  // Reveal animation - staggered fade in when piece becomes active
+  // Reveal animation - staggered fade in when piece becomes active (first time only)
   useEffect(() => {
-    if (!isActive) return; // Only animate when this piece is active
-    
     const contentElement = contentRef.current;
     if (!contentElement) return;
 
-    // First, ensure all elements start hidden
+    // Hide elements when not active
+    if (!isActive) {
+      const allNodes = contentElement.querySelectorAll<HTMLElement>("[data-reveal]");
+      allNodes.forEach((node) => {
+        node.classList.remove("is-visible");
+      });
+      return;
+    }
+
+    // Skip animation if already animated (returning to previously viewed page)
+    if (hasAnimated) {
+      const allNodes = contentElement.querySelectorAll<HTMLElement>("[data-reveal]");
+      allNodes.forEach((node) => {
+        node.classList.add("is-visible");
+      });
+      return;
+    }
+
+    // First time seeing this page - run staggered reveal
     const allNodes = contentElement.querySelectorAll<HTMLElement>("[data-reveal]");
     allNodes.forEach((node) => {
       node.classList.remove("is-visible");
     });
 
-    // After a brief delay, trigger staggered reveal
+    // Trigger staggered reveal after brief delay
     const timer = setTimeout(() => {
       allNodes.forEach((node) => {
         const delay = node.style.getPropertyValue("--reveal-delay") || "0ms";
@@ -298,12 +315,13 @@ function PageContent({ piece, isAdjacent, onScroll, isActive }: PageContentProps
           node.classList.add("is-visible");
         }, delayMs);
       });
+      setHasAnimated(true);
     }, 50);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [isActive, imageLoaded]); // Trigger when piece becomes active
+  }, [isActive, imageLoaded, hasAnimated]);
 
   // Listen for image ready event to re-trigger observation
 
@@ -355,7 +373,7 @@ function PageContent({ piece, isAdjacent, onScroll, isActive }: PageContentProps
         <div 
           className="relative w-32 h-32 md:w-40 md:h-36 flex-shrink-0 border-none bg-gray-950 overflow-hidden rounded-lg grayscale"
           data-reveal
-          style={{ "--reveal-delay": "120ms" } as React.CSSProperties}
+          style={{ "--reveal-delay": imageLoaded ? "120ms" : "0ms" } as React.CSSProperties}
         >
           {hasPhoto ? (
             <Image
