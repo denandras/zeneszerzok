@@ -353,6 +353,8 @@ function PageContent({ piece, isAdjacent, onScroll, isActive }: PageContentProps
     );
   }
 
+  const showDescriptionBeforePoem = piece.id === 13;
+
   // Regular piece page
   return (
     <div 
@@ -418,8 +420,8 @@ function PageContent({ piece, isAdjacent, onScroll, isActive }: PageContentProps
           </h2>
         </div>
 
-        {/* Description - with reveal */}
-        {piece.description && (
+        {/* Description (piece 13 only: before poem) */}
+        {piece.description && showDescriptionBeforePoem && (
           <p 
             className="text-sm text-white/80 text-center max-w-xs leading-relaxed"
             data-reveal
@@ -486,6 +488,16 @@ function PageContent({ piece, isAdjacent, onScroll, isActive }: PageContentProps
             <p className="text-xs text-white/60">-{piece.poemAuthor}-</p>
             {piece.poemTranslator && <p className="text-xs text-white/50 mt-1">{piece.poemTranslator}</p>}
           </div>
+        )}
+
+        {/* Description (default placement: after title, before poem) */}
+        {piece.description && !showDescriptionBeforePoem && (
+          <p 
+            className="text-sm text-white/80 text-center max-w-xs leading-relaxed"
+            data-reveal
+            style={{ "--reveal-delay": "360ms" } as React.CSSProperties}
+            dangerouslySetInnerHTML={{ __html: formatText(piece.description) }}
+          />
         )}
 
         {/* Performers - with reveal */}
