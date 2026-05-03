@@ -8,7 +8,7 @@ import IndexPage from "./components/IndexPage";
 type ViewState = "countdown" | "index" | "program";
 
 export default function Home() {
-  const [view, setView] = useState<ViewState>("index");
+  const [view, setView] = useState<ViewState>("countdown");
   const [selectedPiece, setSelectedPiece] = useState(0);
 
   const handleSkipCountdown = useCallback(() => {
