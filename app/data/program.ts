@@ -16,7 +16,9 @@ export const concertInfo = {
 BA diplomakoncert`,
   date: "2026. május 3.",
   time: "18:00",
-  venue: `\nZeneakadémia, Solti terem\n`,
+  venue: `
+Zeneakadémia, Solti terem
+`,
   venueEn: "Liszt Academy Budapest",
   note: "A koncert előtt, 16.00 órától a diplomázók vizsgafilmjei az I. előadó teremben tekinthetők meg.",
 };
@@ -33,7 +35,7 @@ export const program: Piece[] = [
       "Lakatos Béla (basszusklarinét)",
       "Botos Gergely (kontrabasszus-klarinét)",
     ],
-    description: "Ebben a darabomban igyekeztem a klarinét hangszercsalád sokszínűségét bemutatni a legelterjedtebb szoprántól kezdve egészen a ritkán használt kontrabasszus-klarinétig.",
+    description: "Ebben a darabomban igyekeztem a klarinét hangszercsalád sokszínűségét bemutatni a legelterjedtebb szoprántól kezdve egészen a ritkán használt kontrabasszus-klarinétig[...]
   },
   {
     id: 2,
@@ -46,7 +48,7 @@ export const program: Piece[] = [
       "Sándor József (brácsa)",
       "Donáczi Cseperke (cselló)",
     ],
-    description: "Ha bármit. A legapróbb építő elemeire bontva. Mindenhol ugyan azokhoz az építőelemekhez érkezel. Akkor mi értelme van a bármiknek? Kiút keresés egy végtelen labirintusból, mely egyszerre zuhanó és emelkedő, táguló és összezsugorodó, de legfőképp szüntelenül önmagát ismétlő.",
+    description: "Ha bármit. A legapróbb építő elemeire bontva. Mindenhol ugyan azokhoz az építőelemekhez érkezel. Akkor mi értelme van a bármiknek? Kiút keresés egy végtelen labirin[...]
     poem: `Milyen lesz az a visszaröpülés,
 amiről csak hasonlatok beszélnek,
 olyanfélék, hogy oltár, szentély,
@@ -74,7 +76,7 @@ mind tömöttebb és mind tömöttebb
       "Vajda Denejra (hárfa)",
       "Friderikusz Péter (cselló)",
     ],
-    description: "Anna Ahmatova XX. századi orosz költő versének megzenésítése Konczek József fordításában. A szopránra, hárfára és csellóra íródott darab egyfajta kontemplatív érzelmi kettősséget próbál megeleveníteni.",
+    description: "Anna Ahmatova XX. századi orosz költő versének megzenésítése Konczek József fordításában. A szopránra, hárfára és csellóra íródott darab egyfajta kontemplatív [...]
     poem: `A lágy fényhez fohászkodom…
 („Moljusz okonnomu lucsu…")
 
@@ -122,7 +124,7 @@ Oly hű vigasztalóm.`,
       "Dénes András (harsona)",
       "Vida Mátyás (tuba)",
     ],
-    description: "A darabot Váci Mihály, *Valami nincs sehol* című verse inspirálta. Számomra ez a vers a beteljesülés hiányának állandó feszültségéről és a kitörés ismételődő, de mégis sikertelen kísérleteiről szól.\nA zenei anyagban ezt a hiányérzetet és keresést próbáltam megragadni: olyan folyamatokkal, amelyek elindulnak a feloldás felé, de nem jutnak el odáig.\nA szavak mélysége miatt nem vállalkozom teljes értelmezésre, ezért ajánlom a vers egészének elolvasását.",
+    description: "A darabot Váci Mihály, *Valami nincs sehol* című verse inspirálta. Számomra ez a vers a beteljesülés hiányának állandó feszültségéről és a kitörés ismételőd[...]
     poem: `Süvítnek napjaink, a forró sortüzek,
       – valamit mindennap elmulasztunk.
 Robotolunk lélekszakadva, jóttevőn,
@@ -184,7 +186,7 @@ de itt van mindnyájunkban mégis,
     composer: "Varga Nadin",
     title: "Glimmer",
     performers: ["Kalafszky Adriána (szoprán)", "Szabó Dénes (cselló)"],
-    description: "A versben szereplő szavak egymás után olvasva nem alkotnak összefüggő jelentést, ugyanakkor hangzásuk és önálló jelentésük különféle benyomásokat keltenek. A lágyabb, zeneibb hangzású szavak inkább a kellemes érzetet erősítik, míg a keményebb hangzásúak feszültséget teremtenek - bár mindez természetesen teljesen szubjektív. Számomra a szöveg egy estétől hajnalig tartó folyamat képzetét idézte fel, amelyet a darabban is igyekeztem megjeleníteni.",
+    description: "A versben szereplő szavak egymás után olvasva nem alkotnak összefüggő jelentést, ugyanakkor hangzásuk és önálló jelentésük különféle benyomásokat keltenek. A l[...]
     poem: `mist thin sheer dim bleak
 mist thin still drift green sheen
 deep sleep dream breeze silent silver
@@ -263,7 +265,7 @@ köd`,
       "Németh Flóra (fagott/kontrafagott)",
       "Botos Gergely (zongora)",
     ],
-    description: "A mű Radnóti Miklós azonos című költeményéből dolgoz fel néhány rövid szemelvényt. A fagott-kontrafagott váltakozása szembeállítja az ártatlan tájverset az akkori kor szociális életével.",
+    description: "A mű Radnóti Miklós azonos című költeményéből dolgoz fel néhány rövid szemelvényt. A fagott-kontrafagott váltakozása szembeállítja az ártatlan tájverset az ak[...]
   },
   {
     id: 8,
@@ -345,14 +347,14 @@ Is this your hometown`,
       "Szilágyi Péter (marimba)",
       "Vezényel: Kemény Péter",
     ],
-    description: "Ez a darab az esőerdők gazdag és sokszínű hangzásvilágának emlékére született. A különféle hangszeres effektusok ennek a különleges természeti környezetnek az atmoszféráját idézik meg: a csepegő eső hangját, a szél susogását, valamint a különböző madárfajok énekét. Mivel az esőerdők napjainkban egyre nagyobb veszélynek vannak kitéve, a mű egyfajta tisztelgés is e még létező, különleges erdei hangzásvilág előtt.",
+    description: "Ez a darab az esőerdők gazdag és sokszínű hangzásvilágának emlékére született. A különféle hangszeres effektusok ennek a különleges természeti környezetnek az [...]
   },
   {
     id: 10,
     composer: "Sepsi Botond",
     title: "Floating",
     performers: ["Várallyay Fülöp (zongora)"],
-    description: "A lebegés szóra – nagyon találóan – az angoloknak két szavuk van. Míg a „levitation” egy mágikus dolog, a „floating” az, amikor a könnyebb fajsúlyú dolog úszik, lebeg a nehezebben. A fókusz számomra az egészből a „könnyebb”-en van. Ez nem mágikus, hanem valóságos, természetes.",
+    description: "A lebegés szóra – nagyon találóan – az angoloknak két szavuk van. Míg a „levitation” egy mágikus dolog, a „floating” az, amikor a könnyebb fajsúlyú dolog �[...]
   },
   {
     id: 11,
@@ -365,14 +367,14 @@ Is this your hometown`,
       "Koppán Kata (brácsa)",
       "Bali Gabriella (cselló)",
     ],
-    description: "Egy lassan kibomló vonósdarab, amely finom texturális változásokon és fokozatos dinamikai építkezésen keresztül jut el egy intenzív tetőpontig, majd visszahullik a kezdeti lebegő csendbe.",
+    description: "Egy lassan kibomló vonósdarab, amely finom texturális változásokon és fokozatos dinamikai építkezésen keresztül jut el egy intenzív tetőpontig, majd visszahullik a k[...]
   },
   {
     id: 12,
     composer: "Botos Gergely",
     title: "Mémoire",
     performers: ["Erdő Zoltán (tárogató)", "Botos Gergely (zongora)"],
-    description: "Ezzel a darabommal igyekeztem megidézni a századforduló francia zenei világát, ami a tárogató különleges hangszínével ötvözve egy kellemes hangulatot hoz magával. A koncerten ez a darab egy eredeti Stowasser tárogatón szólal meg.",
+    description: "Ezzel a darabommal igyekeztem megidézni a századforduló francia zenei világát, ami a tárogató különleges hangszínével ötvözve egy kellemes hangulatot hoz magával. [...]
   },
   {
     id: 13,
@@ -385,7 +387,7 @@ Is this your hometown`,
       "Farkas Botond (zongora)",
       "Szalovszky Viktória (preparáció)",
     ],
-    description: "",
+    description: "Vajon az élet különböző szakaszaiban hogyan emlékezünk vissza az első igaz szerelemre? Valamilyen formában örökre velünk marad ez az érzés, vagy idővel már egy arcot sem tudunk felidézni?",
     poem: `Elegy
 through scattered lights
 can be seen the One
