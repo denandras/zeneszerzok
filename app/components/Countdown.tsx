@@ -8,7 +8,7 @@ interface CountdownProps {
 }
 
 export default function Countdown({ onSkip }: CountdownProps) {
-  const { timeLeft, isExpired, isLoading } = useCountdown();
+  const { timeLeft, isLoading } = useCountdown();
 
   if (isLoading) {
     return (
@@ -74,27 +74,17 @@ export default function Countdown({ onSkip }: CountdownProps) {
             </p>
           </div>
 
-          {/* Spacer before registration */}
+          {/* Spacer before CTA */}
           <div className="h-8 md:h-12" />
 
-          {/* Links - program button revealed after countdown, registration always visible */}
+          {/* CTA - Műsor megtekintése */}
           <div className="flex flex-col items-center gap-4">
-            {isExpired && (
-              <a
-                href="/programme"
-                className="text-sm text-white underline hover:no-underline transition-all"
-              >
-                Program megtekintése
-              </a>
-            )}
-            <a
-              href="https://zeneakademia.jegy.hu/program/zeneszerzes-ba-diplomakoncert-103155/1433641"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-white underline hover:no-underline transition-all"
+            <button
+              onClick={onSkip}
+              className="text-sm text-white underline hover:no-underline transition-all cursor-pointer"
             >
-              Regisztráció
-            </a>
+              Műsor megtekintése
+            </button>
           </div>
         </div>
         

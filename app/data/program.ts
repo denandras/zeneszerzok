@@ -50,7 +50,7 @@ export const program: Piece[] = [
       "Donáczi Cseperke (cselló)",
     ],
     description:
-      "Ha bármit. A legapróbb építő elemeire bontva. Mindenhol ugyan azokhoz az építőelemekhez érkezel. Akkor mi értelme van a bármiknek? Kiút keresés egy végtelen labirintusból.",
+      "Ha bármit. A legapróbb építő elemeire bontva. Mindenhol ugyan azokhoz az építőelemekhez érkezel. Akkor mi értelme van a bármiknek? Kiút keresés egy végtelen labirintusból, mely egyszerre zuhanó és emelkedő, táguló és összezsugorodó, de legfőképp szüntelenül önmagát ismétlő.",
     poem: `Milyen lesz az a visszaröpülés,
 amiről csak hasonlatok beszélnek,
 olyanfélék, hogy oltár, szentély,
@@ -79,7 +79,7 @@ mind tömöttebb és mind tömöttebb
       "Friderikusz Péter (cselló)",
     ],
     description:
-      "Anna Ahmatova XX. századi orosz költő versének megzenésítése Konczek József fordításában. A szopránra, hárfára és csellóra íródott darab egyfajta kontemplatív hangulatot idéz.",
+      "Anna Ahmatova XX. századi orosz költő versének megzenésítése Konczek József fordításában. A szopránra, hárfára és csellóra íródott darab egyfajta kontemplatív érzelmi kettősséget próbál megeleveníteni.",
     poem: `A lágy fényhez fohászkodom…
 („Moljusz okonnomu lucsu…")
 
@@ -129,7 +129,7 @@ Oly hű vigasztalóm.`,
       "Vida Mátyás (tuba)",
     ],
     description:
-      "A darabot Váci Mihály, *Valami nincs sehol* című verse inspirálta. Számomra ez a vers a beteljesülés hiányának állandó feszültségéről és a kitörés ismételődéséről szól.",
+      "A darabot Váci Mihály, *Valami nincs sehol* című verse inspirálta. Számomra ez a vers a beteljesülés hiányának állandó feszültségéről és a kitörés ismételődő, de mégis sikertelen kísérleteiről szól.\nA zenei anyagban ezt a hiányérzetet és keresést próbáltam megragadni: olyan folyamatokkal, amelyek elindulnak a feloldás felé, de nem jutnak el odáig.\nA szavak mélysége miatt nem vállalkozom teljes értelmezésre, ezért ajánlom a vers egészének elolvasását.",
     poem: `Süvítnek napjaink, a forró sortüzek,
       – valamit mindennap elmulasztunk.
 Robotolunk lélekszakadva, jóttevőn,
@@ -192,7 +192,7 @@ de itt van mindnyájunkban mégis,
     title: "Glimmer",
     performers: ["Kalafszky Adriána (szoprán)", "Szabó Dénes (cselló)"],
     description:
-      "A versben szereplő szavak egymás után olvasva nem alkotnak összefüggő jelentést, ugyanakkor hangzásuk és önálló jelentésük különféle benyomásokat keltenek.",
+      "A versben szereplő szavak egymás után olvasva nem alkotnak összefüggő jelentést, ugyanakkor hangzásuk és önálló jelentésük különféle benyomásokat keltenek. A lágyabb, zeneibb hangzású szavak inkább a kellemes érzetet erősítik, míg a keményebb hangzásúak feszültséget teremtenek - bár mindez természetesen teljesen szubjektív. Számomra a szöveg egy estétől hajnalig tartó folyamat képzetét idézte fel, amelyet a darabban is igyekeztem megjeleníteni.",
     poem: `mist thin sheer dim bleak
 mist thin still drift green sheen
 deep sleep dream breeze silent silver
@@ -272,7 +272,7 @@ köd`,
       "Botos Gergely (zongora)",
     ],
     description:
-      "A mű Radnóti Miklós azonos című költeményéből dolgoz fel néhány rövid szemelvényt. A fagott-kontrafagott váltakozása szembeállítja az ártatlan tájverset az akkori történelmi valósággal.",
+      "A mű Radnóti Miklós azonos című költeményéből dolgoz fel néhány rövid szemelvényt. A fagott-kontrafagott váltakozása szembeállítja az ártatlan tájverset az akkori kor szociális életével.",
   },
   {
     id: 8,
@@ -355,7 +355,7 @@ Is this your hometown`,
       "Vezényel: Kemény Péter",
     ],
     description:
-      "Ez a darab az esőerdők gazdag és sokszínű hangzásvilágának emlékére született. A különféle hangszeres effektusok ennek a különleges természeti környezetnek az emlékét idézik.",
+      "Ez a darab az esőerdők gazdag és sokszínű hangzásvilágának emlékére született. A különféle hangszeres effektusok ennek a különleges természeti környezetnek az atmoszféráját idézik meg: a csepegő eső hangját, a szél susogását, valamint a különböző madárfajok énekét. Mivel az esőerdők napjainkban egyre nagyobb veszélynek vannak kitéve, a mű egyfajta tisztelgés is e még létező, különleges erdei hangzásvilág előtt.",
   },
   {
     id: 10,
@@ -363,7 +363,7 @@ Is this your hometown`,
     title: "Floating",
     performers: ["Várallyay Fülöp (zongora)"],
     description:
-      "A lebegés szóra – nagyon találóan – az angoloknak két szavuk van. Míg a „levitation” egy mágikus dolog, a „floating” az, amikor a könnyebb fajsúlyú dolog úszik a víz felszínén.",
+      "A lebegés szóra – nagyon találóan – az angoloknak két szavuk van. Míg a „levitation” egy mágikus dolog, a „floating” az, amikor a könnyebb fajsúlyú dolog úszik, lebeg a nehezebben. A fókusz számomra az egészből a „könnyebb”-en van. Ez nem mágikus, hanem valóságos, természetes.",
   },
   {
     id: 11,
@@ -385,7 +385,7 @@ Is this your hometown`,
     title: "Mémoire",
     performers: ["Erdő Zoltán (tárogató)", "Botos Gergely (zongora)"],
     description:
-      "Ezzel a darabommal igyekeztem megidézni a századforduló francia zenei világát, ami a tárogató különleges hangszínével ötvözve egy kellemes hangulatot hoz magával.",
+      "Ezzel a darabommal igyekeztem megidézni a századforduló francia zenei világát, ami a tárogató különleges hangszínével ötvözve egy kellemes hangulatot hoz magával. A koncerten ez a darab egy eredeti Stowasser tárogatón szólal meg.",
   },
   {
     id: 13,
